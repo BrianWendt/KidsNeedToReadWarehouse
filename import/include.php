@@ -143,12 +143,11 @@ class Insert
 
 function extract_ein(string $string): string
 {
-    if (substr($string, 0, 3) == 'EIN') {
-        preg_match('/\d{2}-\d{7}/', $string, $matches);
-        if ($matches) {
-            return $matches[0];
-        }
+    preg_match('/\d{2}-\d{7}/', $string, $matches);
+    if ($matches) {
+        return $matches[0];
     }
+
     return '';
 }
 
