@@ -22,7 +22,7 @@ class Service
     {
         $params = [
             'q' => $query,
-            'key' => 'AIzaSyDsMhfWoGfhU3cOibPZN5XQFXohzzSYCNU',
+            'key' => config('google.api_key'),
             'maxResults' => $maxResults,
         ];
         switch ($scope) {
