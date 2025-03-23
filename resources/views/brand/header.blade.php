@@ -1,0 +1,1 @@
+<img src="/img/logo.png" alt="Kids Need To Read logo" class="img-fluid">

@@ -1,0 +1,1 @@
+<img src="{{ $book->image_thumbnail }}" alt="" class="img-fluid">

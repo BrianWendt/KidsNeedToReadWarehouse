@@ -1,0 +1,12 @@
+[data-controller="radiobutton"] .btn:after {
+    font-family: 'Courier New', Courier, monospace;
+    content: "▢";
+    padding: 0 0 0 .5em;
+    opacity: .3;
+    width: 1em;
+}
+
+[data-controller="radiobutton"] .btn.active:after {
+    content: "\2713";
+    opacity: 1;
+}

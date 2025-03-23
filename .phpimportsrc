@@ -1,0 +1,45 @@
+{
+    "root": ".",
+    "include": [
+        "**/*.php"
+    ],
+    "exclude": [
+        "**/node_modules/**",
+        "**/vendor/**"
+    ],
+    "order": [
+        "singleUses.class",
+        "emptyLine",
+        "singleUses.function",
+        "singleUses.const",
+        "emptyLine",
+        "groupedUses.class",
+        "emptyLine",
+        "groupedUses.function",
+        "groupedUses.const"
+    ],
+    "sort": {
+        "order": "default",
+        "nestedOrder": "natural"
+    },
+    "print": {
+        "emptyLinesAfterImports": 1,
+        "wrap": true
+    },
+    "psr12": {
+        "enable": true,
+        "isolateModifiers": true,
+        "minNestedGroupNestedUsesCount": 1,
+        "minNestedGroupUsesCount": 1,
+        "minGroupUsesCount": 2
+    },
+    "custom": {
+        "enable": true,
+        "isolateModifiers": true,
+        "include": {},
+        "exclude": []
+    },
+    "unused": {
+        "enable": false
+    }
+}
