@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property string $description
  * @property string $tracking
  * @property int $organization_id
+ * @property string $program_display
  * @property \App\Models\Organization $organization
  * @property \App\Models\Contact $contact
  * @property \App\Models\Contact $shipping_contact
@@ -67,6 +68,17 @@ class Fulfillment extends AppModel {
     {
         return Attribute::make(
             get: fn() => config('options.fulfillment_statuses')[$this->status] ?? $this->status,
+        );
+    }
+
+    public function programDisplay() : Attribute
+    {
+        $text = $this->program->name;
+        if($this->initiative) {
+            $text .= ' (' . $this->initiative->name . ')';
+        }
+        return Attribute::make(
+            get: fn() => $text,
         );
     }
 
