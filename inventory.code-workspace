@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"emeraldwalk.runonsave": {
+			"commands": [
+				{
+					"match": "\\.php$",
+					"cmd": "${workspaceFolder}/vendor/bin/pint ${file}"
+				}
+			]
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"emeraldwalk.runonsave"
+		]
+	}
+}
