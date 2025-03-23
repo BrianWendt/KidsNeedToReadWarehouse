@@ -28,6 +28,7 @@ class ExportsStatement extends Exports
             $this->keyValueRow('Fulfillment', '#' . $fulfillment->id),
             $this->keyValueRow('Status', $fulfillment->status_display),
             $this->keyValueRow('Organization', $fulfillment->organization->name),
+            $this->keyValueRow('Program', $fulfillment->program_display),
             $this->keyValueRow('EIN', $fulfillment->organization->ein ?? '-'),
         ];
 
