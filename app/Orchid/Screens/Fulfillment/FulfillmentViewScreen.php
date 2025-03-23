@@ -93,13 +93,7 @@ class FulfillmentViewScreen extends Screen
         $left = [
             Layout::legend('fulfillment', [
 
-                Sight::make('program.name', __('Program'))->render(function (Fulfillment $fulfillment) {
-                    $text = $fulfillment->program->name;
-                    if($fulfillment->initiative) {
-                        $text .= ' (' . $fulfillment->initiative->name . ')';
-                    }
-                    return $text;
-                }),
+                Sight::make('program_display', __('Program')),
 
                 Sight::make('children_served', __('Children Served')),
 

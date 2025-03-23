@@ -90,13 +90,7 @@ class FulfillmentPrintScreen extends FulfillmentViewScreen
             Layout::legend('fulfillment', [
                 Sight::make('status_display', __('Status')),
 
-                Sight::make('program.name', __('Program'))->render(function (Fulfillment $fulfillment) {
-                    $text = $fulfillment->program->name;
-                    if($fulfillment->initiative) {
-                        $text .= ' (' . $fulfillment->initiative->name . ')';
-                    }
-                    return $text;
-                }),
+                Sight::make('program_display', __('Program')),
                 Sight::make('description', __('Description'))->render(function (Fulfillment $fulfillment) {
                     return nl2p($fulfillment->description);
                 }),
