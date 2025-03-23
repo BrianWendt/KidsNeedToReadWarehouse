@@ -106,7 +106,7 @@ class FulfillmentViewScreen extends Screen
 
                 Sight::make('organization.ein', __('Organization EIN'))
                     ->render(function (Fulfillment $fulfillment) {
-                        return $fulfillment->organization->ein;
+                        return $fulfillment->organization->ein ? $fulfillment->organization->ein : '<i>-not set-</i>';
                     }),
 
                 Sight::make('contact', __('Contact'))->render(function (Fulfillment $fulfillment) {
