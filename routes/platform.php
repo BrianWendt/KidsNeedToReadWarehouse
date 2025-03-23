@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-
+use App\Orchid\Screens;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
-
-use App\Orchid\Screens;
 
 // Main
 Route::screen('/dashboard', Screens\PlatformScreen::class)
@@ -93,7 +91,6 @@ Route::screen('book/create/{isbn}', Screens\Book\BookAddScreen::class)
  * Inventory
  */
 
-
 // App > Inventory Lookup
 Route::screen('inventory/lookup', Screens\Inventory\InventoryLookupScreen::class)
     ->name('app.inventory.lookup')
@@ -129,7 +126,6 @@ Route::screen('audits', Screens\Audit\AuditListScreen::class)
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->push(__('Audits'), route('app.audit.list')));
 
-
 // App > Audit > Inventory > Record
 Route::screen('audit/{audit}/record', Screens\Audit\AuditInventoryRecordScreen::class)
     ->name('app.audit.record')
@@ -162,11 +158,10 @@ Route::screen('audit/{audit}/edit', Screens\Audit\AuditEditScreen::class)
         ->push(__('Edit'), route('app.audit.edit', $audit)));
 
 /**
- * 
  * Contact Management
  */
 
-// App > Contacts 
+// App > Contacts
 Route::screen('contacts', Screens\Contact\ContactListScreen::class)
     ->name('app.contact.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
@@ -269,7 +264,7 @@ Route::screen('organization/create', Screens\Organization\OrganizationCreateScre
  * PurchaseOrders
  */
 
-// App > PurchaseOrders 
+// App > PurchaseOrders
 Route::screen('purchase_orders', Screens\PurchaseOrder\PurchaseOrderListScreen::class)
     ->name('app.purchase_order.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
@@ -307,7 +302,7 @@ Route::screen('purchase_order/{purchase_order}/edit', Screens\PurchaseOrder\Purc
  * Fulfillments
  */
 
-// App > Fulfillments 
+// App > Fulfillments
 Route::screen('fulfillments', Screens\Fulfillment\FulfillmentListScreen::class)
     ->name('app.fulfillment.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
@@ -345,10 +340,8 @@ Route::screen('fulfillment/{fulfillment}/edit', Screens\Fulfillment\FulfillmentE
 Route::screen('fulfillment_inventory/{fulfillment_inventory}/edit', Screens\FulfillmentInventory\FulfillmentInventoryEditScreen::class)
     ->name('app.fulfillment_inventory.edit');
 
-
 /**
  * Reports
  */
-
 Route::screen('reports/inventory', Screens\Reports\InventoryReport::class)
     ->name('app.reports.inventory');

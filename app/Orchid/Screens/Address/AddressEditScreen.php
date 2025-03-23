@@ -7,7 +7,6 @@ use Orchid\Screen\Screen;
 
 class AddressEditScreen extends Screen
 {
-
     public function query(Address $address): iterable
     {
 
@@ -18,8 +17,6 @@ class AddressEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -44,7 +41,7 @@ class AddressEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Address\AddressEditLayout::class
+            \App\Orchid\Layouts\Address\AddressEditLayout::class,
         ];
     }
 
@@ -53,6 +50,7 @@ class AddressEditScreen extends Screen
         $address->fill($request->get('address'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Address updated'));
+
         return redirect()->route('app.contact.view', $address->contact_id);
     }
 }

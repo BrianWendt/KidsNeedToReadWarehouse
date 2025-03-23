@@ -2,17 +2,13 @@
 
 namespace App\Orchid\Screens\Address;
 
+use App\Models\Address;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
 
-use App\Models\{
-    Address,
-    Contact
-};
-
 class AddressCreateScreen extends Screen
 {
- 
     public function query(Address $address, Request $request): iterable
     {
         if ($request->query('contact_id')) {
@@ -29,8 +25,6 @@ class AddressCreateScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -55,7 +49,7 @@ class AddressCreateScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Address\AddressEditLayout::class
+            \App\Orchid\Layouts\Address\AddressEditLayout::class,
         ];
     }
 
@@ -64,6 +58,7 @@ class AddressCreateScreen extends Screen
         $address->fill($request->get('address'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Address added'));
+
         return redirect()->route('app.contact.view', $address->contact_id);
     }
 }

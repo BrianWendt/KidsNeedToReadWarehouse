@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect('/admin/dashboard');
 });
 
-if(env('APP_ENV') == 'local') {
+if (env('APP_ENV') == 'local') {
     Route::get('/import', [\App\Http\Controllers\ImportController::class, 'index']);
     Route::get('/correct_books', [\App\Http\Controllers\CorrectBooksController::class, 'index']);
 }

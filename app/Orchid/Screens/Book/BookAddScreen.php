@@ -5,25 +5,21 @@ namespace App\Orchid\Screens\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
-use Orchid\Support\Facades\Layout;
-
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 /**
  * @property \App\Models\Book $book
  */
-
 class BookAddScreen extends Screen
 {
-
     public $isbn;
+
     public $book;
+
     public $categories = [];
 
     /**
@@ -56,8 +52,6 @@ class BookAddScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -94,9 +88,9 @@ class BookAddScreen extends Screen
                                 ->href($book->ebay)
                                 ->target('_blank'),
                         ]);
-                    })
-                ])
-            ])
+                    }),
+                ]),
+            ]),
         ];
     }
 
@@ -116,6 +110,7 @@ class BookAddScreen extends Screen
         \Orchid\Support\Facades\Toast::success('Book Added.');
         $book->fill($request->input('book'));
         $book->save();
+
         return redirect()->route('app.inventory.record', $book->isbn);
     }
 }

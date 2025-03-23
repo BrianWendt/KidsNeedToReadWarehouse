@@ -3,19 +3,14 @@
 namespace App\Orchid\Screens\Contact;
 
 use App\Models\Contact;
-use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
-
 use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class ContactViewScreen extends Screen
 {
-
     public $contact;
 
     /**
@@ -32,8 +27,6 @@ class ContactViewScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -80,7 +73,7 @@ class ContactViewScreen extends Screen
                             ->route('app.email.create', ['contact_id' => $this->contact->id])
                             ->icon('bs.plus')
                             ->class('btn btn-sm btn-success'),
-                    ])
+                    ]),
                 ],
 
                 __('Addresses') => [
@@ -90,7 +83,7 @@ class ContactViewScreen extends Screen
                             ->route('app.address.create', ['contact_id' => $this->contact->id])
                             ->icon('bs.plus')
                             ->class('btn btn-sm btn-success'),
-                    ])
+                    ]),
                 ],
 
                 __('Telephones') => [
@@ -100,7 +93,7 @@ class ContactViewScreen extends Screen
                             ->route('app.telephone.create', ['contact_id' => $this->contact->id])
                             ->icon('bs.plus')
                             ->class('btn btn-sm btn-success'),
-                    ])
+                    ]),
                 ],
             ]),
 
@@ -111,6 +104,7 @@ class ContactViewScreen extends Screen
     {
         $contact->fill($request->all())->save();
         \Orchid\Support\Facades\Toast::success(__('Primary updated'));
+
         return back();
     }
 }

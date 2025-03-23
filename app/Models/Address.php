@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property string $zipcode
  * @property \App\Models\Contact $contact
  */
-
 class Address extends AppModel
 {
     use \Orchid\Filters\Filterable;
@@ -33,16 +32,17 @@ class Address extends AppModel
     protected $allowedSorts = [
         'name',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public function display(): Attribute
     {
-        $address = $this->street1 . "\n";
+        $address = $this->street1."\n";
         if ($this->street2) {
-            $address .= $this->street2 . "\n";
+            $address .= $this->street2."\n";
         }
-        $address .= $this->city . ', ' . $this->state . ' ' . $this->zipcode;
+        $address .= $this->city.', '.$this->state.' '.$this->zipcode;
+
         return Attribute::make(
             get: fn () => $address,
         );

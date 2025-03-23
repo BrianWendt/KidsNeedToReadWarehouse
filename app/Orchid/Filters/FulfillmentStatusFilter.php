@@ -4,18 +4,13 @@ namespace App\Orchid\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
-
-use Orchid\Screen\{
-    Fields\Select,
-    Field
-};
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Select;
 
 class FulfillmentStatusFilter extends Filter
 {
     /**
      * The displayable name of the filter.
-     *
-     * @return string
      */
     public function name(): string
     {
@@ -24,8 +19,6 @@ class FulfillmentStatusFilter extends Filter
 
     /**
      * The array of matched parameters.
-     *
-     * @return array|null
      */
     public function parameters(): ?array
     {
@@ -34,10 +27,6 @@ class FulfillmentStatusFilter extends Filter
 
     /**
      * Apply to a given Eloquent query builder.
-     *
-     * @param Builder $builder
-     *
-     * @return Builder
      */
     public function run(Builder $builder): Builder
     {
@@ -45,7 +34,7 @@ class FulfillmentStatusFilter extends Filter
         $status = request()->input('filter.status');
         if ($status && empty($id)) {
             $status_list = config('options.fulfillment_statuses');
-            if (!empty($status_list[$status])) {
+            if (! empty($status_list[$status])) {
                 $builder->where('status', $status);
             }
             switch ($status) {
@@ -56,9 +45,10 @@ class FulfillmentStatusFilter extends Filter
                     $builder->whereIn('status', ['new', 'preparing', 'pending_shipment']);
                     break;
             }
-        } else if(empty($id)) {
+        } elseif (empty($id)) {
             $builder->whereNot('status', 'cancelled');
         }
+
         return $builder;
     }
 
@@ -73,7 +63,7 @@ class FulfillmentStatusFilter extends Filter
         return [
             Select::make('status')
                 ->options(self::options())
-                ->title('Fulfillment Status')
+                ->title('Fulfillment Status'),
         ];
     }
 
@@ -85,6 +75,7 @@ class FulfillmentStatusFilter extends Filter
             'unfulfilled' => 'Unfulfilled',
         ];
         $options += config('options.fulfillment_statuses');
+
         return $options;
     }
 }

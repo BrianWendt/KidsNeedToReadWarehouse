@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\Book;
 use App\Models\Inventory;
 
@@ -11,12 +9,12 @@ class ImportController extends Controller
 {
     public function index()
     {
-        echo "<pre>";
+        echo '<pre>';
         $rows = [];
 
-        if (($open = fopen(storage_path() . "/import.csv", "r")) !== FALSE) {
+        if (($open = fopen(storage_path().'/import.csv', 'r')) !== false) {
 
-            while (($data = fgetcsv($open, 1000, ",")) !== FALSE) {
+            while (($data = fgetcsv($open, 1000, ',')) !== false) {
                 $rows[] = $data;
             }
 
@@ -26,7 +24,7 @@ class ImportController extends Controller
         unset($rows[0]);
 
         $this->importBooks($rows);
-        //$this->importInventory($rows);
+        // $this->importInventory($rows);
     }
 
     public function importBooks($rows)
@@ -43,12 +41,13 @@ class ImportController extends Controller
                     'fixed_value' => $fixed_value,
                 ]);
             } catch (\Exception $e) {
-                echo $e->getMessage() . "\n";
+                echo $e->getMessage()."\n";
             }
         }
     }
 
-    public function importInventory($rows){
+    public function importInventory($rows)
+    {
         foreach ($rows as $book) {
             [$isbn, $title, $fixed_value, $qty] = $book;
             if ($qty < 1) {
@@ -67,7 +66,7 @@ class ImportController extends Controller
                     'enitity_id' => 4, // Import from Lead Commerce
                 ]);
             } catch (\Exception $e) {
-                echo $e->getMessage() . "\n";
+                echo $e->getMessage()."\n";
             }
         }
     }

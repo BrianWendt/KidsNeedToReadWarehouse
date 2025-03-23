@@ -2,13 +2,10 @@
 
 namespace App\Orchid\Layouts\Book;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Rows;
 
 class BookEditLayout extends Rows
 {
@@ -68,7 +65,7 @@ class BookEditLayout extends Rows
             Button::make(__('Save'))
                 ->class('btn btn-success')
                 ->icon('bs.check-circle')
-                ->method('save')
+                ->method('save'),
         ];
     }
 }

@@ -2,12 +2,10 @@
 
 namespace App\Orchid\Layouts\PurchaseOrder;
 
-use Orchid\Screen\{
-    Actions,
-    Fields,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields;
+use Orchid\Screen\Layouts\Rows;
 
 class PurchaseOrderEditLayout extends Rows
 {
@@ -26,7 +24,7 @@ class PurchaseOrderEditLayout extends Rows
     protected function fields(): iterable
     {
         $purchase_order = $this->query->getContent('purchase_order');
-        if (!is_array($purchase_order)) {
+        if (! is_array($purchase_order)) {
             $purchase_order = $purchase_order->toArray() ?? [];
         }
         $organization_id = $purchase_order['organization_id'];
@@ -55,14 +53,13 @@ class PurchaseOrderEditLayout extends Rows
                     ->modal('organizationModal')
                     ->method('changeOrganization')
                     ->icon('pencil')
-                    ->class('btn btn-secondary')
+                    ->class('btn btn-secondary'),
             ]),
 
             Fields\DateTimer::make('purchase_order.received_date')
                 ->title(__('Received Date'))
                 ->format('Y-m-d')
                 ->required(),
-
 
             Fields\Select::make('purchase_order.contact_id')
                 ->title(__('Contact'))
@@ -105,7 +102,7 @@ class PurchaseOrderEditLayout extends Rows
                 Actions\Link::make(__('Cancel'))
                     ->route('app.purchase_order.view', $purchase_order['id'])
                     ->icon('x')
-                    ->class('btn btn-danger')
+                    ->class('btn btn-danger'),
             ]),
         ];
     }

@@ -3,12 +3,13 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 use Illuminate\Validation\Rule;
 
-class StorePurchaseOrderRequest extends FormRequest {
-    public function rules() {
- 
+class StorePurchaseOrderRequest extends FormRequest
+{
+    public function rules()
+    {
+
         return [
             'purchase_order.contact_id' => 'exists:contacts,id',
             'purchase_order.contact_id' => Rule::when(not_empty('purchase_order.contact_id'), ['exists:contacts,id']),
@@ -19,7 +20,8 @@ class StorePurchaseOrderRequest extends FormRequest {
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             'purchase_order.contact_id.exists' => 'The selected contact does not exist.',
             'purchase_order.contact_id.exists' => 'The selected shipping contact does not exist.',

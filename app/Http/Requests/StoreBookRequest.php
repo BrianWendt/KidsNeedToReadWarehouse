@@ -3,10 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
-use Illuminate\Validation\Rules\Enum;
 use Illuminate\Validation\Rule;
-
 
 class StoreBookRequest extends FormRequest
 {
@@ -14,9 +11,10 @@ class StoreBookRequest extends FormRequest
     {
         $book = $this->route('book');
         $id = $book ? $book->id : null;
+
         return [
             'book.title' => 'required|max:128',
-            'book.isbn' => 'required|max:20|min:1|unique:books,isbn,' . $id,
+            'book.isbn' => 'required|max:20|min:1|unique:books,isbn,'.$id,
             'book.author' => 'max:128',
             'book.retail_price' => Rule::when(not_empty('book.retail_price'), 'numeric|min:0.01'),
             'book.fixed_value' => Rule::when(not_empty('book.fixed_value'), 'numeric|min:0.01'),
@@ -42,4 +40,3 @@ class StoreBookRequest extends FormRequest
         ];
     }
 }
-

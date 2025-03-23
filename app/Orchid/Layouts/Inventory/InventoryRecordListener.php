@@ -3,11 +3,8 @@
 namespace App\Orchid\Layouts\Inventory;
 
 use Illuminate\Http\Request;
-
-use Orchid\Screen\{
-    Layouts\Listener,
-    Repository
-};
+use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 
 class InventoryRecordListener extends Listener
 {
@@ -33,9 +30,7 @@ class InventoryRecordListener extends Listener
     /**
      * Update state
      *
-     * @param \Orchid\Screen\Repository $repository
-     * @param \Illuminate\Http\Request  $request
-     *
+     * @param  \Orchid\Screen\Repository  $repository
      * @return \Orchid\Screen\Repository
      */
     public function handle(Repository $repository, Request $request): Repository

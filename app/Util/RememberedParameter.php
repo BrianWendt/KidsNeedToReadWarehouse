@@ -4,13 +4,11 @@ namespace App\Util;
 
 class RememberedParameter
 {
-
-    
     /**
      * Get the value of a parameter from the request or session stored by middleware
+     *
      * @see \App\Http\Middleware\RememberParameters
-     * 
-     * @param string $parameter
+     *
      * @return mixed
      */
     public static function get(string $parameter, $default = null)
@@ -21,6 +19,7 @@ class RememberedParameter
         if (session()->has($parameter)) {
             return session()->get($parameter);
         }
+
         return $default;
     }
 

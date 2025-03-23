@@ -4,12 +4,13 @@ namespace App\Exports;
 
 abstract class Exports
 {
-
     public $filename = 'export';
+
     public $format = 'xlsx';
+
     public $data = [];
 
-    public abstract function beforeExport(\OpenSpout\Writer\AbstractWriter $writer): void;
+    abstract public function beforeExport(\OpenSpout\Writer\AbstractWriter $writer): void;
 
     public function beforeExportXLSX(\OpenSpout\Writer\XLSX\Writer $writer): void
     {
@@ -19,24 +20,27 @@ abstract class Exports
 
     public function filename(): string
     {
-        return $this->filename . '.' . $this->format;
+        return $this->filename.'.'.$this->format;
     }
 
     public function setFilename($filename)
     {
         $this->filename = $filename;
+
         return $this;
     }
 
     public function setFormat($format)
     {
         $this->format = strtolower($format);
+
         return $this;
     }
 
     public function setData(array $data)
     {
         $this->data = $data;
+
         return $this;
     }
 
@@ -63,9 +67,9 @@ abstract class Exports
     {
         switch ($format) {
             case 'xlsx':
-                return new \OpenSpout\Writer\XLSX\Writer();
+                return new \OpenSpout\Writer\XLSX\Writer;
             case 'csv':
-                return new \OpenSpout\Writer\CSV\Writer();
+                return new \OpenSpout\Writer\CSV\Writer;
             default:
                 throw new \Exception('Unsupported export format');
         }
@@ -77,12 +81,13 @@ abstract class Exports
         foreach ($data as $value) {
             $cells[] = \OpenSpout\Common\Entity\Cell::fromValue($value);
         }
+
         return new \OpenSpout\Common\Entity\Row($cells);
     }
 
     public function makeStyle()
     {
-        return new \OpenSpout\Common\Entity\Style\Style();
+        return new \OpenSpout\Common\Entity\Style\Style;
     }
 
     public function makeHeaderStyle(): \OpenSpout\Common\Entity\Style\Style

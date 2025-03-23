@@ -3,15 +3,11 @@
 namespace App\Orchid\Screens\Audit;
 
 use App\Models\Audit;
-use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
-
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class AuditViewScreen extends Screen
 {
@@ -27,6 +23,7 @@ class AuditViewScreen extends Screen
     public function query(Audit $audit): iterable
     {
         $audit->audit_inventory = $audit->audit_inventory()->orderBy('created_at', 'desc')->paginate(50);
+
         return [
             'audit' => $audit,
         ];
@@ -34,12 +31,10 @@ class AuditViewScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return $this->audit->label . " (Audit #{$this->audit->id})";
+        return $this->audit->label." (Audit #{$this->audit->id})";
     }
 
     /**
@@ -87,10 +82,10 @@ class AuditViewScreen extends Screen
 
                     self::exportAction('xlsx', __('Export XLSX'))
                         ->icon('bs.filetype-xlsx'),
-                ])
+                ]),
             ]),
 
-            \App\Orchid\Layouts\Audit\AuditInventoryListLayout::class
+            \App\Orchid\Layouts\Audit\AuditInventoryListLayout::class,
         ];
     }
 
@@ -106,6 +101,7 @@ class AuditViewScreen extends Screen
     public function exportFilename()
     {
         $ts = time();
+
         return "audit-inventory-{$ts}";
     }
 }

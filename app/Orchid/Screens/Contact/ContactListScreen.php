@@ -15,14 +15,12 @@ class ContactListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'contacts' => Contact::filters()->defaultSort('first_name')->paginate()
+            'contacts' => Contact::filters()->defaultSort('first_name')->paginate(),
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -40,7 +38,7 @@ class ContactListScreen extends Screen
             \Orchid\Screen\Actions\Link::make(__('Add Contact'))
                 ->icon('bs.plus-circle')
                 ->route('app.contact.create')
-                ->class('btn btn-primary')
+                ->class('btn btn-primary'),
         ];
     }
 
@@ -52,7 +50,7 @@ class ContactListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Contact\ContactListLayout::class
+            \App\Orchid\Layouts\Contact\ContactListLayout::class,
         ];
     }
 }

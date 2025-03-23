@@ -3,11 +3,8 @@
 namespace App\Orchid\Layouts\Fulfillment;
 
 use Illuminate\Http\Request;
-
-use Orchid\Screen\{
-    Layouts\Listener,
-    Repository
-};
+use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 
 class FulfillmentInventoryRecordListener extends Listener
 {
@@ -33,19 +30,18 @@ class FulfillmentInventoryRecordListener extends Listener
     /**
      * Update state
      *
-     * @param \Orchid\Screen\Repository $repository
-     * @param \Illuminate\Http\Request  $request
-     *
+     * @param  \Orchid\Screen\Repository  $repository
      * @return \Orchid\Screen\Repository
      */
     public function handle(Repository $repository, Request $request): Repository
     {
         $repository->set($request->input());
-        
+
         $book = \App\Models\Book::find($request->input('book_id'));
-        if($book){
+        if ($book) {
             $repository->set('fulfillment_inventory.isbn', $book->isbn);
         }
+
         return $repository;
     }
 }

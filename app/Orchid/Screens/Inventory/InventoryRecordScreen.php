@@ -3,18 +3,14 @@
 namespace App\Orchid\Screens\Inventory;
 
 use App\Http\Requests\StoreInventoryRequest;
-
 use App\Models\Book;
 use App\Models\Inventory;
 use App\Models\PurchaseOrder;
-
-use Orchid\Support\Facades\Layout;
-
 use App\Orchid\Layouts\Book as BookLayouts;
 use App\Orchid\Layouts\Inventory as InventoryLayouts;
-
-use Orchid\Screen\Screen;
 use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 /**
  * @property Inventory $inventory
@@ -22,8 +18,8 @@ use Orchid\Screen\Repository;
  */
 class InventoryRecordScreen extends Screen
 {
-
     public $inventory;
+
     public $book;
 
     /**
@@ -48,18 +44,16 @@ class InventoryRecordScreen extends Screen
         $stats['total_count'] = $stats['new_count'] + $stats['used_count'];
 
         return [
-            'isbn'  => $isbn,
+            'isbn' => $isbn,
             'book' => $book,
             'inventory' => $inventory,
             'inventory_list' => $inventory_list,
-            'stats' => new Repository($stats)
+            'stats' => new Repository($stats),
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -84,7 +78,7 @@ class InventoryRecordScreen extends Screen
     public function layout(): iterable
     {
         $left = [
-            InventoryLayouts\InventoryRecordLayout::class
+            InventoryLayouts\InventoryRecordLayout::class,
         ];
         $right = [];
 
@@ -100,10 +94,10 @@ class InventoryRecordScreen extends Screen
         return [
             Layout::split([
                 $left,
-                $right
+                $right,
             ]),
             InventoryLayouts\InventoryGlanceLayout::class,
-            InventoryLayouts\InventoryListLayout::class
+            InventoryLayouts\InventoryListLayout::class,
         ];
     }
 
@@ -118,6 +112,7 @@ class InventoryRecordScreen extends Screen
         \Orchid\Support\Facades\Toast::success("You have successfully recorded {$inventory->quantity} of `{$inventory->isbn}`.");
         if ($inventory->book) {
             $inventory->book->touch();
+
             return redirect()->route('app.purchase_order.view', $inventory->entity_id);
         } else {
             return redirect()->route('app.book.create', $inventory->isbn);

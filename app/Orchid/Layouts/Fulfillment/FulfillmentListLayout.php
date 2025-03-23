@@ -3,16 +3,12 @@
 namespace App\Orchid\Layouts\Fulfillment;
 
 use App\Models\Fulfillment;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Fields\Select,
-    Layouts\Table,
-    TD
-};
-
 use App\Orchid\Filters\FulfillmentStatusFilter;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class FulfillmentListLayout extends Table
 {
@@ -40,8 +36,8 @@ class FulfillmentListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (Fulfillment $fulfillment) {
                     return
-                        Link::make('#' . $fulfillment->id)
-                        ->route('app.fulfillment.view', $fulfillment);
+                        Link::make('#'.$fulfillment->id)
+                            ->route('app.fulfillment.view', $fulfillment);
                 }),
 
             TD::make('organization.name', __('Organization'))
@@ -72,7 +68,7 @@ class FulfillmentListLayout extends Table
                     return Link::make(__('View'))
                         ->route('app.fulfillment.view', $fulfillment)
                         ->icon('eye');
-                })
+                }),
         ];
     }
 }

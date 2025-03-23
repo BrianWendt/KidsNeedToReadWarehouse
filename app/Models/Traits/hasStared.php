@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -9,14 +10,15 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property bool $starred
  * @property string display
  */
-trait hasStared {
-
+trait hasStared
+{
     public function display(): Attribute
     {
         $name = $this->name;
         if ($this->starred) {
-            $name = '★ ' .  $name;
+            $name = '★ '.$name;
         }
+
         return Attribute::make(
             get: fn () => $name,
         );

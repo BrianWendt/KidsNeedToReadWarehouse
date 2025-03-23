@@ -25,9 +25,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property \App\Models\Initiative $initiative
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\FulfillmentInventory[] $inventory
  */
-
-class Fulfillment extends AppModel {
-
+class Fulfillment extends AppModel
+{
     protected $fillable = [
         'status',
         'program_id',
@@ -42,7 +41,7 @@ class Fulfillment extends AppModel {
     ];
 
     protected $attributes = [
-        'status' => 'new'
+        'status' => 'new',
     ];
 
     protected $allowedSorts = [
@@ -54,70 +53,71 @@ class Fulfillment extends AppModel {
 
     protected $allowedFilters = [
         'id' => \Orchid\Filters\Types\Where::class,
-        //'status' => \Orchid\Filters\Types\Where::class,
+        // 'status' => \Orchid\Filters\Types\Where::class,
     ];
 
-    public function display() : Attribute
+    public function display(): Attribute
     {
         return Attribute::make(
-            get: fn() => "Fulfillment #{$this->id} ({$this->status_display})",
+            get: fn () => "Fulfillment #{$this->id} ({$this->status_display})",
         );
     }
 
-    public function statusDisplay() : Attribute
+    public function statusDisplay(): Attribute
     {
         return Attribute::make(
-            get: fn() => config('options.fulfillment_statuses')[$this->status] ?? $this->status,
+            get: fn () => config('options.fulfillment_statuses')[$this->status] ?? $this->status,
         );
     }
 
-    public function programDisplay() : Attribute
+    public function programDisplay(): Attribute
     {
         $text = $this->program->name;
-        if($this->initiative) {
-            $text .= ' (' . $this->initiative->name . ')';
+        if ($this->initiative) {
+            $text .= ' ('.$this->initiative->name.')';
         }
+
         return Attribute::make(
-            get: fn() => $text,
+            get: fn () => $text,
         );
     }
 
-    public function organization() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Organization::class);
     }
 
-    public function contact() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Contact::class);
     }
 
-    public function shipping_contact() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function shipping_contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Contact::class, 'shipping_contact_id');
     }
 
-    public function shipping_address() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function shipping_address(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Address::class, 'shipping_address_id', 'id');
     }
 
-    public function program() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function program(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Program::class);
     }
 
-    public function initiative() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function initiative(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Initiative::class);
     }
 
-    public function inventory() : \Illuminate\Database\Eloquent\Relations\HasMany
+    public function inventory(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(FulfillmentInventory::class);
     }
 
-    public function viewRoute() : string
+    public function viewRoute(): string
     {
         return 'app.fulfillment.view';
     }

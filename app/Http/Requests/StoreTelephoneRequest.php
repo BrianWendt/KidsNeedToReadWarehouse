@@ -4,11 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Validation\Rule;
+class StoreTelephoneRequest extends FormRequest
+{
+    public function rules()
+    {
 
-class StoreTelephoneRequest extends FormRequest {
-    public function rules() {
- 
         return [
             'telephone.contact_id' => 'required|exists:contacts,id',
             'telephone.name' => 'required|max:128',

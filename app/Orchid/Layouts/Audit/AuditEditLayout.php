@@ -2,15 +2,10 @@
 
 namespace App\Orchid\Layouts\Audit;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Actions\Link,
-    Fields\Input,
-    Fields\Textarea,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Rows;
 
 class AuditEditLayout extends Rows
 {
@@ -38,7 +33,7 @@ class AuditEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('icon-check')
-                ->class('btn btn-success mx-1')
+                ->class('btn btn-success mx-1'),
         ];
     }
 }

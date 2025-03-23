@@ -3,13 +3,8 @@
 namespace App\Orchid\Screens\PurchaseOrder;
 
 use App\Models\PurchaseOrder;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen
-};
-
-use App\Orchid\Filters\PurchaseOrderStatusFilter;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
 
 class PurchaseOrderListScreen extends Screen
 {
@@ -22,15 +17,13 @@ class PurchaseOrderListScreen extends Screen
     {
         return [
             'purchase_orders' => PurchaseOrder::defaultSort('updated_at', 'DESC')
-            ->whereNull('archived_at')
-            ->paginate(),
+                ->whereNull('archived_at')
+                ->paginate(),
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -48,7 +41,7 @@ class PurchaseOrderListScreen extends Screen
             Link::make(__('Create Purchase Order'))
                 ->icon('plus-circle')
                 ->route('app.purchase_order.create')
-                ->class('btn btn-primary')
+                ->class('btn btn-primary'),
         ];
     }
 
@@ -60,7 +53,7 @@ class PurchaseOrderListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderListLayout::class
+            \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderListLayout::class,
         ];
     }
 }

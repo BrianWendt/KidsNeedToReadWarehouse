@@ -2,19 +2,15 @@
 
 namespace App\Orchid\Screens\Book;
 
-use Orchid\Screen\Screen;
-
-use App\Models\Book;
-
 use App\Http\Requests\StoreBookRequest;
+use App\Models\Book;
+use Orchid\Screen\Screen;
 
 /**
  * @property \App\Models\Book $book
  */
-
 class BookEditScreen extends Screen
 {
-
     public $book;
 
     /**
@@ -31,8 +27,6 @@ class BookEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -57,14 +51,16 @@ class BookEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Book\BookEditLayout::class
+            \App\Orchid\Layouts\Book\BookEditLayout::class,
         ];
     }
 
-    public function save(Book $book, StoreBookRequest $request){
+    public function save(Book $book, StoreBookRequest $request)
+    {
         $book->fill($request->input('book'));
         $book->save();
         \Orchid\Support\Facades\Toast::success(__('Updated Book.'));
+
         return redirect()->route('app.inventory.record', $book->isbn);
     }
 }

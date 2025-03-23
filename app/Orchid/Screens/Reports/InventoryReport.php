@@ -2,21 +2,18 @@
 
 namespace App\Orchid\Screens\Reports;
 
-use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Repository,
-    Screen,
-    Sight
-};
-
 use Illuminate\Support\Facades\DB;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class InventoryReport extends Screen
 {
-
     public $stats;
+
     public $total;
+
     public $conditions;
 
     /**
@@ -55,22 +52,20 @@ class InventoryReport extends Screen
         }
 
         foreach ($stats as $key => $value) {
-            $stats[$key] = '$' . number_format($value, 2);
+            $stats[$key] = '$'.number_format($value, 2);
         }
 
-        $total = '$' . number_format($total, 2);
+        $total = '$'.number_format($total, 2);
 
         return [
             'stats' => new Repository($stats),
             'total' => $total,
-            'conditions' => $conditions
+            'conditions' => $conditions,
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -96,9 +91,10 @@ class InventoryReport extends Screen
     {
         $values = [];
         foreach ($this->conditions as $key => $value) {
-            $values[] = Sight::make('stats.' . $key, "{$value} Taxable Value");
+            $values[] = Sight::make('stats.'.$key, "{$value} Taxable Value");
         }
         $values[] = Sight::make('total', 'Total Taxable Value');
+
         return [
             Layout::legend('', $values),
         ];

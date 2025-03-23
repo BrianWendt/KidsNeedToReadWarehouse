@@ -3,11 +3,8 @@
 namespace App\Orchid\Screens\Book;
 
 use App\Models\Book;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
 
 class BookListScreen extends Screen
 {
@@ -27,8 +24,6 @@ class BookListScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -63,7 +58,7 @@ class BookListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Book\BookListLayout::class
+            \App\Orchid\Layouts\Book\BookListLayout::class,
         ];
     }
 
@@ -86,6 +81,7 @@ class BookListScreen extends Screen
     public function exportFilename()
     {
         $ts = time();
+
         return "books-{$ts}";
     }
 }

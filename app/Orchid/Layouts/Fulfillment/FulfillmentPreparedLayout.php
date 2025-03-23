@@ -2,12 +2,10 @@
 
 namespace App\Orchid\Layouts\Fulfillment;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentPreparedLayout extends Rows
 {

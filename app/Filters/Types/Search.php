@@ -14,8 +14,9 @@ class Search extends BaseHttpEloquentFilter
         $string = $this->getHttpValue();
         $values = explode(' ', $string);
         foreach ($values as $value) {
-            $builder = $builder->where($this->column, 'like', '%' . $value . '%');
+            $builder = $builder->where($this->column, 'like', '%'.$value.'%');
         }
+
         return $builder;
     }
 }

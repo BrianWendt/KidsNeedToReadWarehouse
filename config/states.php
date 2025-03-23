@@ -53,5 +53,5 @@ return [
         'WV' => 'West Virginia',
         'WI' => 'Wisconsin',
         'WY' => 'Wyoming',
-    ]
+    ],
 ];

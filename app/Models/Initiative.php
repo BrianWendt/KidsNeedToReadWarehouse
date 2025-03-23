@@ -8,22 +8,21 @@ namespace App\Models;
  * @property string $note
  * @property bool $starred
  */
-
 class Initiative extends AppModel
 {
+    use \Illuminate\Database\Eloquent\SoftDeletes,
+        \Orchid\Filters\Filterable;
     use Traits\hasStared;
-    use \Orchid\Filters\Filterable,
-        \Illuminate\Database\Eloquent\SoftDeletes;
 
     protected $fillable = [
         'name',
         'note',
-        'starred'
+        'starred',
     ];
 
     protected $allowedSorts = [
         'name',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 }

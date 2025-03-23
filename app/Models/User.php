@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use Orchid\Filters\Types\{
-    Like,
-    Where,
-    WhereDateStartEnd
-};
+use Orchid\Filters\Types\Like;
+use Orchid\Filters\Types\Where;
+use Orchid\Filters\Types\WhereDateStartEnd;
 
 /**
  * @property string $name
@@ -15,7 +13,6 @@ use Orchid\Filters\Types\{
  * @property array $permissions
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  */
-
 class User extends \Orchid\Platform\Models\User
 {
     /**
@@ -47,8 +44,8 @@ class User extends \Orchid\Platform\Models\User
      * @var array
      */
     protected $casts = [
-        'permissions'          => 'array',
-        'email_verified_at'    => 'datetime',
+        'permissions' => 'array',
+        'email_verified_at' => 'datetime',
     ];
 
     /**
@@ -57,9 +54,9 @@ class User extends \Orchid\Platform\Models\User
      * @var array
      */
     protected $allowedFilters = [
-        'id'         => Where::class,
-        'name'       => Like::class,
-        'email'      => Like::class,
+        'id' => Where::class,
+        'name' => Like::class,
+        'email' => Like::class,
         'updated_at' => WhereDateStartEnd::class,
         'created_at' => WhereDateStartEnd::class,
     ];

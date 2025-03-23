@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Traits;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -9,18 +10,19 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property string $created_at_date
  * @property string $updated_at_date
  */
-trait HasTimestamps {
-
+trait HasTimestamps
+{
     private function dateFormattedAttribute($date, $format)
     {
         $return = null;
-        if($date){
+        if ($date) {
             try {
-            $return = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format($format);
+                $return = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format($format);
             } catch (\Exception $e) {
                 $return = null;
             }
         }
+
         return Attribute::make(
             get: fn () => $return,
         );

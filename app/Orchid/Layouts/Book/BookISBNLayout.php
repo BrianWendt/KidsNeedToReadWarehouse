@@ -2,13 +2,10 @@
 
 namespace App\Orchid\Layouts\Book;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Layouts\Rows,
-    Field
-};
-
 use App\Orchid\Fields\ISBN;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Layouts\Rows;
 
 class BookISBNLayout extends Rows
 {
@@ -42,9 +39,9 @@ class BookISBNLayout extends Rows
                 ->icon('magnifier')
                 ->class('btn btn-success')
                 ->parameters([
-                    'isbn' => 'book.isbn'
+                    'isbn' => 'book.isbn',
                 ])
-                ->id('isbn-search-button')
+                ->id('isbn-search-button'),
         ];
     }
 }

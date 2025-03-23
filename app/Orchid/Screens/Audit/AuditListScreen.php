@@ -3,12 +3,8 @@
 namespace App\Orchid\Screens\Audit;
 
 use App\Models\Audit;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen
-};
-
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
 
 class AuditListScreen extends Screen
 {
@@ -26,8 +22,6 @@ class AuditListScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -45,7 +39,7 @@ class AuditListScreen extends Screen
             Link::make(__('Create Audit'))
                 ->icon('plus-circle')
                 ->route('app.audit.create')
-                ->class('btn btn-primary')
+                ->class('btn btn-primary'),
         ];
     }
 
@@ -57,7 +51,7 @@ class AuditListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Audit\AuditListLayout::class
+            \App\Orchid\Layouts\Audit\AuditListLayout::class,
         ];
     }
 }

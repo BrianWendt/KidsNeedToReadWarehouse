@@ -2,19 +2,11 @@
 
 namespace App\Orchid\Layouts\Audit;
 
-use Illuminate\Support\Facades\DB;
-
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Relation,
-    Fields\Select,
-    Fields\TextArea,
-    Layouts\Rows,
-    Field
-};
-
 use App\Orchid\Fields\ISBN;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Rows;
 
 class AuditInventoryRecordLayout extends Rows
 {
@@ -48,7 +40,7 @@ class AuditInventoryRecordLayout extends Rows
             Button::make(__('Record'))
                 ->class('btn btn-success')
                 ->icon('bs.check-circle')
-                ->method('save')
+                ->method('save'),
         ];
     }
 }

@@ -5,11 +5,8 @@ namespace App\Orchid\Screens\Audit;
 use App\Models\Audit;
 use Orchid\Screen\Screen;
 
-use Orchid\Screen\Actions\Button;
-
 class AuditEditScreen extends Screen
 {
-
     public $audit;
 
     /**
@@ -26,12 +23,10 @@ class AuditEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return __('Edit Audit:') . '#' . $this->audit->id;
+        return __('Edit Audit:').'#'.$this->audit->id;
     }
 
     /**
@@ -53,7 +48,7 @@ class AuditEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Audit\AuditEditLayout::class
+            \App\Orchid\Layouts\Audit\AuditEditLayout::class,
         ];
     }
 

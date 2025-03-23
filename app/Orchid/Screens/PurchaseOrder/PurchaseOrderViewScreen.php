@@ -2,17 +2,13 @@
 
 namespace App\Orchid\Screens\PurchaseOrder;
 
-use Illuminate\Http\Request;
-
-use Orchid\Support\Facades\Layout;
-
 use App\Models\PurchaseOrder;
-use App\Models\Inventory;
-
-use Orchid\Screen\Screen;
-use Orchid\Screen\Sight;
+use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 /**
  * @property PurchaseOrder $purchase_order
@@ -21,9 +17,10 @@ use Orchid\Screen\Fields\Group;
  */
 class PurchaseOrderViewScreen extends Screen
 {
-
     public $purchase_order;
+
     public $quantity;
+
     public $total;
 
     /**
@@ -56,8 +53,6 @@ class PurchaseOrderViewScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -80,7 +75,7 @@ class PurchaseOrderViewScreen extends Screen
                 Link::make(__('Edit Details'))
                     ->route('app.purchase_order.edit', $this->purchase_order)
                     ->icon('pencil-square')
-                    ->class('btn btn-primary')
+                    ->class('btn btn-primary'),
             ];
         } else {
             return [];
@@ -118,7 +113,6 @@ class PurchaseOrderViewScreen extends Screen
                 }),
             ]),
 
-
         ];
 
         $quick_links = [];
@@ -145,6 +139,7 @@ class PurchaseOrderViewScreen extends Screen
     public function search(Request $request)
     {
         $isbn = $request->input('book.isbn');
+
         return redirect()->route('app.inventory.record', ['isbn' => $isbn, 'purchase_order_id' => $this->purchase_order->id, 'book_condition' => $this->purchase_order->book_condition]);
     }
 }

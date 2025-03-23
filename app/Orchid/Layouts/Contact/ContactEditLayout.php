@@ -3,15 +3,12 @@
 namespace App\Orchid\Layouts\Contact;
 
 use App\Models\Organization;
-
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Select,
-    Fields\TextArea,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Layouts\Rows;
 
 class ContactEditLayout extends Rows
 {
@@ -30,6 +27,7 @@ class ContactEditLayout extends Rows
     protected function fields(): iterable
     {
         $organizations = Organization::defaultOrder()->get()->pluck('display', 'id')->toArray();
+
         return [
 
             Select::make('contact.organization_id')
@@ -71,7 +69,7 @@ class ContactEditLayout extends Rows
             Button::make(__('Save'))
                 ->icon('bs.check')
                 ->class('btn btn-success btn-block')
-                ->method('save')
+                ->method('save'),
         ];
     }
 }

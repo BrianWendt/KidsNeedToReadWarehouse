@@ -2,18 +2,13 @@
 
 namespace App\Orchid\Layouts\Book;
 
-use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Layouts\Legend,
-    Sight
-};
-
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layouts\Legend;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class BookLegend
 {
-
     public static function layout(): Legend
     {
 

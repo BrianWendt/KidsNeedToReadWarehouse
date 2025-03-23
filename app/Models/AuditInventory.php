@@ -2,15 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasBook;
-
-use Illuminate\Database\Eloquent\Casts\Attribute;
-
 /**
  * @property string $audit_id
  * @property string $quantity
  */
-
 class AuditInventory extends AppModel
 {
     use \App\Models\Traits\Exports;
@@ -28,7 +23,8 @@ class AuditInventory extends AppModel
      *
      * @return void
      */
-    public function book(){
+    public function book()
+    {
         return $this->belongsTo(Book::class, 'isbn', 'isbn');
     }
 }

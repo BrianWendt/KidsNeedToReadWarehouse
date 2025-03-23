@@ -3,11 +3,8 @@
 namespace App\Orchid\Layouts\PurchaseOrder;
 
 use Illuminate\Http\Request;
-
-use Orchid\Screen\{
-    Layouts\Listener,
-    Repository
-};
+use Orchid\Screen\Layouts\Listener;
+use Orchid\Screen\Repository;
 
 class PurchaseOrderEditListener extends Listener
 {
@@ -28,21 +25,20 @@ class PurchaseOrderEditListener extends Listener
     protected function layouts(): iterable
     {
         return [
-            \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderEditLayout::class
+            \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderEditLayout::class,
         ];
     }
 
     /**
      * Update state
      *
-     * @param \Orchid\Screen\Repository $repository
-     * @param \Illuminate\Http\Request  $request
-     *
+     * @param  \Orchid\Screen\Repository  $repository
      * @return \Orchid\Screen\Repository
      */
     public function handle(Repository $repository, Request $request): Repository
     {
         $repository->set($request->input());
+
         return $repository;
     }
 }

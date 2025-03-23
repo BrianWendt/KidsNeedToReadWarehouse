@@ -15,10 +15,10 @@ class Email extends AppModel
         'contact_id',
         'name',
         'address',
-        'note'
+        'note',
     ];
 
-    public function contact() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Contact::class);
     }

@@ -3,22 +3,16 @@
 namespace App\Orchid\Screens\Audit;
 
 use App\Http\Requests\StoreAuditInventoryRequest;
-use Illuminate\Http\Request;
-
-use App\Models\AuditInventory;
-
-use App\Orchid\Layouts\Audit as AuditLayouts;
-
-use Orchid\Screen\{
-    Screen
-};
-
 use App\Models\Audit;
+use App\Models\AuditInventory;
+use App\Orchid\Layouts\Audit as AuditLayouts;
+use Illuminate\Http\Request;
+use Orchid\Screen\Screen;
 
 class AuditInventoryRecordScreen extends Screen
 {
-
     public $audit_inventory;
+
     public $audit;
 
     /**
@@ -28,7 +22,7 @@ class AuditInventoryRecordScreen extends Screen
      */
     public function query(Audit $audit): iterable
     {
-        $audit_inventory = new AuditInventory();
+        $audit_inventory = new AuditInventory;
         $audit_inventory->audit_id = $audit->id;
 
         return [
@@ -39,13 +33,12 @@ class AuditInventoryRecordScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
         return __('Audit: Record Inventory');
-        return raw_html('<b>' . __('Audit') . ':</b> ' . __('Record Inventory'));
+
+        return raw_html('<b>'.__('Audit').':</b> '.__('Record Inventory'));
     }
 
     /**
@@ -69,7 +62,7 @@ class AuditInventoryRecordScreen extends Screen
             \Orchid\Support\Facades\Layout::split([
                 AuditLayouts\AuditInventoryRecordLayout::class,
                 AuditLayouts\AuditInventoryBulkRecordLayout::class,
-            ])
+            ]),
 
         ];
     }
@@ -80,6 +73,7 @@ class AuditInventoryRecordScreen extends Screen
         $audit_inventory->audit_id = $this->audit->id;
         $audit_inventory->save();
         \Orchid\Support\Facades\Toast::success("You have successfully recorded {$audit_inventory->quantity} of `{$audit_inventory->isbn}`.");
+
         return redirect()->route('app.audit.record', $this->audit);
     }
 
@@ -92,20 +86,23 @@ class AuditInventoryRecordScreen extends Screen
             $parts = explode("\t", $line);
             if (count($parts) != 2) {
                 \Orchid\Support\Facades\Toast::error("Invalid line: $line");
+
                 continue;
             }
-            if(!is_numeric($parts[1])) {
+            if (! is_numeric($parts[1])) {
                 \Orchid\Support\Facades\Toast::error("Invalid quantity: $parts[1]");
+
                 continue;
             }
-            $audit_inventory = new AuditInventory();
+            $audit_inventory = new AuditInventory;
             $audit_inventory->isbn = trim($parts[0]);
             $audit_inventory->quantity = trim($parts[1]);
             $audit_inventory->audit_id = $this->audit->id;
             $audit_inventory->save();
         }
 
-        \Orchid\Support\Facades\Toast::success("You have successfully recorded the inventory.");
+        \Orchid\Support\Facades\Toast::success('You have successfully recorded the inventory.');
+
         return redirect()->route('app.audit.record', $this->audit);
     }
 }

@@ -2,19 +2,13 @@
 
 namespace App\Orchid\Layouts\Inventory;
 
-use Illuminate\Support\Facades\DB;
-
-use Orchid\Screen\Field;
-
+use App\Orchid\Fields\Input;
+use App\Util\RememberedParameter;
 use Orchid\Screen\Actions\Button;
-
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
-use App\Orchid\Fields\Input;
-
 use Orchid\Screen\Layouts\Rows;
-
-use App\Util\RememberedParameter;
 
 class InventoryEditLayout extends Rows
 {
@@ -66,9 +60,8 @@ class InventoryEditLayout extends Rows
 
         $fields['inventory.entity_id'] =
             Input::make('inventory.entity_id')
-            ->title(__('PO #'))
-            ->readonly();
-
+                ->title(__('PO #'))
+                ->readonly();
 
         $fields['inventory.note'] = TextArea::make('inventory.note')
             ->title(__('Note'))

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
-
  * @property string $note
  * @property int $organization_id
  * @property string $received_date
@@ -14,16 +13,14 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property int $telephone_id
  * @property int $email_id
  * @property string $display
- * @property string $book_condition 
- * 
- * @property \App\Models\Organization $organization 
+ * @property string $book_condition
+ * @property \App\Models\Organization $organization
  * @property \App\Models\Contact $contact
  * @property \App\Models\Address $address
  * @property \App\Models\Telephone $telephone
  * @property \App\Models\Email $email
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\FulfillmentInventory[] $inventory
  */
-
 class PurchaseOrder extends AppModel
 {
     use \Orchid\Filters\Filterable;
@@ -42,10 +39,10 @@ class PurchaseOrder extends AppModel
     protected $allowedSorts = [
         'contact.name',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    public function organization() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Organization::class);
     }
@@ -75,14 +72,14 @@ class PurchaseOrder extends AppModel
         return $this->hasMany(\App\Models\Inventory::class, 'entity_id')->where('entity_type', 'po');
     }
 
-    public function display() : Attribute
+    public function display(): Attribute
     {
         return Attribute::make(
-            get: fn() => 'PO #' . $this->id,
+            get: fn () => 'PO #'.$this->id,
         );
     }
 
-    public function viewRoute() : string
+    public function viewRoute(): string
     {
         return 'app.purchase_order.view';
     }

@@ -3,16 +3,13 @@
 namespace App\Orchid\Layouts\Organization;
 
 use App\Models\Contact;
-
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\CheckBox,
-    Fields\Input,
-    Fields\Select,
-    Fields\TextArea,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Layouts\Rows;
 
 class OrganizationEditLayout extends Rows
 {
@@ -60,13 +57,13 @@ class OrganizationEditLayout extends Rows
                 ->canSee($organization->exists),
 
             CheckBox::make('organization.starred')
-                ->placeholder('★ ' . __('Starred'))
+                ->placeholder('★ '.__('Starred'))
                 ->sendTrueOrFalse(),
 
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('check')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-
 use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -21,26 +19,21 @@ use Illuminate\Support\Facades\DB;
  * @property int $page_count
  * @property string $image_thumbnail URL to thumbnail image
  * @property string $ebay URL to eBay search
- * 
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Inventory[] $inventory
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Inventory[] $new_inventory
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Inventory[] $used_inventory
- * 
  * @property int $inventory_quantity
  * @property int $new_inventory_quantity
  * @property int $like_new_inventory_quantity
  * @property int $used_inventory_quantity
- * 
  * @property float $new_value (new inventory quantity * retail price)
  * @property float $like_new_value (like new inventory quantity * retail price * 0.8)
  * @property float $used_value (used inventory quantity * retail price * 0.5)
- * 
+ *
  * @method static \Illuminate\Database\Eloquent\Builder fetchInventory(?string $select) adds subqueries for new_inventory_quantity and used_inventory_quantity
  */
-
 class Book extends AppModel
 {
-
     use \App\Models\Traits\Exports,
         \Laravel\Scout\Searchable;
 
@@ -71,7 +64,7 @@ class Book extends AppModel
     ];
 
     protected $appends = [
-        
+
     ];
 
     protected $inventory_conditions = null;
@@ -106,12 +99,13 @@ class Book extends AppModel
 
     public function getInventoryQuantity($condition = null)
     {
-        if (!$this->inventory_conditions) {
+        if (! $this->inventory_conditions) {
             $this->inventory_conditions = $this->inventory()->groupBy('book_condition')->select('book_condition', DB::raw('SUM(quantity) as quantity'))->pluck('quantity', 'book_condition')->toArray();
         }
         if ($condition == null) {
             return array_sum($this->inventory_conditions);
         }
+
         return $this->inventory_conditions[$condition] ?? 0;
     }
 
@@ -151,13 +145,13 @@ class Book extends AppModel
     /**
      * Builds the attribute for the value of a condition
      *
-     * @param string $condition
      * @return Attribute
      */
     private function conditionValueAttribute(string $condition)
     {
         $qty = $this->getInventoryQuantity($condition);
         $price = $this->conditionPrice($condition);
+
         return Attribute::make(
             get: fn () => $qty * $price,
         );
@@ -202,14 +196,14 @@ class Book extends AppModel
     public function retailPriceDisplay(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->retail_price ? '$' . number_format($this->retail_price, 2) : 'n/a'
+            get: fn () => $this->retail_price ? '$'.number_format($this->retail_price, 2) : 'n/a'
         );
     }
 
     public function fixedValueDisplay(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->fixed_value ? '$' . number_format($this->fixed_value, 2) : 'n/a'
+            get: fn () => $this->fixed_value ? '$'.number_format($this->fixed_value, 2) : 'n/a'
         );
     }
 
@@ -231,9 +225,9 @@ class Book extends AppModel
     public function toSearchableArray(): array
     {
         $array = $this->toArray();
- 
+
         // Customize the data array...
- 
+
         return $array;
     }
 }

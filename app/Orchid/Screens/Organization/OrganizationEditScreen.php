@@ -7,7 +7,6 @@ use Orchid\Screen\Screen;
 
 class OrganizationEditScreen extends Screen
 {
-
     public function query(Organization $organization): iterable
     {
 
@@ -18,8 +17,6 @@ class OrganizationEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -44,7 +41,7 @@ class OrganizationEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Organization\OrganizationEditLayout::class
+            \App\Orchid\Layouts\Organization\OrganizationEditLayout::class,
         ];
     }
 
@@ -53,6 +50,7 @@ class OrganizationEditScreen extends Screen
         $organization->fill($request->get('organization'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Organization updated'));
+
         return redirect()->route('app.organization.view', $organization);
     }
 }

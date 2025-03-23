@@ -2,14 +2,12 @@
 
 namespace App\Orchid\Layouts\FulfillmentInventory;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Group,
-    Fields\Input,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentInventoryEditLayout extends Rows
 {
@@ -27,7 +25,7 @@ class FulfillmentInventoryEditLayout extends Rows
      */
     protected function fields(): iterable
     {
-        
+
         return [
             Input::make('fulfillment_inventory.isbn')
                 ->title(__('ISBN'))
@@ -64,8 +62,8 @@ class FulfillmentInventoryEditLayout extends Rows
                 Button::make(__('Remove from Fulfillment'))
                     ->method('delete')
                     ->icon('trash')
-                    ->class('btn btn-danger')
-            ])
+                    ->class('btn btn-danger'),
+            ]),
         ];
     }
 }

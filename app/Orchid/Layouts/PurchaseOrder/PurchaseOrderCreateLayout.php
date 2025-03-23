@@ -2,12 +2,10 @@
 
 namespace App\Orchid\Layouts\PurchaseOrder;
 
-use Orchid\Screen\{
-    Actions,
-    Fields,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields;
+use Orchid\Screen\Layouts\Rows;
 
 class PurchaseOrderCreateLayout extends Rows
 {
@@ -45,7 +43,7 @@ class PurchaseOrderCreateLayout extends Rows
             Actions\Button::make(__('Create'))
                 ->method('save')
                 ->icon('bs.plus-circle')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

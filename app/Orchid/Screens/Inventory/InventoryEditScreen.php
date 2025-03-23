@@ -3,11 +3,8 @@
 namespace App\Orchid\Screens\Inventory;
 
 use App\Http\Requests\StoreInventoryRequest;
-
 use App\Models\Inventory;
-
 use App\Orchid\Layouts\Inventory as InventoryLayouts;
-
 use Orchid\Screen\Screen;
 
 /**
@@ -15,7 +12,6 @@ use Orchid\Screen\Screen;
  */
 class InventoryEditScreen extends Screen
 {
-
     public $inventory;
 
     /**
@@ -32,8 +28,6 @@ class InventoryEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -58,7 +52,7 @@ class InventoryEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            InventoryLayouts\InventoryEditLayout::class
+            InventoryLayouts\InventoryEditLayout::class,
         ];
     }
 
@@ -69,7 +63,8 @@ class InventoryEditScreen extends Screen
 
         $inventory->entity->touch();
 
-        \Orchid\Support\Facades\Toast::success("Inventory Updaed.");
+        \Orchid\Support\Facades\Toast::success('Inventory Updaed.');
+
         return redirect()->route($inventory->entity->viewRoute(), $inventory->entity_id);
     }
 }

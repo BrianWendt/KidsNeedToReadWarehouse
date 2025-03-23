@@ -2,21 +2,18 @@
 
 namespace App\Orchid\Screens\Traits;
 
-use Orchid\Screen\{
-    Actions\Link,
-    Repository
-};
-
 use App\Custom\LengthAwareExportablePaginator;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Repository;
 
 trait Exports
 {
-
     private static $export_parameter = '_export';
 
     public static function exportAction(string $format = 'csv', string $label = 'Export')
     {
-        $href = '?' . http_build_query(self::exportActionQuery($format)) . '&ts=' . time();
+        $href = '?'.http_build_query(self::exportActionQuery($format)).'&ts='.time();
+
         return Link::make($label)
             ->icon('download')
             ->href($href);
@@ -29,31 +26,31 @@ trait Exports
 
     /**
      * Override the view method to handle export requests
-     * 
-     * @throws \Throwable
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @throws \Throwable
      */
     public function view(array|Repository $httpQueryArguments = [])
     {
         if (empty($this->export_target)) {
-            throw new \Exception('export_target property not set on ' . get_class($this));
+            throw new \Exception('export_target property not set on '.get_class($this));
         }
         if (empty($this->export_columns)) {
-            throw new \Exception('export_columns property not set on ' . get_class($this));
+            throw new \Exception('export_columns property not set on '.get_class($this));
         }
         if (request()->query(self::$export_parameter, 'html') !== 'html') {
             $repository = is_a($httpQueryArguments, Repository::class)
                 ? $httpQueryArguments
                 : $this->buildQueryRepository($httpQueryArguments);
+
             return $this->export($repository);
         }
+
         return parent::view($httpQueryArguments);
     }
 
     /**
-     *
-     * @param Repository $repository
      * @return void
      */
     public function export(Repository $repository)
@@ -85,8 +82,8 @@ trait Exports
             ->response();
     }
 
-    public function exportInstance() : \App\Exports\Exports
+    public function exportInstance(): \App\Exports\Exports
     {
-        return new \App\Exports\ExportsSimple();
+        return new \App\Exports\ExportsSimple;
     }
 }

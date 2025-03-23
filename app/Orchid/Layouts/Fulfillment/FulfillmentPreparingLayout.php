@@ -2,14 +2,11 @@
 
 namespace App\Orchid\Layouts\Fulfillment;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Actions,
-    Fields\Group,
-    Fields\Label,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentPreparingLayout extends Rows
 {
@@ -27,7 +24,7 @@ class FulfillmentPreparingLayout extends Rows
      */
     protected function fields(): iterable
     {
-        $fulfillment = $this->query->getContent('fulfillment');        
+        $fulfillment = $this->query->getContent('fulfillment');
 
         return [
             Label::make('actions')
@@ -43,7 +40,7 @@ class FulfillmentPreparingLayout extends Rows
                     ->class('btn btn-info btn-block mb-1')
                     ->modal('ready_to_ship_modal')
                     ->method('setReadyToShip'),
-            ])
+            ]),
         ];
     }
 }

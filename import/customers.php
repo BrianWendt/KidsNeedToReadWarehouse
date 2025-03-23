@@ -1,4 +1,5 @@
 <?php
+
 include 'include.php';
 
 echo '<pre>';
@@ -6,12 +7,12 @@ echo '<pre>';
 $customers_filename = 'Customers_Export_08-11-2024.csv';
 $customers = csv_to_array($customers_filename);
 
-//dd($customers[0]);
+// dd($customers[0]);
 
 include 'companies.php';
 
-class Contact extends Model {
-
+class Contact extends Model
+{
     public $properties = [
         'id' => null,
         'organization_id' => null,
@@ -22,7 +23,7 @@ class Contact extends Model {
         'ein' => '',
         'note' => '',
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
@@ -35,19 +36,20 @@ class Contact extends Model {
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if(!$data){
+        if (! $data) {
             return;
         }
-        GLOBAL $companies_list;
+        global $companies_list;
         $company_name = $data['Company Name'] ?? $data['Name Address'];
-        if($company_name){
+        if ($company_name) {
             $this->properties['organization_id'] = $companies_list[$company_name];
         }
-       
+
     }
 }
 
-class Address extends Model {
+class Address extends Model
+{
     public $properties = [
         'id' => null,
         'contact_id' => null,
@@ -57,7 +59,7 @@ class Address extends Model {
         'state' => '',
         'zipcode' => '',
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
@@ -65,29 +67,30 @@ class Address extends Model {
         'Address 1' => 'street1',
         'Address 2' => 'street2',
         'City' => 'city',
-        'Zip' => 'zipcode'
+        'Zip' => 'zipcode',
     ];
 
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if(!$data){
+        if (! $data) {
             return;
         }
-        GLOBAL $states;
+        global $states;
         $State = trim($data['State']);
-        if(strlen($State) == 2) {
+        if (strlen($State) == 2) {
             $this->properties['state'] = $State;
-        } else if(in_array($State, $states)) {
+        } elseif (in_array($State, $states)) {
             $this->properties['state'] = array_search($State, $states);
         } else {
-            echo "State not found: " . $State . "\n";
+            echo 'State not found: '.$State."\n";
             dd($data);
         }
     }
-};
+}
 
-class Telephone extends Model {
+class Telephone extends Model
+{
     public $properties = [
         'id' => null,
         'contact_id' => null,
@@ -96,16 +99,17 @@ class Telephone extends Model {
         'extension' => '',
         'note' => '',
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
         'ID' => 'contact_id',
         'Phone' => 'number',
     ];
-};
+}
 
-class Email extends Model {
+class Email extends Model
+{
     public $properties = [
         'id' => null,
         'contact_id' => null,
@@ -113,16 +117,17 @@ class Email extends Model {
         'address' => '',
         'note' => '',
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
         'ID' => 'contact_id',
         'Email Address' => 'address',
     ];
-};
+}
 
-class Organization extends Model {
+class Organization extends Model
+{
     public $properties = [
         'id' => null,
         'name' => '',
@@ -131,7 +136,7 @@ class Organization extends Model {
         'note' => '',
         'starred' => 0,
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
@@ -143,18 +148,18 @@ class Organization extends Model {
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if(!$data){
+        if (! $data) {
             return;
         }
         $this->properties['ein'] = extract_ein($data['Default Order Notes']);
 
-        GLOBAL $companies_list;
-        if(empty($this->properties['name'])){
+        global $companies_list;
+        if (empty($this->properties['name'])) {
             $this->properties['name'] = $data['Name Address'];
         }
         $this->properties['id'] = $companies_list[$this->properties['name']];
     }
-};
+}
 
 $Contacts = new Insert('contacts', Contact::class, $customers);
 
@@ -166,13 +171,13 @@ $Emails = new Insert('emails', Email::class, $customers);
 
 $Organizations = new Insert('organizations', Organization::class, $customers);
 
-echo 'Truncate `contacts`;' . "\n";
+echo 'Truncate `contacts`;'."\n";
 echo $Contacts->sql();
-echo 'Truncate `addresses`;' . "\n";
+echo 'Truncate `addresses`;'."\n";
 echo $Addresses->sql();
-echo 'Truncate `telephones`;' . "\n";
+echo 'Truncate `telephones`;'."\n";
 echo $Telephones->sql();
-echo 'Truncate `emails`;' . "\n";
+echo 'Truncate `emails`;'."\n";
 echo $Emails->sql();
-echo 'Truncate `organizations`;' . "\n";
+echo 'Truncate `organizations`;'."\n";
 echo $Organizations->sql();

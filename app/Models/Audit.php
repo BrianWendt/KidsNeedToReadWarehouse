@@ -10,7 +10,7 @@ namespace App\Models;
 class Audit extends AppModel
 {
     protected $fillable = [
-        'label'
+        'label',
     ];
 
     public function audit_inventory()

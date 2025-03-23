@@ -2,14 +2,12 @@
 
 namespace App\Orchid\Layouts\Telephone;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Label,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class TelephoneEditLayout extends Rows
 {
@@ -40,7 +38,7 @@ class TelephoneEditLayout extends Rows
                     'Office',
                     'Business Cell',
                     'Personal Cell',
-                    'Fax'
+                    'Fax',
                 ])
                 ->allowAdd()
                 ->maxlength(128)
@@ -68,7 +66,7 @@ class TelephoneEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('check')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

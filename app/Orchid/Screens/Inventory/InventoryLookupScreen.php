@@ -20,8 +20,6 @@ class InventoryLookupScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -46,13 +44,14 @@ class InventoryLookupScreen extends Screen
     public function layout(): iterable
     {
         return [
-            BookISBNLayout::class
+            BookISBNLayout::class,
         ];
     }
 
     public function search(Request $request)
     {
         $isbn = $request->input('book.isbn');
+
         return redirect()->route('app.inventory.record', $isbn);
     }
 }

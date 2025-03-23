@@ -3,13 +3,10 @@
 namespace App\Orchid\Layouts\Book;
 
 use App\Models\Book;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class BookListLayout extends Table
 {
@@ -75,7 +72,7 @@ class BookListLayout extends Table
                     return \Orchid\Screen\Fields\Group::make([
                         Link::make(__('Inventory'))
                             ->icon('bs.plus-slash-minus')
-                            ->route('app.inventory.record', $book->isbn)
+                            ->route('app.inventory.record', $book->isbn),
                     ]);
                 }),
         ];

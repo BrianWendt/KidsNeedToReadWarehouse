@@ -3,15 +3,11 @@
 namespace App\Orchid\Layouts\Inventory;
 
 use App\Models\Inventory;
-
-use Orchid\Screen\{
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class InventoryListLayout extends Table
 {
-
     /**
      * Data source.
      *

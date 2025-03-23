@@ -2,14 +2,12 @@
 
 namespace App\Orchid\Layouts\Address;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Label,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class AddressEditLayout extends Rows
 {
@@ -30,7 +28,7 @@ class AddressEditLayout extends Rows
         return [
             Input::make('address.contact_id')
                 ->type('hidden'),
-                
+
             Label::make('address.contact.display')
                 ->title(__('Contact Name')),
 
@@ -79,7 +77,7 @@ class AddressEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('check')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

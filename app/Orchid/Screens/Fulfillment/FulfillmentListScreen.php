@@ -3,13 +3,9 @@
 namespace App\Orchid\Screens\Fulfillment;
 
 use App\Models\Fulfillment;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen
-};
-
 use App\Orchid\Filters\FulfillmentStatusFilter;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
 
 class FulfillmentListScreen extends Screen
 {
@@ -29,8 +25,6 @@ class FulfillmentListScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -48,7 +42,7 @@ class FulfillmentListScreen extends Screen
             Link::make(__('Create Fulfillment'))
                 ->icon('plus-circle')
                 ->route('app.fulfillment.create')
-                ->class('btn btn-primary')
+                ->class('btn btn-primary'),
         ];
     }
 
@@ -60,7 +54,7 @@ class FulfillmentListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Fulfillment\FulfillmentListLayout::class
+            \App\Orchid\Layouts\Fulfillment\FulfillmentListLayout::class,
         ];
     }
 }

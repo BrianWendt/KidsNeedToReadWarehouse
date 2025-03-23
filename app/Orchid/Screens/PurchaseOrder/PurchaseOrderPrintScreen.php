@@ -2,25 +2,14 @@
 
 namespace App\Orchid\Screens\PurchaseOrder;
 
-use Illuminate\Http\Request;
+use App\Models\PurchaseOrder;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
-
-use App\Models\{
-    PurchaseOrder,
-    Inventory
-};
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
-
-use Orchid\Screen\Fields\Group;
 
 class PurchaseOrderPrintScreen extends PurchaseOrderViewScreen
 {
-
-
     /**
      * The screen's action buttons.
      *
@@ -57,7 +46,6 @@ class PurchaseOrderPrintScreen extends PurchaseOrderViewScreen
                     return $purchase_order->contact->full_name;
                 })->canSee($this->purchase_order->contact_id > 0),
 
-
                 Sight::make('address', __('Donor Address'))->render(function (PurchaseOrder $purchase_order) {
                     return nl2br($purchase_order->address->display);
                 })->canSee($this->purchase_order->address_id > 0),
@@ -75,7 +63,6 @@ class PurchaseOrderPrintScreen extends PurchaseOrderViewScreen
 
         $right = [
 
-
             Layout::legend('purchase_order', [
                 Sight::make('organization.ein', __('Organization EIN'))
                     ->render(function (PurchaseOrder $purchase_order) {
@@ -84,14 +71,14 @@ class PurchaseOrderPrintScreen extends PurchaseOrderViewScreen
 
                 Sight::make('contact.ein', __('Contact EIN'))->render(function (PurchaseOrder $purchase_order) {
                     return $purchase_order->contact->ein;
-                })->canSee(!empty($this->purchase_order->contact->ein)),
+                })->canSee(! empty($this->purchase_order->contact->ein)),
 
                 Sight::make('note', __('Note'))->render(function (PurchaseOrder $purchase_order) {
                     return $purchase_order->note ? nl2p($purchase_order->note) : '<i>-</i>';
                 })->canSee($this->purchase_order->note != ''),
 
                 Sight::make('total', __('Total'))->render(function (PurchaseOrder $purchase_order) use ($quantity, $total) {
-                    return $quantity . ' items<br/>$' . number_format($total, 2);
+                    return $quantity.' items<br/>$'.number_format($total, 2);
                 }),
             ]),
         ];

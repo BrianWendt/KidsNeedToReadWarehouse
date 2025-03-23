@@ -2,12 +2,9 @@
 
 namespace App\Orchid\Screens\Telephone;
 
+use App\Models\Telephone;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
-
-use App\Models\{
-    Telephone
-};
 
 class TelephoneEditScreen extends Screen
 {
@@ -25,8 +22,6 @@ class TelephoneEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -51,7 +46,7 @@ class TelephoneEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Telephone\TelephoneEditLayout::class
+            \App\Orchid\Layouts\Telephone\TelephoneEditLayout::class,
         ];
     }
 
@@ -60,6 +55,7 @@ class TelephoneEditScreen extends Screen
         $telephone->fill($request->get('telephone'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Phone Number updated'));
+
         return redirect()->route('app.contact.view', $telephone->contact_id);
     }
 }

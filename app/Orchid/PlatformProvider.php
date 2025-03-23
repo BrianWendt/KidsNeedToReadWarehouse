@@ -4,22 +4,16 @@ declare(strict_types=1);
 
 namespace App\Orchid;
 
-use Orchid\Screen\Actions\Menu;
-
+use App\Util\RememberedParameter;
 use Orchid\Platform\Dashboard;
 use Orchid\Platform\ItemPermission;
 use Orchid\Platform\OrchidServiceProvider;
-
-use App\Util\RememberedParameter;
+use Orchid\Screen\Actions\Menu;
 
 class PlatformProvider extends OrchidServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @param Dashboard $dashboard
-     *
-     * @return void
      */
     public function boot(Dashboard $dashboard): void
     {
@@ -54,7 +48,7 @@ class PlatformProvider extends OrchidServiceProvider
             ->permission('warehouse');
 
         if (RememberedParameter::getPurchaseOrderId()) {
-            $menus[] = Menu::make(__('P.O. #') . RememberedParameter::getPurchaseOrderId())
+            $menus[] = Menu::make(__('P.O. #').RememberedParameter::getPurchaseOrderId())
                 ->icon('bs.upc-scan')
                 ->route('app.purchase_order.view', RememberedParameter::getPurchaseOrderId())
                 ->permission('warehouse');
@@ -66,7 +60,7 @@ class PlatformProvider extends OrchidServiceProvider
             ->permission('warehouse');
 
         if (RememberedParameter::getFulfillmentId()) {
-            $menus[] = Menu::make(__('Fulfillment #') . RememberedParameter::getFulfillmentId())
+            $menus[] = Menu::make(__('Fulfillment #').RememberedParameter::getFulfillmentId())
                 ->icon('bs.box2-heart')
                 ->route('app.fulfillment.view', RememberedParameter::getFulfillmentId())
                 ->permission('warehouse');
@@ -108,7 +102,7 @@ class PlatformProvider extends OrchidServiceProvider
             ->permission('platform.systems.users')
             ->title(__('Access Controls'));
 
-        $menus[] =  Menu::make(__('Roles'))
+        $menus[] = Menu::make(__('Roles'))
             ->icon('bs.lock')
             ->route('platform.systems.roles')
             ->permission('platform.systems.roles')
@@ -141,7 +135,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->addPermission('platform.systems.roles', __('Roles'))
                 ->addPermission('platform.systems.users', __('Users')),
             ItemPermission::group(__('Warehouse'))
-                ->addPermission('warehouse', __('Warehouse'))
+                ->addPermission('warehouse', __('Warehouse')),
         ];
     }
 }

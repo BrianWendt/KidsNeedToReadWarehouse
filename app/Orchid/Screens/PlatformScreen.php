@@ -6,13 +6,10 @@ namespace App\Orchid\Screens;
 
 use App\Models\Fulfillment;
 use Illuminate\Support\Facades\DB;
+use Orchid\Screen\Repository;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Repository,
-    Screen,
-    Sight
-};
 
 class PlatformScreen extends Screen
 {
@@ -31,16 +28,17 @@ class PlatformScreen extends Screen
             'book_count' => $inventory->where('quantity', '>', 0)->count(),
             'inventory_count_new' => $inventory->where('book_condition', 'new')->sum('quantity'),
             'inventory_count_like_new' => $inventory->where('book_condition', 'like_new')->sum('quantity'),
-            'inventory_count_used' => $inventory->where('book_condition', 'used')->sum('quantity')
+            'inventory_count_used' => $inventory->where('book_condition', 'used')->sum('quantity'),
         ];
 
         $fulfillment_stats = [
             'incomplete' => Fulfillment::whereNotIn('status', ['shipped', 'cancelled'])->count(),
             'complete' => Fulfillment::where('status', 'shipped')->count(),
         ];
+
         return [
             'book_stats' => new Repository($book_stats),
-            'fulfillment_stats' => new Repository($fulfillment_stats)
+            'fulfillment_stats' => new Repository($fulfillment_stats),
         ];
     }
 
@@ -76,16 +74,16 @@ class PlatformScreen extends Screen
                         Sight::make('book_count', __('Unique Books')),
                         Sight::make('inventory_count_new', __('New Books')),
                         Sight::make('inventory_count_like_new', __('Like New Books')),
-                        Sight::make('inventory_count_used', __('Used Books'))
-                    ])->title(__('Book Stats'))
+                        Sight::make('inventory_count_used', __('Used Books')),
+                    ])->title(__('Book Stats')),
                 ],
                 [
                     Layout::legend('fulfillment_stats', [
                         Sight::make('incomplete', __('Incomplete')),
-                        Sight::make('complete', __('Complete'))
-                    ])->title(__('Fulfillment Stats'))
-                ]
-            ])
+                        Sight::make('complete', __('Complete')),
+                    ])->title(__('Fulfillment Stats')),
+                ],
+            ]),
 
         ];
     }

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Orchid\Fields;
 
 use Orchid\Screen\Fields\RadioButtons;
 
-class CustomRadioButtons extends RadioButtons {
-    
+class CustomRadioButtons extends RadioButtons
+{
     /**
      * @var string
      */
@@ -16,9 +17,9 @@ class CustomRadioButtons extends RadioButtons {
      * @var array
      */
     protected $attributes = [
-        'type'  => 'radio',
+        'type' => 'radio',
         'class' => 'btn-check',
-        'label-class' => 'btn btn-outline-primary btn-lg'
+        'label-class' => 'btn btn-outline-primary btn-lg',
     ];
 
     /**
@@ -36,6 +37,6 @@ class CustomRadioButtons extends RadioButtons {
         'size',
         'tabindex',
         'type',
-        'label-class'
+        'label-class',
     ];
 }

@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property string $note
  * @property \App\Models\Contact $contact
  */
-
 class Telephone extends AppModel
 {
     use \Orchid\Filters\Filterable;
@@ -23,20 +22,21 @@ class Telephone extends AppModel
         'contact_id',
         'number',
         'extension',
-        'note'
+        'note',
     ];
 
-    public function contact() : \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function contact(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Contact::class);
     }
 
-    public function display() : Attribute
+    public function display(): Attribute
     {
         $display = $this->number;
         if ($this->extension) {
-            $display .= ' x' . $this->extension;
+            $display .= ' x'.$this->extension;
         }
+
         return Attribute::make(
             get: fn () => $display,
         );

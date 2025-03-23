@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ *
  * @method Builder asOptions()
  */
 class AppModel extends Model
 {
-    use \Orchid\Screen\AsSource, \Orchid\Filters\Filterable, \App\Models\Traits\HasTimestamps;
+    use \App\Models\Traits\HasTimestamps, \Orchid\Filters\Filterable, \Orchid\Screen\AsSource;
 
     public function __construct(array $attributes = [])
     {
@@ -40,13 +40,14 @@ class AppModel extends Model
     }
 
     /**
-     * @param string $pluck
+     * @param  string  $pluck
      * @return array
      */
     public static function getAsOptions($pluck, $key = null)
     {
         $instance = new static;
         $key = $key ?? $instance->primaryKey;
+
         return $instance->asOptions()->get()->pluck($pluck, $key)->toArray();
     }
 

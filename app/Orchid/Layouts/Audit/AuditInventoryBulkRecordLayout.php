@@ -2,19 +2,10 @@
 
 namespace App\Orchid\Layouts\Audit;
 
-use Illuminate\Support\Facades\DB;
-
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Relation,
-    Fields\Select,
-    Fields\TextArea,
-    Layouts\Rows,
-    Field
-};
-
-use App\Orchid\Fields\ISBN;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Layouts\Rows;
 
 class AuditInventoryBulkRecordLayout extends Rows
 {
@@ -42,7 +33,7 @@ class AuditInventoryBulkRecordLayout extends Rows
             Button::make(__('Bulk Record'))
                 ->class('btn btn-success')
                 ->icon('bs.upc-scan')
-                ->method('bulkSave')
+                ->method('bulkSave'),
         ];
     }
 }

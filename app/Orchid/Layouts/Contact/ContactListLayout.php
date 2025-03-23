@@ -2,17 +2,13 @@
 
 namespace App\Orchid\Layouts\Contact;
 
-use App\Models\{
-    Contact,
-    Organization
-};
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Fields\Relation,
-    Layouts\Table,
-    TD
-};
+use App\Models\Contact;
+use App\Models\Organization;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class ContactListLayout extends Table
 {

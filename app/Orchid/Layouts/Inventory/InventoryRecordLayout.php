@@ -2,21 +2,15 @@
 
 namespace App\Orchid\Layouts\Inventory;
 
+use App\Models\PurchaseOrder;
+use App\Orchid\Fields\Input;
+use App\Util\RememberedParameter;
 use Illuminate\Support\Facades\DB;
-
-use Orchid\Screen\Field;
-
 use Orchid\Screen\Actions\Button;
-
+use Orchid\Screen\Field;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
-use App\Orchid\Fields\Input;
-
 use Orchid\Screen\Layouts\Rows;
-
-use App\Models\PurchaseOrder;
-
-use App\Util\RememberedParameter;
 
 class InventoryRecordLayout extends Rows
 {
@@ -53,7 +47,6 @@ class InventoryRecordLayout extends Rows
             ->value(1)
             ->required();
 
-
         $fields['inventory.book_condition'] = Select::make('inventory.book_condition')
             ->title(__('Condition'))
             ->options(config('options.book_conditions'))
@@ -73,15 +66,14 @@ class InventoryRecordLayout extends Rows
          */
         $query = PurchaseOrder::limit(20);
         if ($purchase_order_id) {
-            $query->orderBy(DB::raw('id = ' . $purchase_order_id), 'DESC');
+            $query->orderBy(DB::raw('id = '.$purchase_order_id), 'DESC');
         }
         $query->orderBy('id', 'desc');
         $fields['inventory.entity_id'] =
             Select::make('inventory.entity_id')
-            ->title(__('PO #'))
-            ->fromQuery($query, 'display', 'id')
-            ->help(__('Select the Purchase Order.'));
-
+                ->title(__('PO #'))
+                ->fromQuery($query, 'display', 'id')
+                ->help(__('Select the Purchase Order.'));
 
         $fields['inventory.note'] = TextArea::make('inventory.note')
             ->title(__('Note'))

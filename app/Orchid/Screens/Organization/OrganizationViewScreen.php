@@ -3,18 +3,14 @@
 namespace App\Orchid\Screens\Organization;
 
 use App\Models\Organization;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
 
 class OrganizationViewScreen extends Screen
 {
-
-    public $organization; 
+    public $organization;
 
     /**
      * Fetch data to be displayed on the screen.
@@ -30,8 +26,6 @@ class OrganizationViewScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -80,13 +74,14 @@ class OrganizationViewScreen extends Screen
 
                 Sight::make('contacts', 'Contacts')->render(function (Organization $organization) {
                     $c = $organization->contacts->count();
-                    return Link::make($c . ' ' . ($c == 1 ? __('contact') : __('contacts')))
+
+                    return Link::make($c.' '.($c == 1 ? __('contact') : __('contacts')))
                         ->route('app.contact.list', [
-                            'filter' => ['organization_id' => $organization->id]
+                            'filter' => ['organization_id' => $organization->id],
                         ])
                         ->class('text-primary');
                 }),
-            ])
+            ]),
         ];
     }
 }

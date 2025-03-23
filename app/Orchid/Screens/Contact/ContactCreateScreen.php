@@ -21,8 +21,6 @@ class ContactCreateScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -47,7 +45,7 @@ class ContactCreateScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Contact\ContactEditLayout::class
+            \App\Orchid\Layouts\Contact\ContactEditLayout::class,
         ];
     }
 
@@ -56,6 +54,7 @@ class ContactCreateScreen extends Screen
         $contact->fill($request->get('contact'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Contact added'));
+
         return redirect()->route('app.contact.view', $contact->id);
     }
 }

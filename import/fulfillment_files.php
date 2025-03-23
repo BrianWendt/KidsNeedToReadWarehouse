@@ -14,7 +14,7 @@ $inventory = [
         'RefNumber',
         'Item',
         'Quantity',
-    ]
+    ],
 ];
 
 foreach ($data as $row) {

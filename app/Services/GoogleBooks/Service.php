@@ -4,7 +4,6 @@ namespace App\Services\GoogleBooks;
 
 use Illuminate\Support\Facades\Http;
 
-
 class Service
 {
     public static function http()
@@ -14,8 +13,9 @@ class Service
 
     /**
      * Search for books
-     * @param string $query
-     * @param string $scope
+     *
+     * @param  string  $query
+     * @param  string  $scope
      * @return \App\Services\GoogleBooks\VolumeEntity[]
      */
     public static function search($query, $scope = 'limit', int $maxResults = 40): array
@@ -33,29 +33,31 @@ class Service
                 break;
         }
         $response = self::http()->get('volumes', $params);
-        if (!$response->successful()) {
-            if(env('APP_DEBUG'))
-            {
+        if (! $response->successful()) {
+            if (env('APP_DEBUG')) {
                 dd($response->json());
             }
+
             return [];
         }
         $data = $response->json();
 
-        if(empty($data['items'])){
+        if (empty($data['items'])) {
             return [];
         }
         $return = [];
         foreach ($data['items'] as $item) {
             $return[] = new VolumeEntity($item);
         }
+
         return $return;
     }
 
     /**
      * Search for books by ISBN
-     * @param string $isbn
-     * @param string $scope
+     *
+     * @param  string  $isbn
+     * @param  string  $scope
      * @return \App\Services\GoogleBooks\VolumeEntity[]
      */
     public static function searchByISBN($isbn, $scope = 'limit'): array
@@ -65,13 +67,11 @@ class Service
 
     /**
      * Fetch a book by ISBN
-     * @param string $isbn
-     * @return VolumeEntity|null
      */
-
     public static function fetchByISBN(string $isbn): ?VolumeEntity
     {
         $data = self::searchByISBN($isbn, 'limit');
+
         return $data[0] ?? null;
     }
 }

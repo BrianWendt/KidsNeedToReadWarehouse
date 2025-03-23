@@ -3,14 +3,11 @@
 namespace App\Orchid\Layouts\Inventory;
 
 use App\Models\Inventory;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Fields\Group,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class MissingBooksLayout extends Table
 {
@@ -52,7 +49,7 @@ class MissingBooksLayout extends Table
                             ->route('app.book.create', ['isbn' => $inventory->isbn])
                             ->icon('plus-circle'),
                     ]);
-                })
+                }),
 
         ];
     }

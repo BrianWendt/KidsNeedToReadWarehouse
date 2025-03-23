@@ -3,7 +3,6 @@
 namespace App\Orchid\Screens\Organization;
 
 use App\Models\Organization;
-use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Screen;
 
 class OrganizationListScreen extends Screen
@@ -22,8 +21,6 @@ class OrganizationListScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -41,7 +38,7 @@ class OrganizationListScreen extends Screen
             \Orchid\Screen\Actions\Link::make(__('Add Organization'))
                 ->icon('plus-circle')
                 ->route('app.organization.create')
-                ->class('btn btn-primary')
+                ->class('btn btn-primary'),
         ];
     }
 
@@ -53,7 +50,7 @@ class OrganizationListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Organization\OrganizationListLayout::class
+            \App\Orchid\Layouts\Organization\OrganizationListLayout::class,
         ];
     }
 }

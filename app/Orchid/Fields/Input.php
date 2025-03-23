@@ -6,17 +6,19 @@ use Orchid\Screen\Fields\Input as OrchidInput;
 
 class Input extends OrchidInput
 {
-
     public function __construct()
     {
         parent::__construct();
 
     }
 
-    public function onEnter($target){
+    public function onEnter($target)
+    {
         $this->set('onkeyup', "submit_on_enter(event, '{$target}')");
+
         return $this;
     }
+
     /**
      * Attributes available for a particular tag.
      *

@@ -8,7 +8,6 @@ use App\Exports\Entity\Cell;
  * @property array $data
  * @property \App\Models\Fulfillment $fulfillment
  */
-
 class ExportsStatement extends Exports
 {
     public $fulfillment;
@@ -16,6 +15,7 @@ class ExportsStatement extends Exports
     public function setFullfillment(\App\Models\Fulfillment $fulfillment)
     {
         $this->fulfillment = $fulfillment;
+
         return $this;
     }
 
@@ -25,7 +25,7 @@ class ExportsStatement extends Exports
 
         // Fulfillment Address
         $rows = [
-            $this->keyValueRow('Fulfillment', '#' . $fulfillment->id),
+            $this->keyValueRow('Fulfillment', '#'.$fulfillment->id),
             $this->keyValueRow('Status', $fulfillment->status_display),
             $this->keyValueRow('Organization', $fulfillment->organization->name),
             $this->keyValueRow('Program', $fulfillment->program_display),
@@ -44,7 +44,7 @@ class ExportsStatement extends Exports
         $total = 0;
         foreach ($fulfillment->inventory as $inventory) {
             $condition_group = $inventory->book_condition_group;
-            if (!isset($totals[$condition_group])) {
+            if (! isset($totals[$condition_group])) {
                 $totals[$condition_group] = 0;
             }
             $totals[$condition_group] += $inventory->total;
@@ -55,8 +55,8 @@ class ExportsStatement extends Exports
         $rows[0]->addCell(Cell::make($total)->alignRight()->formatMoney()->build());
 
         $ridx = 1;
-        foreach($totals as $condition_group => $sum){
-            $rows[$ridx]->addCell(Cell::make($condition_group . ' Total')->bold()->alignRight()->build());
+        foreach ($totals as $condition_group => $sum) {
+            $rows[$ridx]->addCell(Cell::make($condition_group.' Total')->bold()->alignRight()->build());
             $rows[$ridx]->addCell(Cell::make($sum)->alignRight()->formatMoney()->build());
             $ridx++;
         }
@@ -70,7 +70,7 @@ class ExportsStatement extends Exports
             Cell::make('Condition')->bold()->build(),
             Cell::make('Item Value')->bold()->alignRight()->build(),
             Cell::make('Quantity')->bold()->alignCenter()->build(),
-            Cell::make('Total')->bold()->alignRight()->build()
+            Cell::make('Total')->bold()->alignRight()->build(),
         ]));
 
         $writer->addRow(new \OpenSpout\Common\Entity\Row([]));
@@ -84,7 +84,7 @@ class ExportsStatement extends Exports
                 Cell::make($inventory->book_condition_display)->build(),
                 Cell::make($inventory->price)->alignRight()->formatMoney()->build(),
                 Cell::make($inventory->quantity)->alignCenter()->build(),
-                Cell::make($inventory->total)->alignRight()->formatMoney()->build()
+                Cell::make($inventory->total)->alignRight()->formatMoney()->build(),
             ]);
             $writer->addRow($row);
             $total_count += $inventory->quantity;
@@ -98,7 +98,7 @@ class ExportsStatement extends Exports
             Cell::make('')->build(),
             Cell::make('Total')->bold()->alignRight()->build(),
             Cell::make($total_count)->bold()->build(),
-            Cell::make($total_value)->bold()->build()
+            Cell::make($total_value)->bold()->build(),
         ]);
         $writer->addRow($row);
     }

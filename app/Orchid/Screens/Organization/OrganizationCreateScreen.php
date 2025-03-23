@@ -17,8 +17,6 @@ class OrganizationCreateScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -43,7 +41,7 @@ class OrganizationCreateScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Organization\OrganizationEditLayout::class
+            \App\Orchid\Layouts\Organization\OrganizationEditLayout::class,
         ];
     }
 
@@ -52,6 +50,7 @@ class OrganizationCreateScreen extends Screen
         $organization->fill($request->get('organization'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Organization added'));
+
         return redirect()->route('app.organization.view', $organization);
     }
 }

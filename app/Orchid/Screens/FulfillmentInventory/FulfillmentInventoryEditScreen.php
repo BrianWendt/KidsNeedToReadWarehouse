@@ -21,8 +21,6 @@ class FulfillmentInventoryEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -47,7 +45,7 @@ class FulfillmentInventoryEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\FulfillmentInventory\FulfillmentInventoryEditLayout::class
+            \App\Orchid\Layouts\FulfillmentInventory\FulfillmentInventoryEditLayout::class,
         ];
     }
 

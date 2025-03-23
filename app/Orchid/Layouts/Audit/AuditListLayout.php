@@ -3,15 +3,11 @@
 namespace App\Orchid\Layouts\Audit;
 
 use App\Models\Audit;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Group,
-    Fields\Input,
-    Fields\Select,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class AuditListLayout extends Table
 {
@@ -39,8 +35,8 @@ class AuditListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (Audit $audit) {
                     return
-                        Link::make('#' . $audit->id)
-                        ->route('app.audit.view', $audit);
+                        Link::make('#'.$audit->id)
+                            ->route('app.audit.view', $audit);
                 })
                 ->width('100px'),
 
@@ -76,7 +72,7 @@ class AuditListLayout extends Table
                             ->icon('plus-circle')
                             ->type(\Orchid\Support\Color::SUCCESS()),
                     ]);
-                })
+                }),
         ];
     }
 }

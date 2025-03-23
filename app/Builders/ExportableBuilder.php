@@ -2,16 +2,12 @@
 
 namespace App\Builders;
 
-use Illuminate\Database\Eloquent\Builder;
-
-use Illuminate\Container\Container;
-
 use App\Custom\LengthAwareExportablePaginator;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\Builder;
 
 class ExportableBuilder extends Builder
 {
-
     /**
      * Paginate the given query.
      *
@@ -26,12 +22,13 @@ class ExportableBuilder extends Builder
      */
     public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
     {
-        //$builder = clone $this;
+        // $builder = clone $this;
         $paginator = parent::paginate($perPage, $columns, $pageName, $page);
         /**
          * @var LengthAwareExportablePaginator $paginator
          */
         $paginator->setBuilder($this);
+
         return $paginator;
     }
 

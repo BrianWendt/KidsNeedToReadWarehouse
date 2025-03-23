@@ -23,8 +23,6 @@ class EmailEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -49,7 +47,7 @@ class EmailEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Email\EmailEditLayout::class
+            \App\Orchid\Layouts\Email\EmailEditLayout::class,
         ];
     }
 
@@ -58,6 +56,7 @@ class EmailEditScreen extends Screen
         $email->fill($request->get('email'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Email Address added'));
+
         return redirect()->route('app.contact.view', $email->contact_id);
     }
 }

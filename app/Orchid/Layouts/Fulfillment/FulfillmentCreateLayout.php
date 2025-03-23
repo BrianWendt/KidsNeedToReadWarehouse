@@ -2,13 +2,10 @@
 
 namespace App\Orchid\Layouts\Fulfillment;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Relation,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentCreateLayout extends Rows
 {
@@ -50,7 +47,7 @@ class FulfillmentCreateLayout extends Rows
             Button::make(__('Create'))
                 ->method('save')
                 ->icon('bs.plus-circle')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

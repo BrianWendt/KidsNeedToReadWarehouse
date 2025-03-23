@@ -3,13 +3,11 @@
 namespace App\Orchid\Screens\Fulfillment;
 
 use App\Models\Fulfillment;
-use Orchid\Screen\Screen;
-
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Screen;
 
 class FulfillmentEditScreen extends Screen
 {
-
     public $fulfillment;
 
     /**
@@ -26,12 +24,10 @@ class FulfillmentEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return __('Edit Fulfillment:') . '#' . $this->fulfillment->id;
+        return __('Edit Fulfillment:').'#'.$this->fulfillment->id;
     }
 
     /**
@@ -46,7 +42,7 @@ class FulfillmentEditScreen extends Screen
                 ->icon('trash')
                 ->method('cancel')
                 ->confirm(__('Are you sure you want to cancel this fulfillment?'))
-                ->class('btn btn-danger')
+                ->class('btn btn-danger'),
         ];
     }
 
@@ -58,7 +54,7 @@ class FulfillmentEditScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Fulfillment\FulfillmentEditListener::class
+            \App\Orchid\Layouts\Fulfillment\FulfillmentEditListener::class,
         ];
     }
 

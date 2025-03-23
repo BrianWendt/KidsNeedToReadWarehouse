@@ -3,17 +3,14 @@
 namespace App\Orchid\Layouts\Fulfillment;
 
 use App\Models\FulfillmentInventory;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class InventoryListLayout extends Table
 {
     public $show_actions = true;
-    
+
     public function __construct($show_actions = true)
     {
         $this->show_actions = $show_actions;
@@ -39,7 +36,6 @@ class InventoryListLayout extends Table
         $fulfillmnent = $this->query->getContent('fulfillment');
 
         $cols = [
-
 
             TD::make('book_label', __('Item'))
                 ->cantHide(false)
@@ -80,6 +76,7 @@ class InventoryListLayout extends Table
                 ->render(function (FulfillmentInventory $fulfillment_inventory) {
                     if ($fulfillment_inventory->book) {
                         $value = $fulfillment_inventory->price * $fulfillment_inventory->quantity;
+
                         return money_format($value, 2);
                     } else {
                         return '-';

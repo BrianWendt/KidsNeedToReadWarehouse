@@ -1,4 +1,5 @@
 <?php
+
 include 'include.php';
 
 echo '<pre>';
@@ -29,13 +30,13 @@ class Inventory extends Model
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if (!$data) {
+        if (! $data) {
             return;
         }
         $this->properties['quantity'] = intval($data['Available']);
         if (substr($this->properties['isbn'], 0, 5) == '2020-') {
             $this->properties['book_condition'] = 'used';
-        } else if (strpos($this->properties['isbn'], 'USED') !== false) {
+        } elseif (strpos($this->properties['isbn'], 'USED') !== false) {
             $this->properties['book_condition'] = 'used';
         }
     }
@@ -58,7 +59,7 @@ class Book extends Model
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if (!$data) {
+        if (! $data) {
             return;
         }
     }

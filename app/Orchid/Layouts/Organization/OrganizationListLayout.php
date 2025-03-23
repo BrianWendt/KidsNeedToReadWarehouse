@@ -3,13 +3,10 @@
 namespace App\Orchid\Layouts\Organization;
 
 use App\Models\Organization;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class OrganizationListLayout extends Table
 {

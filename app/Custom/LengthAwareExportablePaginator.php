@@ -8,7 +8,7 @@ class LengthAwareExportablePaginator extends \Illuminate\Pagination\LengthAwareP
 {
     private $_builder;
 
-    public function builder() : Builder
+    public function builder(): Builder
     {
         return $this->_builder;
     }
@@ -18,7 +18,7 @@ class LengthAwareExportablePaginator extends \Illuminate\Pagination\LengthAwareP
         $this->_builder = $builder;
     }
 
-    function  __serialize()
+    public function __serialize()
     {
         return [];
     }

@@ -3,17 +3,13 @@
 namespace App\Orchid\Screens\PurchaseOrder;
 
 use App\Models\PurchaseOrder;
-use Orchid\Screen\Screen;
-
-use Orchid\Support\Facades\Layout;
-
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class PurchaseOrderEditScreen extends Screen
 {
-
     public $purchase_order;
 
     /**
@@ -30,12 +26,10 @@ class PurchaseOrderEditScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return __('Edit PurchaseOrder:') . '#' . $this->purchase_order->id;
+        return __('Edit PurchaseOrder:').'#'.$this->purchase_order->id;
     }
 
     /**
@@ -50,7 +44,7 @@ class PurchaseOrderEditScreen extends Screen
                 ->icon('trash')
                 ->method('archive')
                 ->confirm(__('Are you sure you want to archive this Purchase Order?'))
-                ->class('btn btn-danger')
+                ->class('btn btn-danger'),
         ];
     }
 
@@ -62,7 +56,6 @@ class PurchaseOrderEditScreen extends Screen
     public function layout(): iterable
     {
 
-
         return [
             \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderEditListener::class,
             Layout::modal('organizationModal', [
@@ -72,8 +65,8 @@ class PurchaseOrderEditScreen extends Screen
                         ->fromQuery(\App\Models\Organization::defaultOrder(), 'display')
                         ->required()
                         ->help(__('Other fields will not be saved.')),
-                ])
-            ])
+                ]),
+            ]),
         ];
     }
 
@@ -97,7 +90,6 @@ class PurchaseOrderEditScreen extends Screen
             $purchase_order->save();
             \Orchid\Support\Facades\Toast::success(__('Organization updated'));
         }
-
 
         return redirect()->route('app.purchase_order.edit', $purchase_order);
     }

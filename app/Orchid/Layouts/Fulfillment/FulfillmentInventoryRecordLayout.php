@@ -2,19 +2,14 @@
 
 namespace App\Orchid\Layouts\Fulfillment;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Radio,
-    Fields\Relation,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
-
 use App\Orchid\Fields\Input;
 use App\Orchid\Fields\ISBN;
-
 use App\Util\RememberedParameter;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentInventoryRecordLayout extends Rows
 {
@@ -66,10 +61,10 @@ class FulfillmentInventoryRecordLayout extends Rows
                 ->class('btn btn-success')
                 ->icon('bs.check-circle')
                 ->method('recordInventory')
-                ->id('record-inventory-button')
+                ->id('record-inventory-button'),
         ];
 
-        //dd(session()->all());
+        // dd(session()->all());
 
         return $fields;
     }

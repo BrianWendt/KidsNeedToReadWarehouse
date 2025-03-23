@@ -2,14 +2,12 @@
 
 namespace App\Orchid\Layouts\Email;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Fields\Input,
-    Fields\Label,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Layouts\Rows;
 
 class EmailEditLayout extends Rows
 {
@@ -62,7 +60,7 @@ class EmailEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('check')
-                ->class('btn btn-success')
+                ->class('btn btn-success'),
         ];
     }
 }

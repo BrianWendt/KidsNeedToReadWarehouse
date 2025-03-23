@@ -2,28 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
- * 
  * @property string $quantity
  * @property string $entity_type (po, fulfillment)
- * @property int    $entity_id
+ * @property int $entity_id
  * @property string $entity_label
  * @property string $note
- * @property int    $inventory_year
- * 
+ * @property int $inventory_year
  * @property \App\Models\PurchaseOrder|\App\Models\Fulfillment $entity
  */
-
 class Inventory extends AppModel
 {
-
     public $table = 'inventory';
 
-    use \App\Models\Traits\HasBook,
-        \App\Models\Traits\Exports,
+    use \App\Models\Traits\Exports,
+        \App\Models\Traits\HasBook,
         \Illuminate\Database\Eloquent\SoftDeletes;
 
     protected $attributes = [
@@ -38,7 +34,7 @@ class Inventory extends AppModel
         'entity_type',
         'note',
         'inventory_year',
-        'book_condition'
+        'book_condition',
     ];
 
     /**
@@ -59,7 +55,7 @@ class Inventory extends AppModel
             case 'po':
                 return $this->belongsTo(PurchaseOrder::class, 'entity_id');
             default:
-                throw new \Exception('`entity_type` "' . $this->entity_type . '" Not implemented');
+                throw new \Exception('`entity_type` "'.$this->entity_type.'" Not implemented');
         }
     }
 
@@ -67,7 +63,7 @@ class Inventory extends AppModel
     {
 
         return Attribute::make(
-            get: fn () => $this->entity ? $this->entity->display : $this->entity_type . ':' . $this->entity_id,
+            get: fn () => $this->entity ? $this->entity->display : $this->entity_type.':'.$this->entity_id,
         );
     }
 

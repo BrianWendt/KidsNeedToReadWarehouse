@@ -3,23 +3,17 @@
 namespace App\Orchid\Layouts\PurchaseOrder;
 
 use App\Models\Inventory;
-
 use Orchid\Screen\Actions;
-use Orchid\Screen\{
-    Actions\Link,
-    Layouts\Table,
-    Repository,
-    TD
-};
-use PaginationHelper;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Repository;
+use Orchid\Screen\TD;
 
 /**
  * @property \Orchid\Screen\Repository $query
  */
-
 class InventoryListLayout extends Table
 {
-
     /**
      * Data source.
      *
@@ -38,7 +32,7 @@ class InventoryListLayout extends Table
             $c = $inventory->count();
             $inventory = $inventory->slice(0, 100);
             $repository->set('purchase_order.inventory', $inventory);
-            $this->title = 'NOTE: Displaying first 100 items of ' . $c . ' total items.';
+            $this->title = 'NOTE: Displaying first 100 items of '.$c.' total items.';
         }
 
         return parent::build($repository);
@@ -101,6 +95,7 @@ class InventoryListLayout extends Table
                 ->render(function (Inventory $inventory) {
                     if ($inventory->book) {
                         $value = $inventory->price * $inventory->quantity;
+
                         return money_format($value, 2);
                     } else {
                         return '-';
@@ -139,7 +134,7 @@ class InventoryListLayout extends Table
                 ->render(function () {
                     return money_format($this->query->getContent('total'));
                 }),
-            TD::make('edit')
+            TD::make('edit'),
         ];
     }
 

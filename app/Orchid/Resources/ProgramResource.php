@@ -2,21 +2,14 @@
 
 namespace App\Orchid\Resources;
 
+use App\Models\Program;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Crud\Resource;
-
-use App\Models\{
-    Program
-};
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Input,
-    Fields\Relation,
-    Fields\TextArea,
-    Sight,
-    TD
-};
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Sight;
+use Orchid\Screen\TD;
 
 class ProgramResource extends Resource
 {
@@ -29,18 +22,14 @@ class ProgramResource extends Resource
 
     /**
      * Get the descriptions for the screen.
-     *
-     * @return null|string
      */
     public static function description(): ?string
     {
-        return "Programs fulfillments are for.";
+        return 'Programs fulfillments are for.';
     }
 
     /**
      * Get the displayable icon of the resource.
-     *
-     * @return string
      */
     public static function icon(): string
     {
@@ -49,8 +38,6 @@ class ProgramResource extends Resource
 
     /**
      * Get the resource should be displayed in the navigation
-     *
-     * @return bool
      */
     public static function displayInNavigation(): bool
     {
@@ -59,8 +46,6 @@ class ProgramResource extends Resource
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @return array
      */
     public function fields(): array
     {
@@ -125,20 +110,16 @@ class ProgramResource extends Resource
 
     /**
      * Get the filters available for the resource.
-     *
-     * @return array
      */
     public function filters(): array
     {
         return [
-            new \Orchid\Crud\Filters\DefaultSorted('name', 'asc')
+            new \Orchid\Crud\Filters\DefaultSorted('name', 'asc'),
         ];
     }
 
     /**
      * Get relationships that should be eager loaded when performing an index query.
-     *
-     * @return array
      */
     public function with(): array
     {

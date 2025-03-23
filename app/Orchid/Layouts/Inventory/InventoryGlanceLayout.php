@@ -2,12 +2,10 @@
 
 namespace App\Orchid\Layouts\Inventory;
 
-use Orchid\Screen\{
-    Fields\Group,
-    Fields\Label,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Label;
+use Orchid\Screen\Layouts\Rows;
 
 class InventoryGlanceLayout extends Rows
 {
@@ -42,7 +40,7 @@ class InventoryGlanceLayout extends Rows
                 Label::make('stats.total_count')
                     ->title(__('Total'))
                     ->addBeforeRender($this->renderNumber()),
-            ])->set('class', 'col text-center')
+            ])->set('class', 'col text-center'),
         ];
     }
 

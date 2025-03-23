@@ -10,19 +10,18 @@ $fulfillments = csv_to_array($fulfillments_filename);
 $inventory_filename = 'inventory.csv';
 $inventory = csv_to_array($inventory_filename);
 
-//dd($fulfillments[0]);
+// dd($fulfillments[0]);
 
 $statuses = [];
 foreach ($fulfillments as $fulfillment) {
     $statuses[$fulfillment['Status']] = $fulfillment['Status'];
 }
-//dd($statuses);
+// dd($statuses);
 
 include 'companies.php';
 
 class Fulfillment extends Model
 {
-
     public $properties = [
         'id' => null,
         'status' => null,
@@ -35,7 +34,7 @@ class Fulfillment extends Model
         'tracking' => '',
         'description' => '',
         'created_at' => DATETIME,
-        'updated_at' => DATETIME
+        'updated_at' => DATETIME,
     ];
 
     public $map = [
@@ -54,7 +53,7 @@ class Fulfillment extends Model
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if (!$data) {
+        if (! $data) {
             return;
         }
 
@@ -69,12 +68,12 @@ class Fulfillment extends Model
 
         $this->properties['organization_id'] = $this->company_id($data);
 
-        $description = $data['BillTo Line2'] . "\n"
-            . $data['BillTo City'] . ', ' . $data['BillTo State'] . ' ' . $data['BillTo PostalCode'];
+        $description = $data['BillTo Line2']."\n"
+            .$data['BillTo City'].', '.$data['BillTo State'].' '.$data['BillTo PostalCode'];
         if (is_numeric(substr($data['BillTo Line1'], 0, 1))) {
-            $description = $data['BillTo Line1'] . "\n" . $description;
+            $description = $data['BillTo Line1']."\n".$description;
         }
-        $this->properties['description'] .= "\n" . $description;
+        $this->properties['description'] .= "\n".$description;
     }
 
     public function company_id($data)
@@ -91,13 +90,13 @@ class Fulfillment extends Model
         }
         echo "Company not found\n";
         dd($data);
+
         return null;
     }
 }
 
 class FulfillmentInventory extends Model
 {
-
     public $properties = [
         'fulfillment_id' => null,
         'isbn' => '',
@@ -113,7 +112,7 @@ class FulfillmentInventory extends Model
     public function __construct($data = [])
     {
         parent::__construct($data);
-        if (!$data) {
+        if (! $data) {
             return;
         }
         if (strlen($data['Item']) > 20) {

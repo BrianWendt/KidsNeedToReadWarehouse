@@ -2,15 +2,11 @@
 
 namespace App\Exports;
 
-use OpenSpout\Writer\Common\Creator\WriterEntityFactory;
-
 /**
  * @property array $data
  */
-
 class ExportsSimple extends Exports
 {
-
     public function beforeExport(\OpenSpout\Writer\AbstractWriter $writer): void
     {
         $row = $this->createRowFromArray($this->data['columns']);

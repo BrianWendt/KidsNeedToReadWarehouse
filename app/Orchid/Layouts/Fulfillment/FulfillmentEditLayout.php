@@ -2,15 +2,13 @@
 
 namespace App\Orchid\Layouts\Fulfillment;
 
-use Orchid\Screen\{
-    Actions\Button,
-    Actions\Link,
-    Fields\Input,
-    Fields\TextArea,
-    Fields\Select,
-    Layouts\Rows,
-    Field
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Field;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Screen\Layouts\Rows;
 
 class FulfillmentEditLayout extends Rows
 {
@@ -29,7 +27,7 @@ class FulfillmentEditLayout extends Rows
     protected function fields(): iterable
     {
         $fulfillment = $this->query->getContent('fulfillment');
-        if (!is_array($fulfillment)) {
+        if (! is_array($fulfillment)) {
             $fulfillment = $fulfillment->toArray() ?? [];
         }
         $organization_id = $fulfillment['organization_id'];
@@ -75,13 +73,13 @@ class FulfillmentEditLayout extends Rows
                 ->title(__('Shipping Address'))
                 ->options($addresses)
                 ->empty(__('Select an address'))
-                ->canSee(!empty($fulfillment['shipping_contact_id'])),
+                ->canSee(! empty($fulfillment['shipping_contact_id'])),
 
             Link::make(__('Add address to Shipping Contact'))
                 ->route('app.address.create', ['contact_id' => $fulfillment['shipping_contact_id']])
                 ->icon('bs.plus-circle')
                 ->class('btn btn-link mb-3')
-                ->canSee(!empty($fulfillment['shipping_contact_id'])),
+                ->canSee(! empty($fulfillment['shipping_contact_id'])),
 
             TextArea::make('fulfillment.description')
                 ->title(__('Fulfillment Description'))

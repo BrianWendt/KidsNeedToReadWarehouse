@@ -3,13 +3,10 @@
 namespace App\Orchid\Layouts\Contact;
 
 use App\Models\Telephone;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Actions\Button,
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class ContactTelephonesLayout extends Table
 {
@@ -44,14 +41,13 @@ class ContactTelephonesLayout extends Table
 
             TD::make('actions', __('Actions'))
                 ->cantHide()
-                ->render(function (Telephone $telephone) use ($primary_telephone)
-                {
+                ->render(function (Telephone $telephone) use ($primary_telephone) {
                     $actions = [];
                     $actions[] = Link::make(__('Edit'))
                         ->route('app.telephone.edit', $telephone->id)
                         ->icon('bs.pencil')
                         ->class('btn btn-sm btn-primary');
-                        
+
                     if ($telephone->id != $primary_telephone->id) {
                         $actions[] = Button::make(__('Make Primary'))
                             ->method('makePrimary')
@@ -64,9 +60,8 @@ class ContactTelephonesLayout extends Table
                             ->class('btn btn-success btn-sm');
                     }
 
-                    
                     return \Orchid\Screen\Fields\Group::make($actions)->autoWidth();
-                })->width('250px')
+                })->width('250px'),
         ];
     }
 }

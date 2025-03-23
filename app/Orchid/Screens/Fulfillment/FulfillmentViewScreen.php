@@ -2,23 +2,17 @@
 
 namespace App\Orchid\Screens\Fulfillment;
 
-use Illuminate\Http\Request;
-use Orchid\Support\Facades\Layout;
-
-use App\Models\{
-    Fulfillment,
-    FulfillmentInventory
-};
+use App\Models\Fulfillment;
+use App\Models\FulfillmentInventory;
 use App\Orchid\Layouts\Fulfillment as Layouts;
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
+use Illuminate\Http\Request;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
+use Orchid\Support\Facades\Layout;
 
 class FulfillmentViewScreen extends Screen
 {
-
     public $fulfillment;
 
     /**
@@ -48,8 +42,6 @@ class FulfillmentViewScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -74,10 +66,11 @@ class FulfillmentViewScreen extends Screen
         if ($this->fulfillment->status != 'shipped') {
             $links[] =
                 Link::make(__('Edit Details'))
-                ->route('app.fulfillment.edit', $this->fulfillment)
-                ->icon('pencil-square')
-                ->class('btn btn-primary');
+                    ->route('app.fulfillment.edit', $this->fulfillment)
+                    ->icon('pencil-square')
+                    ->class('btn btn-primary');
         }
+
         return $links;
     }
 
@@ -151,13 +144,14 @@ class FulfillmentViewScreen extends Screen
                 $right[] = Layouts\FulfillmentTrackingLayout::class;
                 break;
         }
+
         return [
             Layout::columns([$left, $right]),
             Layout::modal('ready_to_ship_modal', [
-                Layout::view('fulfillment.ready-to-ship-modal')
+                Layout::view('fulfillment.ready-to-ship-modal'),
             ])->title('Confirm Ready to Ship')
-            ->applyButton('Mark as Ready to Ship'),
-            new Layouts\InventoryListLayout(),
+                ->applyButton('Mark as Ready to Ship'),
+            new Layouts\InventoryListLayout,
         ];
     }
 
@@ -198,6 +192,7 @@ class FulfillmentViewScreen extends Screen
 
         $this->fulfillment->update(['status' => 'pending_shipment']);
         \Orchid\Support\Facades\Toast::success(__('Status updated'));
+
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
 
@@ -206,6 +201,7 @@ class FulfillmentViewScreen extends Screen
         $this->fulfillment->update(['status' => 'preparing']);
         \App\Models\Inventory::where(['entity_id' => $this->fulfillment->id, 'entity_type' => 'fulfillment'])->delete();
         \Orchid\Support\Facades\Toast::success(__('Status updated'));
+
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
 
@@ -213,6 +209,7 @@ class FulfillmentViewScreen extends Screen
     {
         $this->fulfillment->update(['tracking' => $request->input('tracking'), 'status' => 'shipped']);
         \Orchid\Support\Facades\Toast::success(__('Tracking updated'));
+
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
 
@@ -220,6 +217,7 @@ class FulfillmentViewScreen extends Screen
     {
         $this->fulfillment->update(['status' => 'shipped']);
         \Orchid\Support\Facades\Toast::success(__('Status updated'));
+
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
 
@@ -227,6 +225,7 @@ class FulfillmentViewScreen extends Screen
     {
 
         \Orchid\Support\Facades\Toast::success(__('Inventory deleted'));
+
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
 
@@ -246,11 +245,12 @@ class FulfillmentViewScreen extends Screen
     public function exportFilename()
     {
         $ts = time();
+
         return "fulfillment-{$this->fulfillment->id}-{$ts}";
     }
 
     public function exportInstance(): \App\Exports\Exports
     {
-        return (new \App\Exports\ExportsStatement())->setFullfillment($this->fulfillment);
+        return (new \App\Exports\ExportsStatement)->setFullfillment($this->fulfillment);
     }
 }

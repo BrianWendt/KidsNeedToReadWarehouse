@@ -4,11 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Illuminate\Validation\Rule;
+class StoreAddressRequest extends FormRequest
+{
+    public function rules()
+    {
 
-class StoreAddressRequest extends FormRequest {
-    public function rules() {
- 
         return [
             'address.contact_id' => 'required|exists:contacts,id',
             'address.name' => 'required|max:128',

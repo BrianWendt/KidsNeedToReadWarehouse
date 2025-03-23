@@ -2,13 +2,10 @@
 
 namespace App\Orchid\Screens\Email;
 
+use App\Models\Contact;
+use App\Models\Email;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
-
-use App\Models\{
-    Contact,
-    Email
-};
 
 class EmailCreateScreen extends Screen
 {
@@ -19,7 +16,7 @@ class EmailCreateScreen extends Screen
      */
     public function query(Email $email, Request $request): iterable
     {
-        if($request->query('contact_id')){
+        if ($request->query('contact_id')) {
             $contact = Contact::findOrFail($request->query('contact_id'));
             $email->contact_id = $contact->id;
         } else {
@@ -33,8 +30,6 @@ class EmailCreateScreen extends Screen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -59,7 +54,7 @@ class EmailCreateScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Email\EmailEditLayout::class
+            \App\Orchid\Layouts\Email\EmailEditLayout::class,
         ];
     }
 
@@ -68,6 +63,7 @@ class EmailCreateScreen extends Screen
         $email->fill($request->get('email'))->save();
 
         \Orchid\Support\Facades\Toast::success(__('Email Address added'));
+
         return redirect()->route('app.contact.view', $email->contact_id);
     }
 }

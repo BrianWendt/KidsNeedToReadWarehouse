@@ -3,8 +3,7 @@
 /**
  * Puts a string into a HtmlString object to prevent escaping
  *
- * @param string $html
- * @return \Illuminate\Support\HtmlString
+ * @param  string  $html
  */
 function raw_html($html): \Illuminate\Support\HtmlString
 {
@@ -14,9 +13,7 @@ function raw_html($html): \Illuminate\Support\HtmlString
 /**
  * Format a number as money $0.00
  *
- * @param float $amount
- * @param integer $decimals
- * @return string
+ * @param  float  $amount
  */
 function money_format($amount, int $decimals = 2): string
 {
@@ -28,19 +25,17 @@ function money_format($amount, int $decimals = 2): string
 /**
  * Convery line breaks to paragraphs
  *
- * @param string $string
- * @return string
+ * @param  string  $string
  */
 function nl2p($string): string
 {
-    return '<p>' . str_replace("\n", '</p><p>', $string) . '</p>';
+    return '<p>'.str_replace("\n", '</p><p>', $string).'</p>';
 }
 
 /**
  * Get the taxable value of a book based on its condition
  *
- * @param \App\Models\Book $Book
- * @param string $condition
+ * @param  \App\Models\Book  $Book
  * @return float
  */
 function conditionPrice($Book, string $condition)
@@ -69,8 +64,6 @@ function conditionPrice($Book, string $condition)
 /**
  * Returns a list of used book codes and their descriptions
  * Used for quick links on the purchase order view screen
- *
- * @return array
  */
 function usedBookCodes(): array
 {
@@ -100,26 +93,25 @@ function usedBookCodes(): array
 /**
  * Create a closure for a custom validation rule
  * Used for custom validation rules
- *
- * @param String $key
- * @return Closure
  */
 function not_empty(string $key): Closure
 {
     return function (\Illuminate\Support\Fluent $fluent) use ($key) {
         $value = $fluent->get($key);
-        return !empty(trim($value));
+
+        return ! empty(trim($value));
     };
 }
 
 /**
- * Create a closure 
+ * Create a closure
  *
  * @return void
  */
 function renderMoney(): Closure
 {
-    die('renderMoney in helpers.php');
+    exit('renderMoney in helpers.php');
+
     return function () {
         $value = $this->get('value');
         if ($value == 0) {

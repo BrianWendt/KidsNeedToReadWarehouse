@@ -20,14 +20,12 @@ class MissingBooksScreen extends Screen
                 ->select(DB::raw('isbn, sum(quantity) as quantity'))
                 ->orderBy('isbn')
                 ->groupBy('isbn')
-            ->paginate(),
+                ->paginate(),
         ];
     }
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
@@ -57,7 +55,7 @@ class MissingBooksScreen extends Screen
     public function layout(): iterable
     {
         return [
-            \App\Orchid\Layouts\Inventory\MissingBooksLayout::class
+            \App\Orchid\Layouts\Inventory\MissingBooksLayout::class,
         ];
     }
 }

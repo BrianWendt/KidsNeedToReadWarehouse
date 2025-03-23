@@ -3,17 +3,11 @@
 namespace App\Orchid\Layouts\PurchaseOrder;
 
 use App\Models\PurchaseOrder;
-
-use Orchid\Screen\{
-    Actions\Link,
-    Fields\Group,
-    Fields\Input,
-    Fields\Select,
-    Layouts\Table,
-    TD
-};
-
-use App\Orchid\Filters\PurchaseOrderStatusFilter;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Fields\Group;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class PurchaseOrderListLayout extends Table
 {
@@ -41,8 +35,8 @@ class PurchaseOrderListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (PurchaseOrder $purchase_order) {
                     return
-                        Link::make('#' . $purchase_order->id)
-                        ->route('app.purchase_order.view', $purchase_order);
+                        Link::make('#'.$purchase_order->id)
+                            ->route('app.purchase_order.view', $purchase_order);
                 }),
 
             TD::make('contact', __('Contact'))
@@ -69,7 +63,7 @@ class PurchaseOrderListLayout extends Table
                             ->route('app.purchase_order.print', $purchase_order)
                             ->icon('printer'),
                     ]);
-                })
+                }),
         ];
     }
 }

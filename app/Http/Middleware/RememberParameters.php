@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class RememberParameters
 {
     const INPUT_MAP = [
@@ -28,16 +27,17 @@ class RememberParameters
      */
     public function handle(Request $request, Closure $next): Response
     {
-        foreach(self::INPUT_MAP as $parameter => $mapped) {
+        foreach (self::INPUT_MAP as $parameter => $mapped) {
             if ($request->has($parameter)) {
                 $request->session()->put($mapped, $request->input($parameter));
             }
         }
-        foreach(self::ROUTE_MAP as $route => $mapped) {
+        foreach (self::ROUTE_MAP as $route => $mapped) {
             if ($request->route($route)) {
                 $request->session()->put($mapped, $request->route($route));
             }
         }
+
         return $next($request);
     }
 }

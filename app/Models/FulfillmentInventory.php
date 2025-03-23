@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Traits\HasBook;
-
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
@@ -11,16 +10,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property string $fulfillment_id
  * @property string $quantity
  * @property string $note
- * 
  * @property string $price
- * 
  * @property \App\Models\Fulfillment $fulfillment
  */
-
 class FulfillmentInventory extends AppModel
 {
-    use HasBook,
-    \App\Models\Traits\Exports;
+    use \App\Models\Traits\Exports,
+        HasBook;
 
     public $table = 'fulfillment_inventory';
 
@@ -43,5 +39,4 @@ class FulfillmentInventory extends AppModel
             get: fn () => $this->price * $this->quantity,
         );
     }
-
 }

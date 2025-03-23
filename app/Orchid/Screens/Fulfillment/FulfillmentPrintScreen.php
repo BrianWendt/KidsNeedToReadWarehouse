@@ -2,23 +2,14 @@
 
 namespace App\Orchid\Screens\Fulfillment;
 
-use Illuminate\Http\Request;
+use App\Models\Fulfillment;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
-
-use App\Models\{
-    Fulfillment,
-    FulfillmentInventory
-};
-use Orchid\Screen\{
-    Actions\Link,
-    Screen,
-    Sight
-};
 
 class FulfillmentPrintScreen extends FulfillmentViewScreen
 {
-
-
     /**
      * The screen's action buttons.
      *
@@ -31,12 +22,10 @@ class FulfillmentPrintScreen extends FulfillmentViewScreen
 
     /**
      * The name of the screen displayed in the header.
-     *
-     * @return string|null
      */
     public function name(): ?string
     {
-        return 'Fulfillment #' . $this->fulfillment->id;
+        return 'Fulfillment #'.$this->fulfillment->id;
     }
 
     /**
@@ -49,7 +38,6 @@ class FulfillmentPrintScreen extends FulfillmentViewScreen
         $status = $this->fulfillment ? $this->fulfillment->status : 'new';
         $left = [
             Layout::legend('fulfillment', [
-
 
                 Sight::make('organization.name', __('Organization'))
                     ->render(function (Fulfillment $fulfillment) {
@@ -103,5 +91,4 @@ class FulfillmentPrintScreen extends FulfillmentViewScreen
             new \App\Orchid\Layouts\Fulfillment\InventoryListLayout(false),
         ];
     }
-
 }

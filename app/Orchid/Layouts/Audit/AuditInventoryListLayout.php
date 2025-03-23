@@ -3,15 +3,11 @@
 namespace App\Orchid\Layouts\Audit;
 
 use App\Models\AuditInventory;
-
-use Orchid\Screen\{
-    Layouts\Table,
-    TD
-};
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 class AuditInventoryListLayout extends Table
 {
-
     /**
      * Data source.
      *
