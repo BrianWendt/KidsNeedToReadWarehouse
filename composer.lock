@@ -2973,13 +2973,13 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
-                    ],
                     "aliases": {
                         "Alert": "Orchid\\Support\\Facades\\Alert",
                         "Dashboard": "Orchid\\Support\\Facades\\Dashboard"
-                    }
+                    },
+                    "providers": [
+                        "Orchid\\Platform\\Providers\\FoundationServiceProvider"
+                    ]
                 }
             },
             "autoload": {
