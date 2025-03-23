@@ -95,7 +95,9 @@ class FulfillmentViewScreen extends Screen
 
                 Sight::make('program_display', __('Program')),
 
-                Sight::make('children_served', __('Children Served')),
+                Sight::make('children_served', __('Children Served'))->render(function (Fulfillment $fulfillment) {
+                    return $fulfillment->children_served ? $fulfillment->children_served : '<i>-not set-</i>';
+                }),
 
                 Sight::make('organization.name', __('Organization'))
                     ->render(function (Fulfillment $fulfillment) {
