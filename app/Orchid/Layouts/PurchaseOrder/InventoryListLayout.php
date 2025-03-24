@@ -24,6 +24,13 @@ class InventoryListLayout extends Table
      */
     protected $target = 'purchase_order.inventory';
 
+    protected $print = false;
+
+    public function __construct($print = false)
+    {
+        $this->print = $print;
+    }
+
     public function build(Repository $repository)
     {
 
@@ -103,16 +110,18 @@ class InventoryListLayout extends Table
                 })
                 ->align(TD::ALIGN_RIGHT)
                 ->width('100px'),
+        ];
 
-            TD::make('edit')
+        if (! $this->print) {
+            $cols[] = TD::make('edit')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(function (Inventory $inventory) {
                     return Actions\Link::make(__('Edit'))
                         ->route('app.inventory.edit', $inventory->id)
                         ->icon('pencil');
-                }),
-        ];
+                });
+        }
 
         return $cols;
     }

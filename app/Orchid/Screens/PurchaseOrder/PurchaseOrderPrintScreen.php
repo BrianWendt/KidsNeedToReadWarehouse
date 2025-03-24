@@ -86,7 +86,7 @@ class PurchaseOrderPrintScreen extends PurchaseOrderViewScreen
         return [
             Layout::columns([$left, $right]),
 
-            \App\Orchid\Layouts\PurchaseOrder\InventoryListLayout::class,
+            new \App\Orchid\Layouts\PurchaseOrder\InventoryListLayout(true),
         ];
     }
 }
