@@ -10,3 +10,24 @@
     content: "\2713";
     opacity: 1;
 }
+
+@media print {
+    body, html, :root {
+        font-size: 12px;
+    }
+    .header-brand {
+        text-align: right;
+    }
+    .header-brand img {
+        width: 300px;
+    }
+    .header-toggler, .breadcrumb {
+        display: none !important;
+    }
+    .h-100 {
+        height: auto !important;
+    }
+    * {
+        overflow: visible !important;
+    }
+}
