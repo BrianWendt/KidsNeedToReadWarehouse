@@ -20,7 +20,7 @@ class ExportableBuilder extends Builder
      *
      * @throws \InvalidArgumentException
      */
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null, $total = null)
     {
         // $builder = clone $this;
         $paginator = parent::paginate($perPage, $columns, $pageName, $page);
