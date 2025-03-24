@@ -248,8 +248,9 @@ return [
      */
 
     'search' => [
-        // \App\Models\User::class
         \App\Models\Book::class,
+        \App\Models\Fulfillment::class,
+        \App\Models\PurchaseOrder::class,
     ],
 
     /*

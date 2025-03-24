@@ -6,26 +6,29 @@ use Laravel\Scout\Builder;
 use Orchid\Screen\Contracts\Searchable;
 use Orchid\Support\Presenter;
 
-class BookPresenter extends Presenter implements Searchable
+/**
+ * @property \App\Models\Fulfillment $entity
+ */
+class FulfillmentPresenter extends Presenter implements Searchable
 {
     public function label(): string
     {
-        return 'Books';
+        return 'Fulfillments';
     }
 
     public function title(): string
     {
-        return $this->entity->title ?? '-na-';
+        return $this->entity->display;
     }
 
     public function subTitle(): string
     {
-        return $this->entity->author ?? '-unknown author-';
+        return $this->entity->display;
     }
 
     public function url(): string
     {
-        return route('app.book.edit', $this->entity);
+        return route('app.fulfillment.view', $this->entity);
     }
 
     public function image(): ?string

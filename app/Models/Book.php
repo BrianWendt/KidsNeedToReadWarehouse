@@ -72,7 +72,7 @@ class Book extends AppModel
     public function isbn(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => $value,
+            get: fn (?string $value) => $value,
             set: fn (string $value) => trim(preg_replace('/[^A-Za-z0-9]/', '', $value)),
         );
     }
@@ -210,7 +210,7 @@ class Book extends AppModel
     /**
      * Get the presenter for the model.
      *
-     * @return IdeaPresenter
+     * @return \App\Orchid\Presenters\BookPresenter
      */
     public function presenter()
     {
@@ -224,7 +224,12 @@ class Book extends AppModel
      */
     public function toSearchableArray(): array
     {
-        $array = $this->toArray();
+        $array = [
+            'isbn' => $this->isbn,
+            'title' => $this->title,
+            'author' => $this->author,
+            'categories' => $this->categories,
+        ];
 
         // Customize the data array...
 

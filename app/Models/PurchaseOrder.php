@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  */
 class PurchaseOrder extends AppModel
 {
+    use \Laravel\Scout\Searchable;
     use \Orchid\Filters\Filterable;
 
     protected $fillable = [
@@ -40,6 +41,10 @@ class PurchaseOrder extends AppModel
         'contact.name',
         'created_at',
         'updated_at',
+    ];
+
+    protected $allowedFilters = [
+        'id' => \Orchid\Filters\Types\Where::class,
     ];
 
     public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -82,5 +87,33 @@ class PurchaseOrder extends AppModel
     public function viewRoute(): string
     {
         return 'app.purchase_order.view';
+    }
+
+    /**
+     * Get the presenter for the model.
+     *
+     * @return \App\Orchid\Presenters\PurchaseOrderPresenter
+     */
+    public function presenter()
+    {
+        return new \App\Orchid\Presenters\PurchaseOrderPresenter($this);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        $array = [
+            'id' => $this->id,
+            'note' => $this->note,
+            'organization_id' => $this->organization_id,
+        ];
+
+        // Customize the data array...
+
+        return $array;
     }
 }

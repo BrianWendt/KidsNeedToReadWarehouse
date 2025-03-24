@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  */
 class Fulfillment extends AppModel
 {
+    use \Laravel\Scout\Searchable;
+
     protected $fillable = [
         'status',
         'program_id',
@@ -72,7 +74,7 @@ class Fulfillment extends AppModel
 
     public function programDisplay(): Attribute
     {
-        $text = $this->program->name;
+        $text = $this->program->name ?? '-not set-';
         if ($this->initiative) {
             $text .= ' ('.$this->initiative->name.')';
         }
@@ -120,5 +122,32 @@ class Fulfillment extends AppModel
     public function viewRoute(): string
     {
         return 'app.fulfillment.view';
+    }
+
+    /**
+     * Get the presenter for the model.
+     *
+     * @return \App\Orchid\Presenters\FulfillmentPresenter
+     */
+    public function presenter()
+    {
+        return new \App\Orchid\Presenters\FulfillmentPresenter($this);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        $array = [
+            'id' => $this->id,
+            'organization_id' => $this->organization_id,
+        ];
+
+        // Customize the data array...
+
+        return $array;
     }
 }
