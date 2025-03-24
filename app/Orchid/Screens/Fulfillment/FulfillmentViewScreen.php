@@ -251,6 +251,6 @@ class FulfillmentViewScreen extends Screen
 
     public function exportInstance(): \App\Exports\Exports
     {
-        return (new \App\Exports\ExportsStatement)->setFullfillment($this->fulfillment);
+        return (new \App\Exports\ExportsStatement)->setFulfillment($this->fulfillment);
     }
 }

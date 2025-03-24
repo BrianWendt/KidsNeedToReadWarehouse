@@ -12,7 +12,7 @@ class ExportsStatement extends Exports
 {
     public $fulfillment;
 
-    public function setFullfillment(\App\Models\Fulfillment $fulfillment)
+    public function setFulfillment(\App\Models\Fulfillment $fulfillment)
     {
         $this->fulfillment = $fulfillment;
 
