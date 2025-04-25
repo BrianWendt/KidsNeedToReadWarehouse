@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->integer('id', true);
-            $table->string('isbn', 20)->index('isbn');
+            $table->string('isbn', 30)->index('isbn');
             $table->enum('book_condition', ['new', 'like_new', 'used', 'rb_petsmart', 'rb_purchased', 'rb_handmade']);
             $table->integer('quantity');
             $table->double('fixed_value', null, 0)->nullable();

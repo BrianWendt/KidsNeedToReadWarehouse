@@ -9,7 +9,7 @@ class StoreAuditInventoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'audit_inventory.isbn' => 'required|max:20',
+            'audit_inventory.isbn' => 'required|max:30',
             'audit_inventory.quantity' => 'required|integer',
         ];
     }
