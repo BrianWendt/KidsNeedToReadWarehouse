@@ -14,7 +14,7 @@ class StoreBookRequest extends FormRequest
 
         return [
             'book.title' => 'required|max:128',
-            'book.isbn' => 'required|max:20|min:1|unique:books,isbn,'.$id,
+            'book.isbn' => 'required|max:30|min:1|unique:books,isbn,'.$id,
             'book.author' => 'max:128',
             'book.retail_price' => Rule::when(not_empty('book.retail_price'), 'numeric|min:0.01'),
             'book.fixed_value' => Rule::when(not_empty('book.fixed_value'), 'numeric|min:0.01'),

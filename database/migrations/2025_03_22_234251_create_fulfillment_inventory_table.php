@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fulfillment_inventory', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('fulfillment_id');
-            $table->string('isbn', 20);
+            $table->string('isbn', 30);
             $table->enum('book_condition', ['new', 'like_new', 'used', 'rb_petsmart', 'rb_purchased', 'rb_handmade']);
             $table->integer('quantity');
             $table->double('fixed_value', null, 0)->default(0);

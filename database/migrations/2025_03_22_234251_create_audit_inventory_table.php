@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('audit_inventory', function (Blueprint $table) {
             $table->integer('id', true);
             $table->integer('audit_id');
-            $table->string('isbn', 20);
+            $table->string('isbn', 30);
             $table->integer('quantity');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');

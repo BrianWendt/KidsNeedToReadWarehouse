@@ -10,7 +10,7 @@ class StoreInventoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'inventory.isbn' => 'required|max:20',
+            'inventory.isbn' => 'required|max:30',
             'inventory.quantity' => 'required|integer',
             'inventory.entity_id' => 'required|integer',
             'inventory.book_condition' => ['required', Rule::in(array_keys(config('options.book_conditions')))],
