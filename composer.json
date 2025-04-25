@@ -13,7 +13,9 @@
         "openspout/openspout": "^4.24",
         "orchid/crud": "^4.0",
         "orchid/fortify": "^0.0.12",
-        "orchid/platform": "^14.4"
+        "orchid/platform": "^14.4",
+        "symfony/http-client": "^7.2",
+        "symfony/mailgun-mailer": "^7.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
