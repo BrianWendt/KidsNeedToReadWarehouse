@@ -122,7 +122,7 @@ class PurchaseOrderViewScreen extends Screen
                 ->class('btn btn-sm')
                 ->icon('book');
         }
-        $quick_links_group = Group::make($quick_links)->set('class', 'col-sm-6 form-group mb-md-0');
+        $quick_links_group = Group::make($quick_links)->widthColumns('33% 33% 33%');
 
         $right = [
             Layout::rows([$quick_links_group])->title('Check In'),
@@ -130,7 +130,7 @@ class PurchaseOrderViewScreen extends Screen
         ];
 
         return [
-            Layout::columns([$left, $right]),
+            Layout::split([$left, $right]),
 
             \App\Orchid\Layouts\PurchaseOrder\InventoryListLayout::class,
         ];
