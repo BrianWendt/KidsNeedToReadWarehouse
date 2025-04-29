@@ -10,8 +10,8 @@ class StoreContactRequest extends FormRequest
     {
 
         return [
-            'contact.first_name' => 'required|max:64',
-            'contact.last_name' => 'required|max:64',
+            'contact.first_name' => 'max:64',
+            'contact.last_name' => 'max:64',
             'contact.preferred_name' => 'max:128',
             'contact.title' => 'max:128',
             'contact.note' => 'max:600',
