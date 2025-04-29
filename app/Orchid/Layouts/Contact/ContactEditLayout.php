@@ -26,7 +26,7 @@ class ContactEditLayout extends Rows
      */
     protected function fields(): iterable
     {
-        $organizations = Organization::defaultOrder()->get()->pluck('display', 'id')->toArray();
+        $organizations = [0 => '- select -'] + Organization::defaultOrder()->get()->pluck('display', 'id')->toArray();
 
         return [
 
