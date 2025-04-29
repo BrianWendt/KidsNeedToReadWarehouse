@@ -14,6 +14,10 @@ class ContactCreateScreen extends Screen
      */
     public function query(Contact $contact): iterable
     {
+        if (request()->has('organization_id')) {
+            $contact->organization_id = request()->get('organization_id');
+        }
+
         return [
             'contact' => $contact,
         ];

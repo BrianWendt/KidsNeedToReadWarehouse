@@ -34,10 +34,15 @@ class ContactListScreen extends Screen
      */
     public function commandBar(): iterable
     {
+        $filters = request()->get('filter', []);
+        $organizationId = $filters['organization_id'] ?? null;
+
         return [
             \Orchid\Screen\Actions\Link::make(__('Add Contact'))
                 ->icon('bs.plus-circle')
-                ->route('app.contact.create')
+                ->route('app.contact.create', [
+                    'organization_id' => $organizationId,
+                ])
                 ->class('btn btn-primary'),
         ];
     }
