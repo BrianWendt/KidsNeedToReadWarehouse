@@ -11,6 +11,21 @@
     opacity: 1;
 }
 
+.dl-horizontal {
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: .5em;
+}
+
+.dl-horizontal dt {
+    grid-column-start: 1;
+    text-align: end;
+}
+
+.dl-horizontal dd {
+    grid-column-start: 2;
+}
+
 @media print {
     body, html, :root {
         font-size: 12px;
