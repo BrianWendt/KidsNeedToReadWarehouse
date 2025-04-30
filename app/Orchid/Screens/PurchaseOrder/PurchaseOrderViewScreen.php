@@ -122,10 +122,10 @@ class PurchaseOrderViewScreen extends Screen
                 ->class('btn btn-sm')
                 ->icon('book');
         }
-        $quick_links_group = Group::make($quick_links)->widthColumns('33% 33% 33%');
+        $quick_links_group = Group::make($quick_links)->widthColumns('auto auto auto auto');
 
         $right = [
-            Layout::rows([$quick_links_group])->title('Check In'),
+            Layout::rows([$quick_links_group])->title('Used Book Check In'),
             \App\Orchid\Layouts\Book\BookISBNLayout::class,
         ];
 
