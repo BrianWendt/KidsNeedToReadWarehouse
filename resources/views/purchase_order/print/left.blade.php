@@ -7,7 +7,7 @@
 
     @if($purchase_order->contact_id > 0)
         <dt>Donor Name:</dt>
-        <dd>{{ $purchase_order->contact->full_name }}</dd>
+        <dd>{{ $purchase_order->contact->display_name }}</dd>
     @endif
 
     @if($purchase_order->address_id > 0)
