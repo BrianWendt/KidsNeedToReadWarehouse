@@ -132,7 +132,7 @@ class Contact extends AppModel
     public function displayName(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->preferred_name ?? $this->full_name,
+            get: fn () => $this->preferred_name ?: $this->full_name,
         );
     }
 
