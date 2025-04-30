@@ -34,24 +34,31 @@ address {
     body, html, :root {
         font-size: 12px;
     }
+
     .header-brand {
         text-align: right;
     }
+
     .header-brand img {
         width: 300px;
     }
+
     .header-toggler, .breadcrumb {
         display: none !important;
     }
+
     .h-100 {
         height: auto !important;
     }
+
     .workspace-limit {
         max-width: fit-content !important;
     }
+
     .overflow-hidden {
         overflow: visible !important;
     }
+
     * {
         overflow: visible !important;
     }
