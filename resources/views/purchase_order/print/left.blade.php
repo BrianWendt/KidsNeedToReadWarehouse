@@ -1,6 +1,6 @@
 <dl class="dl-horizontal">
     <dt>Organization:</dt>
-    <dd>{{ $purchase_order->contact->organization->name }}</dd>
+    <dd>{{ $purchase_order->organization->name }}</dd>
 
     <dt>Received Date:</dt>
     <dd>{{ $purchase_order->received_date ?? '<i>-</i>' }}</dd>
