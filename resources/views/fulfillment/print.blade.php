@@ -1,4 +1,6 @@
-<div class="row">
+<h1 class="print-top-right text-end">Fulfillment #{{ $fulfillment->id }}</h1>
+
+<div class="row pt-4">
     <div class="col-6">@include('fulfillment.print.left')</div>
     <div class="col-6">@include('fulfillment.print.right')</div>
 </div>
@@ -37,3 +39,5 @@
         </tr>
     </tbody>
 </table>
+
+<link rel="stylesheet" href="{{ asset('css/print.css') }}">
