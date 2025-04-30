@@ -58,7 +58,7 @@ class FulfillmentInventoryRecordLayout extends Rows
                 ->value(RememberedParameter::getBookCondition('new')),
 
             Button::make(__('Add to Fulfillment'))
-                ->class('btn btn-success')
+                ->class('btn icon-link btn-success')
                 ->icon('bs.check-circle')
                 ->method('recordInventory')
                 ->id('record-inventory-button'),

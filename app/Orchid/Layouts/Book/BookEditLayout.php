@@ -63,7 +63,7 @@ class BookEditLayout extends Rows
                 ->help(__('Estimate Page Count')),
 
             Button::make(__('Save'))
-                ->class('btn btn-success')
+                ->class('btn icon-link btn-success')
                 ->icon('bs.check-circle')
                 ->method('save'),
         ];

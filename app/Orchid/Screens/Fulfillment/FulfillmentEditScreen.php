@@ -42,7 +42,7 @@ class FulfillmentEditScreen extends Screen
                 ->icon('trash')
                 ->method('cancel')
                 ->confirm(__('Are you sure you want to cancel this fulfillment?'))
-                ->class('btn btn-danger'),
+                ->class('btn icon-link btn-danger'),
         ];
     }
 

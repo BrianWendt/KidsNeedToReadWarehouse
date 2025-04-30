@@ -43,7 +43,7 @@ class OrganizationViewScreen extends Screen
             Link::make(__('Edit'))
                 ->icon('pencil-square')
                 ->route('app.organization.edit', $this->organization)
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

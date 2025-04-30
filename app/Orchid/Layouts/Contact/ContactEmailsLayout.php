@@ -57,7 +57,7 @@ class ContactEmailsLayout extends Table
                     } else {
                         $actions[] = Link::make(__('Primary'))
                             ->icon('bs.star-fill')
-                            ->class('btn btn-success btn-sm');
+                            ->class('btn icon-link btn-success btn-sm');
                     }
 
                     return \Orchid\Screen\Fields\Group::make($actions)->autoWidth();

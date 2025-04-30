@@ -33,7 +33,7 @@ class FulfillmentTrackingLayout extends Rows
             Button::make(__('Set Tracking Number'))
                 ->method('setTracking')
                 ->icon('check')
-                ->class('btn btn-success'),
+                ->class('btn icon-link btn-success'),
         ];
     }
 }

@@ -71,11 +71,11 @@ class PurchaseOrderViewScreen extends Screen
                 Link::make(__('Print'))
                     ->route('app.purchase_order.print', $this->purchase_order)
                     ->icon('printer')
-                    ->class('btn btn-secondary'),
+                    ->class('btn icon-link btn-secondary'),
                 Link::make(__('Edit Details'))
                     ->route('app.purchase_order.edit', $this->purchase_order)
                     ->icon('pencil-square')
-                    ->class('btn btn-primary'),
+                    ->class('btn icon-link btn-primary'),
             ];
         } else {
             return [];

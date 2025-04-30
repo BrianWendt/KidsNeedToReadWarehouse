@@ -89,7 +89,7 @@ class FulfillmentEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('check')
-                ->class('btn btn-success'),
+                ->class('btn icon-link btn-success'),
 
             Input::make('fulfillment.organization_id')
                 ->type('hidden')

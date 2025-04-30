@@ -44,7 +44,7 @@ class PurchaseOrderEditScreen extends Screen
                 ->icon('trash')
                 ->method('archive')
                 ->confirm(__('Are you sure you want to archive this Purchase Order?'))
-                ->class('btn btn-danger'),
+                ->class('btn icon-link btn-danger'),
         ];
     }
 

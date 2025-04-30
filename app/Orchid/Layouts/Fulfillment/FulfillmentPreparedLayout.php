@@ -27,12 +27,12 @@ class FulfillmentPreparedLayout extends Rows
             Button::make(__('Back to `Preparing`'))
                 ->method('backToPreparing')
                 ->icon('arrow-left')
-                ->class('btn btn-warning mb-2'),
+                ->class('btn icon-link btn-warning mb-2'),
 
             Button::make(__('Mark as Shipped'))
                 ->method('markAsShipped')
                 ->icon('check')
-                ->class('btn btn-primary')
+                ->class('btn icon-link btn-primary')
                 ->confirm('Are you sure you want to mark this fulfillment as shipped?'),
         ];
     }

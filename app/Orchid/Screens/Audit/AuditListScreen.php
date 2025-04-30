@@ -39,7 +39,7 @@ class AuditListScreen extends Screen
             Link::make(__('Create Audit'))
                 ->icon('plus-circle')
                 ->route('app.audit.create')
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

@@ -57,12 +57,12 @@ class FulfillmentInventoryEditLayout extends Rows
                 Button::make(__('Save'))
                     ->method('save')
                     ->icon('check')
-                    ->class('btn btn-success'),
+                    ->class('btn icon-link btn-success'),
 
                 Button::make(__('Remove from Fulfillment'))
                     ->method('delete')
                     ->icon('trash')
-                    ->class('btn btn-danger'),
+                    ->class('btn icon-link btn-danger'),
             ]),
         ];
     }

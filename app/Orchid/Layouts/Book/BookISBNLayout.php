@@ -37,7 +37,7 @@ class BookISBNLayout extends Rows
             Button::make(__('Lookup'))
                 ->method('search')
                 ->icon('magnifier')
-                ->class('btn btn-success')
+                ->class('btn icon-link btn-success')
                 ->parameters([
                     'isbn' => 'book.isbn',
                 ])

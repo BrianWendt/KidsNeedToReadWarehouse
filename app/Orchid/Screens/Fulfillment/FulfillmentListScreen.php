@@ -42,7 +42,7 @@ class FulfillmentListScreen extends Screen
             Link::make(__('Create Fulfillment'))
                 ->icon('plus-circle')
                 ->route('app.fulfillment.create')
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

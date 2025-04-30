@@ -82,7 +82,7 @@ class InventoryRecordLayout extends Rows
             ->help(__('Enter any notes about the books.'));
 
         $fields['submit'] = Button::make(__('Record'))
-            ->class('btn btn-success')
+            ->class('btn icon-link btn-success')
             ->icon('bs.check-circle')
             ->method('save')
             ->id('record');

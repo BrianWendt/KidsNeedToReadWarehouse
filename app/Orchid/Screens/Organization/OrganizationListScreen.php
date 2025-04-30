@@ -38,7 +38,7 @@ class OrganizationListScreen extends Screen
             \Orchid\Screen\Actions\Link::make(__('Add Organization'))
                 ->icon('plus-circle')
                 ->route('app.organization.create')
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

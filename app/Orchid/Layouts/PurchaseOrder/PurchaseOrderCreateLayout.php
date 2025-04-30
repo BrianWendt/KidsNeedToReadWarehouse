@@ -43,7 +43,7 @@ class PurchaseOrderCreateLayout extends Rows
             Actions\Button::make(__('Create'))
                 ->method('save')
                 ->icon('bs.plus-circle')
-                ->class('btn btn-success'),
+                ->class('btn icon-link btn-success'),
         ];
     }
 }

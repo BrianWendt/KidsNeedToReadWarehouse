@@ -48,7 +48,7 @@ class AuditViewScreen extends Screen
             Link::make(__('Edit Audit Details'))
                 ->icon('pencil-square')
                 ->route('app.audit.edit', $this->audit)
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

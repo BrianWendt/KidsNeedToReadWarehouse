@@ -59,7 +59,7 @@ class FulfillmentViewScreen extends Screen
             Link::make(__('Print'))
                 ->route('app.fulfillment.print', $this->fulfillment)
                 ->icon('printer')
-                ->class('btn btn-secondary'),
+                ->class('btn icon-link btn-secondary'),
             self::exportAction('xlsx', __('Export XLSX'))
                 ->icon('bs.filetype-xlsx'),
         ];
@@ -68,7 +68,7 @@ class FulfillmentViewScreen extends Screen
                 Link::make(__('Edit Details'))
                     ->route('app.fulfillment.edit', $this->fulfillment)
                     ->icon('pencil-square')
-                    ->class('btn btn-primary');
+                    ->class('btn icon-link btn-primary');
         }
 
         return $links;

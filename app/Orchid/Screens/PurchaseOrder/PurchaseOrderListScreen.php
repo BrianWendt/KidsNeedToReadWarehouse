@@ -41,7 +41,7 @@ class PurchaseOrderListScreen extends Screen
             Link::make(__('Create Purchase Order'))
                 ->icon('plus-circle')
                 ->route('app.purchase_order.create')
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

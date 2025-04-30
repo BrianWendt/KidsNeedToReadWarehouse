@@ -30,7 +30,7 @@ class BookNotFoundLayout extends Rows
                 ->help(__('No book was found with that ISBN in the database. You may record inventory of the book before adding the book to the database.')),
 
             Link::make(__('Add Book'))
-                ->class('btn btn-success')
+                ->class('btn icon-link btn-success')
                 ->icon('bs.plus-circle')
                 ->route('app.book.create', ['isbn' => request()->isbn]),
         ];

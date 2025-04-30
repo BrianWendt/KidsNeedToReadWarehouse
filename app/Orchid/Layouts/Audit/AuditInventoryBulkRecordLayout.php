@@ -31,7 +31,7 @@ class AuditInventoryBulkRecordLayout extends Rows
                 ->rows(10),
 
             Button::make(__('Bulk Record'))
-                ->class('btn btn-success')
+                ->class('btn icon-link btn-success')
                 ->icon('bs.upc-scan')
                 ->method('bulkSave'),
         ];

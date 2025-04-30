@@ -53,7 +53,7 @@ class PurchaseOrderEditLayout extends Rows
                     ->modal('organizationModal')
                     ->method('changeOrganization')
                     ->icon('pencil')
-                    ->class('btn btn-secondary'),
+                    ->class('btn icon-link btn-secondary'),
             ]),
 
             Fields\DateTimer::make('purchase_order.received_date')
@@ -98,11 +98,11 @@ class PurchaseOrderEditLayout extends Rows
                 Actions\Button::make(__('Save'))
                     ->method('save')
                     ->icon('check')
-                    ->class('btn btn-success w-100'),
+                    ->class('btn icon-link btn-success w-100'),
                 Actions\Link::make(__('Cancel'))
                     ->route('app.purchase_order.view', $purchase_order['id'])
                     ->icon('x')
-                    ->class('btn btn-danger'),
+                    ->class('btn icon-link btn-danger'),
             ]),
         ];
     }

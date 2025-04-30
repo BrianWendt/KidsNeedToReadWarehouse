@@ -44,7 +44,7 @@ class ContactViewScreen extends Screen
             Link::make(__('Edit'))
                 ->icon('pencil-square')
                 ->route('app.contact.edit', $this->contact)
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 

@@ -68,7 +68,7 @@ class ContactEditLayout extends Rows
 
             Button::make(__('Save'))
                 ->icon('bs.check')
-                ->class('btn btn-success btn-block')
+                ->class('btn icon-link btn-success btn-block')
                 ->method('save'),
         ];
     }

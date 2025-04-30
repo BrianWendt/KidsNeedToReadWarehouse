@@ -33,11 +33,11 @@ class FulfillmentPreparingLayout extends Rows
                 Actions\Link::make(__('Edit Fulfillment Details'))
                     ->route('app.fulfillment.edit', $fulfillment)
                     ->icon('pencil-square')
-                    ->class('btn btn-primary btn-block mb-1'),
+                    ->class('btn icon-link btn-primary btn-block mb-1'),
 
                 Actions\ModalToggle::make(__('Mark as Ready to Ship'))
                     ->icon('bs.box-arrow-in-up-right')
-                    ->class('btn btn-info btn-block mb-1')
+                    ->class('btn icon-link btn-info btn-block mb-1')
                     ->modal('ready_to_ship_modal')
                     ->method('setReadyToShip'),
             ]),

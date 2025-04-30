@@ -33,7 +33,7 @@ class AuditEditLayout extends Rows
             Button::make(__('Save'))
                 ->method('save')
                 ->icon('icon-check')
-                ->class('btn btn-success mx-1'),
+                ->class('btn icon-link btn-success mx-1'),
         ];
     }
 }

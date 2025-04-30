@@ -41,7 +41,7 @@ class BookListScreen extends Screen
             Link::make(__('Lookup'))
                 ->icon('bs.upc-scan')
                 ->route('app.inventory.lookup')
-                ->class('btn btn-info'),
+                ->class('btn icon-link btn-info'),
 
             self::exportAction('csv', __('Export CSV'))
                 ->icon('bs.filetype-csv'),

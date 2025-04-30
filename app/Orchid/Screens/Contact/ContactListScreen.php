@@ -43,7 +43,7 @@ class ContactListScreen extends Screen
                 ->route('app.contact.create', [
                     'organization_id' => $organizationId,
                 ])
-                ->class('btn btn-primary'),
+                ->class('btn icon-link btn-primary'),
         ];
     }
 
