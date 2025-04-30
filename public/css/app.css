@@ -55,10 +55,6 @@ address {
         max-width: fit-content !important;
     }
 
-    .overflow-hidden {
-        overflow: visible !important;
-    }
-
     * {
         overflow: visible !important;
     }
