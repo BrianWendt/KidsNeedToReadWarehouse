@@ -8,7 +8,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>{{ __('ISBN') }}</th>
+            <th width="140px">{{ __('ISBN') }}</th>
             <th>{{ __('Item') }}</th>
             <th width="140px">{{ __('Condition') }}</th>
             <th class="text-end" width="100px">{{ __('Item Value') }}</th>
