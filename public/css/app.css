@@ -11,6 +11,10 @@
     opacity: 1;
 }
 
+address {
+    white-space: pre-wrap;
+}
+
 .dl-horizontal {
     display: grid;
     grid-template-columns: max-content auto;
