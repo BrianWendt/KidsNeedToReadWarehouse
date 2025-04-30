@@ -32,7 +32,7 @@
             </tr>
         @endforeach
         <tr class="table-info fw-bold">
-            <td colspan="4" class="text-end">{{ __('Total') }}</td>
+            <td colspan="4" class="text-end">{{ __('Sub Total') }}:</td>
             <td class="text-center">{{ $quantity }}</td>
             <td class="text-end">{!! money_format($total, 2) !!}</td>
 
