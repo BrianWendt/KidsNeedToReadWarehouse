@@ -8,10 +8,10 @@
         <tr>
             <th>{{ __('ISBN') }}</th>
             <th>{{ __('Item') }}</th>
-            <th>{{ __('Condition') }}</th>
-            <th class="text-end">{{ __('Item Value') }}</th>
-            <th class="text-center">{{ __('Quantity') }}</th>
-            <th class="text-end">{{ __('Total') }}</th>
+            <th width="200px">{{ __('Condition') }}</th>
+            <th class="text-end" width="100px">{{ __('Item Value') }}</th>
+            <th class="text-center" width="100px">{{ __('Quantity') }}</th>
+            <th class="text-end" width="100px">{{ __('Total') }}</th>
         </tr>
     </thead>
     <tbody>
