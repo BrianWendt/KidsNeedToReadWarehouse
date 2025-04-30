@@ -57,7 +57,7 @@ class OrganizationEditLayout extends Rows
                 ->canSee($organization->exists),
 
             CheckBox::make('organization.starred')
-                ->placeholder('★ '.__('Starred'))
+                ->placeholder('★ ' . __('Starred'))
                 ->sendTrueOrFalse(),
 
             Button::make(__('Save'))

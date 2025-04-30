@@ -29,7 +29,7 @@ class PurchaseOrderEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return __('Edit PurchaseOrder:').'#'.$this->purchase_order->id;
+        return __('Edit PurchaseOrder:') . '#' . $this->purchase_order->id;
     }
 
     /**

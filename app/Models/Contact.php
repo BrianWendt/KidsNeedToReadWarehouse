@@ -138,7 +138,7 @@ class Contact extends AppModel
 
     public function fullName(): Attribute
     {
-        $full_name = $this->first_name.' '.$this->last_name;
+        $full_name = $this->first_name . ' ' . $this->last_name;
 
         return Attribute::make(
             get: fn () => $full_name,
@@ -150,10 +150,10 @@ class Contact extends AppModel
         $display = $this->display_name;
 
         if ($this->title) {
-            $display .= ', '.$this->title;
+            $display .= ', ' . $this->title;
         }
         if ($this->organization) {
-            $display .= ' @ '.$this->organization->name;
+            $display .= ' @ ' . $this->organization->name;
         }
 
         return Attribute::make(

@@ -80,7 +80,7 @@ class PurchaseOrder extends AppModel
     public function display(): Attribute
     {
         return Attribute::make(
-            get: fn () => 'PO #'.$this->id,
+            get: fn () => 'PO #' . $this->id,
         );
     }
 

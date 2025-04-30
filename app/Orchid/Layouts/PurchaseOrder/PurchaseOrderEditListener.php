@@ -31,9 +31,6 @@ class PurchaseOrderEditListener extends Listener
 
     /**
      * Update state
-     *
-     * @param  \Orchid\Screen\Repository  $repository
-     * @return \Orchid\Screen\Repository
      */
     public function handle(Repository $repository, Request $request): Repository
     {

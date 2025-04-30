@@ -26,7 +26,7 @@ class AuditEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return __('Edit Audit:').'#'.$this->audit->id;
+        return __('Edit Audit:') . '#' . $this->audit->id;
     }
 
     /**

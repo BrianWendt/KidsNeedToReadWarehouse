@@ -53,7 +53,7 @@ trait HasBook
         if ($this->book) {
             $display = $this->book->title;
         } else {
-            $display = $this->isbn.' ('.__('not in database').')';
+            $display = $this->isbn . ' (' . __('not in database') . ')';
         }
 
         return Attribute::make(

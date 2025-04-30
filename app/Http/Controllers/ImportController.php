@@ -12,7 +12,7 @@ class ImportController extends Controller
         echo '<pre>';
         $rows = [];
 
-        if (($open = fopen(storage_path().'/import.csv', 'r')) !== false) {
+        if (($open = fopen(storage_path() . '/import.csv', 'r')) !== false) {
 
             while (($data = fgetcsv($open, 1000, ',')) !== false) {
                 $rows[] = $data;
@@ -41,7 +41,7 @@ class ImportController extends Controller
                     'fixed_value' => $fixed_value,
                 ]);
             } catch (\Exception $e) {
-                echo $e->getMessage()."\n";
+                echo $e->getMessage() . "\n";
             }
         }
     }
@@ -66,7 +66,7 @@ class ImportController extends Controller
                     'enitity_id' => 4, // Import from Lead Commerce
                 ]);
             } catch (\Exception $e) {
-                echo $e->getMessage()."\n";
+                echo $e->getMessage() . "\n";
             }
         }
     }

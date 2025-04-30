@@ -16,7 +16,7 @@ trait hasStared
     {
         $name = $this->name;
         if ($this->starred) {
-            $name = '★ '.$name;
+            $name = '★ ' . $name;
         }
 
         return Attribute::make(

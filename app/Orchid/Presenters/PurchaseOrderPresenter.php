@@ -24,7 +24,7 @@ class PurchaseOrderPresenter extends Presenter implements Searchable
     public function subTitle(): string
     {
         $text = $this->entity->organization ? $this->entity->organization->name : '';
-        $text .= ' on '.$this->entity->received_date;
+        $text .= ' on ' . $this->entity->received_date;
 
         return $text;
     }

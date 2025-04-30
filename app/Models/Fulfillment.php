@@ -76,7 +76,7 @@ class Fulfillment extends AppModel
     {
         $text = $this->program->name ?? '-not set-';
         if ($this->initiative) {
-            $text .= ' ('.$this->initiative->name.')';
+            $text .= ' (' . $this->initiative->name . ')';
         }
 
         return Attribute::make(

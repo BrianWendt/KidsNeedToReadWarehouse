@@ -36,7 +36,7 @@ class FulfillmentListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (Fulfillment $fulfillment) {
                     return
-                        Link::make('#'.$fulfillment->id)
+                        Link::make('#' . $fulfillment->id)
                             ->route('app.fulfillment.view', $fulfillment);
                 }),
 

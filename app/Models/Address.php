@@ -37,11 +37,11 @@ class Address extends AppModel
 
     public function display(): Attribute
     {
-        $address = $this->street1."\n";
+        $address = $this->street1 . "\n";
         if ($this->street2) {
-            $address .= $this->street2."\n";
+            $address .= $this->street2 . "\n";
         }
-        $address .= $this->city.', '.$this->state.' '.$this->zipcode;
+        $address .= $this->city . ', ' . $this->state . ' ' . $this->zipcode;
 
         return Attribute::make(
             get: fn () => $address,

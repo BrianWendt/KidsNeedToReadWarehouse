@@ -27,7 +27,7 @@ class FulfillmentEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return __('Edit Fulfillment:').'#'.$this->fulfillment->id;
+        return __('Edit Fulfillment:') . '#' . $this->fulfillment->id;
     }
 
     /**

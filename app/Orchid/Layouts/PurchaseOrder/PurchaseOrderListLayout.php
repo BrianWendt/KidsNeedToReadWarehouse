@@ -35,7 +35,7 @@ class PurchaseOrderListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (PurchaseOrder $purchase_order) {
                     return
-                        Link::make('#'.$purchase_order->id)
+                        Link::make('#' . $purchase_order->id)
                             ->route('app.purchase_order.view', $purchase_order);
                 }),
 

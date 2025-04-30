@@ -48,7 +48,7 @@ class PlatformProvider extends OrchidServiceProvider
             ->permission('warehouse');
 
         if (RememberedParameter::getPurchaseOrderId()) {
-            $menus[] = Menu::make(__('P.O. #').RememberedParameter::getPurchaseOrderId())
+            $menus[] = Menu::make(__('P.O. #') . RememberedParameter::getPurchaseOrderId())
                 ->icon('bs.upc-scan')
                 ->route('app.purchase_order.view', RememberedParameter::getPurchaseOrderId())
                 ->permission('warehouse');
@@ -60,7 +60,7 @@ class PlatformProvider extends OrchidServiceProvider
             ->permission('warehouse');
 
         if (RememberedParameter::getFulfillmentId()) {
-            $menus[] = Menu::make(__('Fulfillment #').RememberedParameter::getFulfillmentId())
+            $menus[] = Menu::make(__('Fulfillment #') . RememberedParameter::getFulfillmentId())
                 ->icon('bs.box2-heart')
                 ->route('app.fulfillment.view', RememberedParameter::getFulfillmentId())
                 ->permission('warehouse');

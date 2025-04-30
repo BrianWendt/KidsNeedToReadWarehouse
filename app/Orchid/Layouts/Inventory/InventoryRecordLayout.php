@@ -66,7 +66,7 @@ class InventoryRecordLayout extends Rows
          */
         $query = PurchaseOrder::limit(20);
         if ($purchase_order_id) {
-            $query->orderBy(DB::raw('id = '.$purchase_order_id), 'DESC');
+            $query->orderBy(DB::raw('id = ' . $purchase_order_id), 'DESC');
         }
         $query->orderBy('id', 'desc');
         $fields['inventory.entity_id'] =

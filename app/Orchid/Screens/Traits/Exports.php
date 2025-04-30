@@ -12,7 +12,7 @@ trait Exports
 
     public static function exportAction(string $format = 'csv', string $label = 'Export')
     {
-        $href = '?'.http_build_query(self::exportActionQuery($format)).'&ts='.time();
+        $href = '?' . http_build_query(self::exportActionQuery($format)) . '&ts=' . time();
 
         return Link::make($label)
             ->icon('download')
@@ -34,10 +34,10 @@ trait Exports
     public function view(array|Repository $httpQueryArguments = [])
     {
         if (empty($this->export_target)) {
-            throw new \Exception('export_target property not set on '.get_class($this));
+            throw new \Exception('export_target property not set on ' . get_class($this));
         }
         if (empty($this->export_columns)) {
-            throw new \Exception('export_columns property not set on '.get_class($this));
+            throw new \Exception('export_columns property not set on ' . get_class($this));
         }
         if (request()->query(self::$export_parameter, 'html') !== 'html') {
             $repository = is_a($httpQueryArguments, Repository::class)

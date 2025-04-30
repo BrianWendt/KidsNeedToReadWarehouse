@@ -52,10 +52,10 @@ class InventoryReport extends Screen
         }
 
         foreach ($stats as $key => $value) {
-            $stats[$key] = '$'.number_format($value, 2);
+            $stats[$key] = '$' . number_format($value, 2);
         }
 
-        $total = '$'.number_format($total, 2);
+        $total = '$' . number_format($total, 2);
 
         return [
             'stats' => new Repository($stats),
@@ -91,7 +91,7 @@ class InventoryReport extends Screen
     {
         $values = [];
         foreach ($this->conditions as $key => $value) {
-            $values[] = Sight::make('stats.'.$key, "{$value} Taxable Value");
+            $values[] = Sight::make('stats.' . $key, "{$value} Taxable Value");
         }
         $values[] = Sight::make('total', 'Total Taxable Value');
 

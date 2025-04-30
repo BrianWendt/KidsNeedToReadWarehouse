@@ -25,7 +25,7 @@ class ExportsStatement extends Exports
 
         // Fulfillment Address
         $rows = [
-            $this->keyValueRow('Fulfillment', '#'.$fulfillment->id),
+            $this->keyValueRow('Fulfillment', '#' . $fulfillment->id),
             $this->keyValueRow('Status', $fulfillment->status_display),
             $this->keyValueRow('Organization', $fulfillment->organization->name),
             $this->keyValueRow('Program', $fulfillment->program_display),
@@ -56,7 +56,7 @@ class ExportsStatement extends Exports
 
         $ridx = 1;
         foreach ($totals as $condition_group => $sum) {
-            $rows[$ridx]->addCell(Cell::make($condition_group.' Total')->bold()->alignRight()->build());
+            $rows[$ridx]->addCell(Cell::make($condition_group . ' Total')->bold()->alignRight()->build());
             $rows[$ridx]->addCell(Cell::make($sum)->alignRight()->formatMoney()->build());
             $ridx++;
         }

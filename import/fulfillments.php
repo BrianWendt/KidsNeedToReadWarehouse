@@ -68,12 +68,12 @@ class Fulfillment extends Model
 
         $this->properties['organization_id'] = $this->company_id($data);
 
-        $description = $data['BillTo Line2']."\n"
-            .$data['BillTo City'].', '.$data['BillTo State'].' '.$data['BillTo PostalCode'];
+        $description = $data['BillTo Line2'] . "\n"
+            . $data['BillTo City'] . ', ' . $data['BillTo State'] . ' ' . $data['BillTo PostalCode'];
         if (is_numeric(substr($data['BillTo Line1'], 0, 1))) {
-            $description = $data['BillTo Line1']."\n".$description;
+            $description = $data['BillTo Line1'] . "\n" . $description;
         }
-        $this->properties['description'] .= "\n".$description;
+        $this->properties['description'] .= "\n" . $description;
     }
 
     public function company_id($data)

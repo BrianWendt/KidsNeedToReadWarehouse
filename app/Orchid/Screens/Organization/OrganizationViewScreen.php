@@ -75,7 +75,7 @@ class OrganizationViewScreen extends Screen
                 Sight::make('contacts', 'Contacts')->render(function (Organization $organization) {
                     $c = $organization->contacts->count();
 
-                    return Link::make($c.' '.($c == 1 ? __('contact') : __('contacts')))
+                    return Link::make($c . ' ' . ($c == 1 ? __('contact') : __('contacts')))
                         ->route('app.contact.list', [
                             'filter' => ['organization_id' => $organization->id],
                         ])

@@ -35,7 +35,7 @@ class AuditListLayout extends Table
                 ->filter(Input::make())
                 ->render(function (Audit $audit) {
                     return
-                        Link::make('#'.$audit->id)
+                        Link::make('#' . $audit->id)
                             ->route('app.audit.view', $audit);
                 })
                 ->width('100px'),

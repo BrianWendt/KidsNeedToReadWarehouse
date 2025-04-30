@@ -29,7 +29,7 @@ function money_format($amount, int $decimals = 2): string
  */
 function nl2p($string): string
 {
-    return '<p>'.str_replace("\n", '</p><p>', $string).'</p>';
+    return '<p>' . str_replace("\n", '</p><p>', $string) . '</p>';
 }
 
 /**

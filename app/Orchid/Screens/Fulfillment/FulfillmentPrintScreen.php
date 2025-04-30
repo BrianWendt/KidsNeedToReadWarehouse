@@ -21,7 +21,7 @@ class FulfillmentPrintScreen extends FulfillmentViewScreen
      */
     public function name(): ?string
     {
-        return 'Fulfillment #'.$this->fulfillment->id;
+        return 'Fulfillment #' . $this->fulfillment->id;
     }
 
     /**

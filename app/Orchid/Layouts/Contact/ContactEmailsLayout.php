@@ -36,7 +36,7 @@ class ContactEmailsLayout extends Table
             TD::make('display', __('Email'))
                 ->cantHide()
                 ->render(function (Email $email) {
-                    return Link::make($email->address)->href('mailto:'.$email->address);
+                    return Link::make($email->address)->href('mailto:' . $email->address);
                 }),
 
             TD::make('actions', __('Actions'))

@@ -34,7 +34,7 @@ class Telephone extends AppModel
     {
         $display = $this->number;
         if ($this->extension) {
-            $display .= ' x'.$this->extension;
+            $display .= ' x' . $this->extension;
         }
 
         return Attribute::make(

@@ -39,7 +39,7 @@ class InventoryListLayout extends Table
             $c = $inventory->count();
             $inventory = $inventory->slice(0, 100);
             $repository->set('purchase_order.inventory', $inventory);
-            $this->title = 'NOTE: Displaying first 100 items of '.$c.' total items.';
+            $this->title = 'NOTE: Displaying first 100 items of ' . $c . ' total items.';
         }
 
         return parent::build($repository);

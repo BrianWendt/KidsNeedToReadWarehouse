@@ -34,7 +34,7 @@ class AuditViewScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->audit->label." (Audit #{$this->audit->id})";
+        return $this->audit->label . " (Audit #{$this->audit->id})";
     }
 
     /**

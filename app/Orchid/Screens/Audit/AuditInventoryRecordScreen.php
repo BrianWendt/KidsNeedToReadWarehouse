@@ -38,7 +38,7 @@ class AuditInventoryRecordScreen extends Screen
     {
         return __('Audit: Record Inventory');
 
-        return raw_html('<b>'.__('Audit').':</b> '.__('Record Inventory'));
+        return raw_html('<b>' . __('Audit') . ':</b> ' . __('Record Inventory'));
     }
 
     /**

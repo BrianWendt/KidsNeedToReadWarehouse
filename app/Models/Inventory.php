@@ -55,7 +55,7 @@ class Inventory extends AppModel
             case 'po':
                 return $this->belongsTo(PurchaseOrder::class, 'entity_id');
             default:
-                throw new \Exception('`entity_type` "'.$this->entity_type.'" Not implemented');
+                throw new \Exception('`entity_type` "' . $this->entity_type . '" Not implemented');
         }
     }
 
@@ -63,7 +63,7 @@ class Inventory extends AppModel
     {
 
         return Attribute::make(
-            get: fn () => $this->entity ? $this->entity->display : $this->entity_type.':'.$this->entity_id,
+            get: fn () => $this->entity ? $this->entity->display : $this->entity_type . ':' . $this->entity_id,
         );
     }
 

@@ -196,14 +196,14 @@ class Book extends AppModel
     public function retailPriceDisplay(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->retail_price ? '$'.number_format($this->retail_price, 2) : 'n/a'
+            get: fn () => $this->retail_price ? '$' . number_format($this->retail_price, 2) : 'n/a'
         );
     }
 
     public function fixedValueDisplay(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->fixed_value ? '$'.number_format($this->fixed_value, 2) : 'n/a'
+            get: fn () => $this->fixed_value ? '$' . number_format($this->fixed_value, 2) : 'n/a'
         );
     }
 

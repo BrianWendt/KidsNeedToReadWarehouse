@@ -20,7 +20,7 @@ abstract class Exports
 
     public function filename(): string
     {
-        return $this->filename.'.'.$this->format;
+        return $this->filename . '.' . $this->format;
     }
 
     public function setFilename($filename)
