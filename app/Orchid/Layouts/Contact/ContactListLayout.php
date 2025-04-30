@@ -30,6 +30,13 @@ class ContactListLayout extends Table
     protected function columns(): iterable
     {
         return [
+            TD::make('actions', __(''))
+                ->render(function (Contact $contact) {
+                    return Link::make('View')
+                        ->route('app.contact.view', $contact->id)
+                        ->icon('bs.eye');
+                }),
+
             TD::make('first_name', __('First Name'))
                 ->sort()
                 ->filter(Input::make()),
@@ -59,13 +66,6 @@ class ContactListLayout extends Table
             TD::make('updated_at', __('Update date'))
                 ->render(function ($model) {
                     return $model->updated_at->format('Y-m-d H:i A');
-                }),
-
-            TD::make('actions', __('Actions'))
-                ->render(function (Contact $contact) {
-                    return Link::make('View')
-                        ->route('app.contact.view', $contact->id)
-                        ->icon('bs.eye');
                 }),
         ];
     }
