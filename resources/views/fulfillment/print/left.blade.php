@@ -16,7 +16,7 @@
         <dd>{{ $fulfillment->contact->display_name }}</dd>
     @endif
 
-    @if ($fulfillment->shipping_contact_id > 0)
+    @if ($fulfillment->shipping_contact_id > 0 && $fulfillment->shipping_contact_id != $fulfillment->contact_id)
         <dt>Shipping Contact:</dt>
         <dd>{{ $fulfillment->shipping_contact->display_name }}</dd>
     @endif
