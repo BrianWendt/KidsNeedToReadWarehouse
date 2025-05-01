@@ -36,6 +36,7 @@ class BookAddScreen extends Screen
 
         if ($book_response) {
             $book = $book_response->toBookModel();
+            $book->isbn = $isbn;
             $categories = $book_response->categories();
         } else {
             $book = new Book([

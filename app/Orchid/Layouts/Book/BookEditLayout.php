@@ -24,7 +24,7 @@ class BookEditLayout extends Rows
     protected function fields(): iterable
     {
         return [
-            Input::make('isbn')->type('isbn')
+            Input::make('book.isbn')->type('isbn')
                 ->title(__('ISBN'))
                 ->readonly(),
 
