@@ -45,6 +45,8 @@ class PurchaseOrder extends AppModel
 
     protected $allowedFilters = [
         'id' => \Orchid\Filters\Types\Where::class,
+        'contact_id' => \Orchid\Filters\Types\Where::class,
+        'organization_id' => \Orchid\Filters\Types\Where::class,
     ];
 
     public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo

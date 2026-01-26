@@ -1,26 +1,25 @@
 <?php
 
-
 namespace App\Orchid\Layouts\Contact;
 
 use App\Orchid\Filters;
-use Orchid\Screen\Layouts\Selection;
 use Orchid\Filters\Filter;
+use Orchid\Screen\Layouts\Selection;
 
 class ContactSelection extends Selection
 {
     /**
      * @var string
      */
-    public $template =  self::TEMPLATE_LINE;
+    public $template = self::TEMPLATE_LINE;
 
     /**
      * @return Filter[]
      */
-     public function filters(): array
-     {
+    public function filters(): array
+    {
         return [
             Filters\ContactSearchFilter::class,
         ];
-     }
+    }
 }

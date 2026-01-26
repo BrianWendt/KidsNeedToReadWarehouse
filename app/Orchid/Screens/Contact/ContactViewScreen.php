@@ -64,6 +64,12 @@ class ContactViewScreen extends Screen
                 Sight::make('title', __('Title')),
                 Sight::make('ein', __('EIN')),
                 Sight::make('note', __('Notes')),
+                Sight::make('purchase_order', __('Purchase Orders'))->render(function (Contact $contact) {
+                    $c = $contact->purchase_orders()->count();
+                    return Link::make($c == 1 ? '1 Purchase Order' : $c . ' Purchase Orders')
+                        ->route('app.purchase_order.list', ['filter' => ['contact_id' => $contact->id]])
+                        ->class('text-primary');
+                }),
             ]),
             Layout::tabs([
                 __('Email Addresses') => [

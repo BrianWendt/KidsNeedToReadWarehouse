@@ -40,10 +40,15 @@ class PurchaseOrderListLayout extends Table
                 }),
 
             TD::make('contact', __('Contact'))
-                ->sort()
                 ->cantHide()
                 ->render(function (PurchaseOrder $purchase_order) {
-                    return $purchase_order->contact_id ? $purchase_order->contact->display : $purchase_order->organization->display;
+                    if($purchase_order->contact_id){
+                        return Link::make($purchase_order->contact->display)
+                            ->route('app.contact.view', $purchase_order->contact);
+                    } else {
+                        return Link::make($purchase_order->organization->display)
+                            ->route('app.organization.view', $purchase_order->organization);
+                    }
                 }),
 
             TD::make('updated_at', __('Last Updated'))

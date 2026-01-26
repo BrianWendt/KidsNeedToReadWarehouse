@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property \App\Models\Organization $organization
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Contact[] $contacts
  * @property \App\Models\Contact $primaryContact
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\PurchaseOrder[] $purchase_orders
  */
 class Organization extends AppModel
 {
@@ -46,6 +47,11 @@ class Organization extends AppModel
     public function primaryContact(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Contact::class, 'id', 'primary_contact_id');
+    }
+
+    public function purchase_orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
     }
 
     public function scopeDefaultOrder(Builder $builder): Builder

@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\PurchaseOrder;
 
 use App\Models\PurchaseOrder;
+use App\Orchid\Filters\PurchaseOrderFilter;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
@@ -17,6 +18,7 @@ class PurchaseOrderListScreen extends Screen
     {
         return [
             'purchase_orders' => PurchaseOrder::defaultSort('updated_at', 'DESC')
+                ->filters([PurchaseOrderFilter::class])
                 ->whereNull('archived_at')
                 ->paginate(),
         ];

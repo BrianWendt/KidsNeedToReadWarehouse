@@ -37,10 +37,10 @@ class ContactSearchFilter extends Filter
                 $query->whereRaw('MATCH(first_name, last_name) AGAINST(? IN BOOLEAN MODE)', [$search . '*'])
                       ->orderByRaw('MATCH(first_name, last_name) AGAINST(? IN BOOLEAN MODE) DESC', [$search . '*']);
                     */
-                      $query->whereRaw('soundex(first_name) LIKE ?', [soundex($search) . '%'])
-                            ->orWhereRaw('soundex(last_name) LIKE ?', [soundex($search) . '%'])
-                            ->orWhere('first_name', 'LIKE', '%' . $search . '%')
-                            ->orWhere('last_name', 'LIKE', '%' . $search . '%');
+                $query->whereRaw('soundex(first_name) LIKE ?', [soundex($search) . '%'])
+                    ->orWhereRaw('soundex(last_name) LIKE ?', [soundex($search) . '%'])
+                    ->orWhere('first_name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('last_name', 'LIKE', '%' . $search . '%');
             });
         }
 

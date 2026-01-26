@@ -81,6 +81,15 @@ class OrganizationViewScreen extends Screen
                         ])
                         ->class('text-primary');
                 }),
+
+                Sight::make('purchase_orders', 'Purchase Orders')->render(function (Organization $organization) {
+                    $c = $organization->purchase_orders()->count();
+                    return Link::make($c == 1 ? '1 Purchase Order' : $c . ' Purchase Orders')
+                        ->route('app.purchase_order.list', [
+                            'filter' => ['organization_id' => $organization->id],
+                        ])
+                        ->class('text-primary');
+                }),
             ]),
         ];
     }

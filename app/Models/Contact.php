@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Address[] $addresses
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Telephone[] $telephones
  * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
+ * @property \Illuminate\Database\Eloquent\Collection|\App\Models\PurchaseOrder[] $purchase_orders
  */
 class Contact extends AppModel
 {
@@ -72,6 +73,11 @@ class Contact extends AppModel
     public function emails(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Email::class);
+    }
+
+    public function purchase_orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PurchaseOrder::class);
     }
 
     public function primaryAddress(): Attribute
@@ -124,6 +130,11 @@ class Contact extends AppModel
     public function scopeFullName(Builder $builder): Builder
     {
         return $builder->addSelect(DB::raw('*, CONCAT(first_name, " ", last_name) as full_name'));
+    }
+
+    public function scopeFullNameSearch(Builder $builder, $full_name): Builder
+    {
+        return $builder->whereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ['%' . $full_name . '%']);
     }
 
     public function scopeJoinOrganization(Builder $builder): Builder
@@ -182,7 +193,7 @@ class Contact extends AppModel
     {
         $array = [
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name
+            'last_name' => $this->last_name,
         ];
 
         // Customize the data array...
