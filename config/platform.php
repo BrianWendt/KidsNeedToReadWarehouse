@@ -250,7 +250,7 @@ return [
     'search' => [
         \App\Models\Book::class,
         \App\Models\Fulfillment::class,
-        \App\Models\PurchaseOrder::class,
+        \App\Models\PurchaseOrder::class
     ],
 
     /*
