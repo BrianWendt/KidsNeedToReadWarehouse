@@ -15,7 +15,9 @@ class ContactListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'contacts' => Contact::filters()->defaultSort('first_name')->paginate(),
+            'contacts' => Contact::defaultSort('first_name')
+                ->filters(\App\Orchid\Layouts\Contact\ContactSelection::class)
+                ->paginate(),
         ];
     }
 
@@ -55,6 +57,7 @@ class ContactListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            \App\Orchid\Layouts\Contact\ContactSelection::class,
             \App\Orchid\Layouts\Contact\ContactListLayout::class,
         ];
     }

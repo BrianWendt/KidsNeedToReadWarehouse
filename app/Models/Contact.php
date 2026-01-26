@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\DB;
  */
 class Contact extends AppModel
 {
+    use \Laravel\Scout\Searchable;
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -159,5 +161,32 @@ class Contact extends AppModel
         return Attribute::make(
             get: fn () => $display,
         );
+    }
+
+    /**
+     * Get the presenter for the model.
+     *
+     * @return \App\Orchid\Presenters\ContactPresenter
+     */
+    public function presenter()
+    {
+        return new \App\Orchid\Presenters\ContactPresenter($this);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        $array = [
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name
+        ];
+
+        // Customize the data array...
+
+        return $array;
     }
 }
