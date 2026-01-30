@@ -7,14 +7,14 @@ use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
 use Orchid\Screen\Fields;
 
-class PurchaseOrderFilter extends Filter
+class OrganizationFilter extends Filter
 {
     /**
      * The displayable name of the filter.
      */
     public function name(): string
     {
-        return 'Filter Purchase Orders';
+        return 'Filter Organization';
     }
 
     /**
@@ -22,7 +22,7 @@ class PurchaseOrderFilter extends Filter
      */
     public function parameters(): ?array
     {
-        return ['filter.contact_name'];
+        return ['organization_id'];
     }
 
     /**
@@ -30,11 +30,8 @@ class PurchaseOrderFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        $contact_name = request()->input('filter.contact_name');
-        if ($contact_name) {
-            $builder->whereHas('contact', function (Builder $query) use ($contact_name) {
-                $query->fullNameSearch($contact_name);
-            });
+        if (request()->has('organization_id')) {
+            $builder->where('organization_id', request()->input('organization_id'));
         }
 
         return $builder;
@@ -47,12 +44,6 @@ class PurchaseOrderFilter extends Filter
      */
     public function display(): iterable
     {
-        return [
-            Fields\Input::make('filter.contact_name')
-                ->type('text')
-                ->value(request()->input('filter.contact_name'))
-                ->title('Contact Name')
-                ->placeholder('Contact Name'),
-        ];
+        return [];
     }
 }

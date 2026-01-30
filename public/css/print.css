@@ -6,6 +6,20 @@
     position: relative;
 }
 
+.letter {
+    width: 8.5in;
+    min-height: 11in;
+    margin: auto;
+    padding: .5in;
+    box-sizing: border-box;
+    color: black;
+}
+
+.letter.landscape {
+    width: 11in;
+    min-height: 8.5in;
+}
+
 @media print {
     .print-top-right {
         position: absolute;

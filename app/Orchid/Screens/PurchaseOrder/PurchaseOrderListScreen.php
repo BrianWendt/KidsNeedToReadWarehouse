@@ -3,9 +3,10 @@
 namespace App\Orchid\Screens\PurchaseOrder;
 
 use App\Models\PurchaseOrder;
-use App\Orchid\Filters\PurchaseOrderFilter;
+use App\Orchid\Layouts\PurchaseOrder\PurchaseOrderSelection;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Layout;
 
 class PurchaseOrderListScreen extends Screen
 {
@@ -18,7 +19,7 @@ class PurchaseOrderListScreen extends Screen
     {
         return [
             'purchase_orders' => PurchaseOrder::defaultSort('updated_at', 'DESC')
-                ->filters([PurchaseOrderFilter::class])
+                ->filters(PurchaseOrderSelection::class)
                 ->whereNull('archived_at')
                 ->paginate(),
         ];
@@ -44,6 +45,11 @@ class PurchaseOrderListScreen extends Screen
                 ->icon('plus-circle')
                 ->route('app.purchase_order.create')
                 ->class('btn icon-link btn-primary'),
+            Link::make(__('Export Overview'))
+                ->icon('download')
+                ->route('export.purchase_orders', $_GET)
+                ->class('btn icon-link btn-secondary')
+                ->target('_blank'),
         ];
     }
 
@@ -55,7 +61,10 @@ class PurchaseOrderListScreen extends Screen
     public function layout(): iterable
     {
         return [
+            PurchaseOrderSelection::class,
             \App\Orchid\Layouts\PurchaseOrder\PurchaseOrderListLayout::class,
+            Layout::view('hidden-input', ['name' => 'contact_id', 'value' => request()->input('contact_id'), 'form' => 'filters']),
+            Layout::view('hidden-input', ['name' => 'organization_id', 'value' => request()->input('organization_id'), 'form' => 'filters']),
         ];
     }
 }

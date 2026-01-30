@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
  * @property int $telephone_id
  * @property int $email_id
  * @property string $display
+ * @property float $total_amount
  * @property string $book_condition
  * @property \App\Models\Organization $organization
  * @property \App\Models\Contact $contact
@@ -47,6 +48,7 @@ class PurchaseOrder extends AppModel
         'id' => \Orchid\Filters\Types\Where::class,
         'contact_id' => \Orchid\Filters\Types\Where::class,
         'organization_id' => \Orchid\Filters\Types\Where::class,
+        'created_at' => \Orchid\Filters\Types\WhereDateStartEnd::class,
     ];
 
     public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -83,6 +85,15 @@ class PurchaseOrder extends AppModel
     {
         return Attribute::make(
             get: fn () => 'PO #' . $this->id,
+        );
+    }
+
+    public function totalAmount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->inventory->sum(function ($item) {
+                return $item->book ? ($item->price * $item->quantity) : 0;
+            }),
         );
     }
 
