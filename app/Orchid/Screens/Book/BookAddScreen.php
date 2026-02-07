@@ -32,7 +32,12 @@ class BookAddScreen extends Screen
         $book = null;
         $categories = [];
 
-        $book_response = \App\Services\GoogleBooks\Service::fetchByISBN($isbn);
+        try {
+            $book_response = \App\Services\GoogleBooks\Service::fetchByISBN($isbn);
+        } catch (\Exception $e) {
+            \Orchid\Support\Facades\Toast::error('Error fetching book data from Google Books API: ' . $e->getMessage());
+            $book_response = null;
+        }
 
         if ($book_response) {
             $book = $book_response->toBookModel();

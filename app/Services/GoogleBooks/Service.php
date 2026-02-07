@@ -35,7 +35,13 @@ class Service
         $response = self::http()->get('volumes', $params);
         if (! $response->successful()) {
             if (env('APP_DEBUG')) {
-                dd($response->json());
+                dd($response->status(), $response->json());
+            } else if($response->json('error.message', false)) {
+                throw new \Exception('Google Books API error: ' . $response->json('error.message'));
+            } else if ($response->json('error', false)) {
+                throw new \Exception('Google Books API error: ' . json_encode($response->json('error'), JSON_PRETTY_PRINT));
+            } else {
+                throw new \Exception('Google Books API request failed with status ' . $response->status());
             }
 
             return [];
