@@ -41,7 +41,7 @@ class InventoryRecordScreen extends Screen
             'like_new_count' => $inventory_list->where('book_condition', 'like_new')->sum('quantity'),
             'used_count' => $inventory_list->where('book_condition', 'used')->sum('quantity'),
         ];
-        $stats['total_count'] = $stats['new_count'] + $stats['used_count'];
+        $stats['total_count'] = $stats['new_count'] + $stats['like_new_count'] + $stats['used_count'];
 
         return [
             'isbn' => $isbn,
