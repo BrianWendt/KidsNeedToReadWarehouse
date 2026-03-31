@@ -97,6 +97,24 @@ class PurchaseOrder extends AppModel
         );
     }
 
+    public function books(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->inventory->sum(function( $item ) {
+                return $item->book ? $item->quantity : 0;
+            }),
+        );
+    }
+
+    public function nonBooks(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->inventory->sum(function( $item ) {
+                return $item->book ? 0 : $item->quantity;
+            }),
+        );
+    }
+
     public function viewRoute(): string
     {
         return 'app.purchase_order.view';
