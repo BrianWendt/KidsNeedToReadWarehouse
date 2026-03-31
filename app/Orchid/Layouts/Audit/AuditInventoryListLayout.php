@@ -31,7 +31,7 @@ class AuditInventoryListLayout extends Table
                     return $inventory->created_at->format('Y-m-d g:i A');
                 })
                 ->cantHide()
-                ->width('160px'),
+                ->width('170px'),
 
             TD::make('isbn', __('ISBN'))
                 ->cantHide()
