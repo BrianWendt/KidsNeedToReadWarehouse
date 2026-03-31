@@ -44,7 +44,8 @@ class AuditListLayout extends Table
                 ->sort()
                 ->cantHide()
                 ->render(function (Audit $audit) {
-                    return $audit->label;
+                    return Link::make($audit->label)
+                        ->route('app.audit.view', $audit);
                 }),
 
             TD::make('created_at', __('Created At'))
