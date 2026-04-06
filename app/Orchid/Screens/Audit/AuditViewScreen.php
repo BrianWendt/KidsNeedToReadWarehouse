@@ -97,7 +97,7 @@ class AuditViewScreen extends Screen
     protected function export()
     {
         $diff = $this->getDiff();
-        $csv = "ISBN\tTitle\tBook Condition\tAudit Quantity\tInventory Quantity\tDiff\n";
+        $csv = "ISBN\tTitle\tInventory Quantity\tAudit Quantity\tDiff\n";
         $csv .= str_putcsv($diff, "\t");
 
         return Layout::view('export.audit-inventory', [
@@ -122,10 +122,11 @@ class AuditViewScreen extends Screen
         // combine $audit_inventory and $inventory by isbn
         $combined = [];
         foreach ($audit_inventory as $item) {
-            $combined[$item->isbn . '-' . $item->book_condition] = [
+            $key = $item->isbn; // . '-' . $item->book_condition;
+            $combined[$key] = [
                 'isbn' => $item->isbn,
                 'title' => '',
-                'book_condition' => $item->book_condition,
+                // 'book_condition' => $item->book_condition,
                 'inventory_quantity' => 0,
                 'audit_quantity' => $item->quantity,
 
@@ -133,14 +134,14 @@ class AuditViewScreen extends Screen
         }
 
         foreach ($inventory as $item) {
-            $key = $item->isbn . '-' . $item->book_condition;
+            $key = $item->isbn; // . '-' . $item->book_condition;
             if (isset($combined[$key])) {
                 $combined[$key]['inventory_quantity'] = $item->quantity;
             } else {
                 $combined[$key] = [
                     'isbn' => $item->isbn,
                     'title' => '',
-                    'book_condition' => $item->book_condition,
+                    // 'book_condition' => $item->book_condition,
                     'inventory_quantity' => $item->quantity,
                     'audit_quantity' => 0,
                 ];
