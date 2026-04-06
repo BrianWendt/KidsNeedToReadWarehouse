@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\PurchaseOrder;
 use App\Orchid\Layouts\PurchaseOrder\PurchaseOrderSelection;
+use Illuminate\Http\Request;
 
 class ExportController extends Controller
 {

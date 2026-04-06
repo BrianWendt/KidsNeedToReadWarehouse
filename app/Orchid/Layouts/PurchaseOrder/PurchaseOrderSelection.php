@@ -2,9 +2,9 @@
 
 namespace App\Orchid\Layouts\PurchaseOrder;
 
+use App\Orchid\Filters;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Layouts\Selection;
-use App\Orchid\Filters;
 
 class PurchaseOrderSelection extends Selection
 {

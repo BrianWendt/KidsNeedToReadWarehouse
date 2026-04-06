@@ -2,10 +2,10 @@
 
 namespace App\Orchid\Filters;
 
+use App\Orchid\Fields;
 use Illuminate\Database\Eloquent\Builder;
 use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
-use App\Orchid\Fields;
 
 class ContactFilter extends Filter
 {

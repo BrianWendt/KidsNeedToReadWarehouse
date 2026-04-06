@@ -42,7 +42,7 @@ class PurchaseOrderListLayout extends Table
             TD::make('contact', __('Contact'))
                 ->cantHide()
                 ->render(function (PurchaseOrder $purchase_order) {
-                    if($purchase_order->contact_id){
+                    if ($purchase_order->contact_id) {
                         return Link::make($purchase_order->contact->display)
                             ->route('app.contact.view', $purchase_order->contact);
                     } else {
