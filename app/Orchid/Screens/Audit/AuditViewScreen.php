@@ -103,10 +103,21 @@ class AuditViewScreen extends Screen
             ->get();
         $data = [];
         foreach ($inventory as $item) {
-            $price = $item->book ? conditionPrice($item->book, $item->book_condition) : 0;
+            $book = $item->getBook();
+            if ($book) {
+                if ($book->fixed_price) {
+                    $price = $book->fixed_price;
+                } elseif ($item->book_condition) {
+                    $price = conditionPrice($book, $item->book_condition);
+                } else {
+                    $price = 0;
+                }
+            } else {
+                $price = 0;
+            }
             $data[] = [
                 'isbn' => $item->isbn,
-                'title' => $item->book ? $item->book->title : 'Unknown',
+                'title' => $book ? $book->title : 'Unknown',
                 'book_condition' => $item->book_condition,
                 'quantity' => $item->quantity,
                 'unit_price' => $price,

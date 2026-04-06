@@ -22,6 +22,15 @@ class AuditInventory extends AppModel
         'audit_id',
     ];
 
+    public function getBook()
+    {
+        if ($this->book) {
+            return $this->book;
+        }
+
+        return Book::where('isbn', 'LIKE', '%' . $this->isbn)->first();
+    }
+
     /**
      * Not using the App\Models\Traits\HasBook trait because that comes with a lot of extra baggage.
      *
@@ -29,6 +38,8 @@ class AuditInventory extends AppModel
      */
     public function book()
     {
+
+        // on audit_inventory.isbn LIKE % books.isbn
         return $this->belongsTo(Book::class, 'isbn', 'isbn');
     }
 
