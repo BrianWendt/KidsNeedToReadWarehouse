@@ -112,11 +112,11 @@ class AuditViewScreen extends Screen
         $audit_inventory = DB::table('audit_inventory')
             ->selectRaw('isbn, book_condition, SUM(quantity) as quantity')
             ->where('audit_id', $this->audit->id)
-            ->groupBy('isbn', 'book_condition')
+            ->groupBy('isbn')
             ->get();
         $inventory = DB::table('inventory')
             ->selectRaw('isbn, book_condition, SUM(quantity) as quantity')
-            ->groupBy('isbn', 'book_condition')
+            ->groupBy('isbn')
             ->get();
 
         // combine $audit_inventory and $inventory by isbn
