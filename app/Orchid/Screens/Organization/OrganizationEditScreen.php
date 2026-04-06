@@ -49,7 +49,7 @@ class OrganizationEditScreen extends Screen
     {
         $organization->fill($request->get('organization'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Organization updated'));
+        \Orchid\Support\Facades\Alert::success(__('Organization updated'));
 
         return redirect()->route('app.organization.view', $organization);
     }

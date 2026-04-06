@@ -62,7 +62,7 @@ class EmailCreateScreen extends Screen
     {
         $email->fill($request->get('email'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Email Address added'));
+        \Orchid\Support\Facades\Alert::success(__('Email Address added'));
 
         return redirect()->route('app.contact.view', $email->contact_id);
     }

@@ -35,7 +35,7 @@ class BookAddScreen extends Screen
         try {
             $book_response = \App\Services\GoogleBooks\Service::fetchByISBN($isbn);
         } catch (\Exception $e) {
-            \Orchid\Support\Facades\Toast::error('Error fetching book data from Google Books API: ' . $e->getMessage());
+            \Orchid\Support\Facades\Alert::error('Error fetching book data from Google Books API: ' . $e->getMessage());
             $book_response = null;
         }
 
@@ -113,7 +113,7 @@ class BookAddScreen extends Screen
 
     public function save(Book $book, StoreBookRequest $request)
     {
-        \Orchid\Support\Facades\Toast::success('Book Added.');
+        \Orchid\Support\Facades\Alert::success('Book Added.');
         $book->fill($request->input('book'));
         $book->save();
 

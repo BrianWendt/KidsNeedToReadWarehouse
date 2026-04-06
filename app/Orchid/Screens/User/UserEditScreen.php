@@ -18,8 +18,8 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
-use Orchid\Support\Facades\Toast;
 
 class UserEditScreen extends Screen
 {
@@ -174,7 +174,7 @@ class UserEditScreen extends Screen
 
         $user->replaceRoles($request->input('user.roles'));
 
-        Toast::info(__('User was saved.'));
+        Alert::info(__('User was saved.'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -188,7 +188,7 @@ class UserEditScreen extends Screen
     {
         $user->delete();
 
-        Toast::info(__('User was removed'));
+        Alert::info(__('User was removed'));
 
         return redirect()->route('platform.systems.users');
     }
@@ -200,7 +200,7 @@ class UserEditScreen extends Screen
     {
         Impersonation::loginAs($user);
 
-        Toast::info(__('You are now impersonating this user'));
+        Alert::info(__('You are now impersonating this user'));
 
         return redirect()->route(config('platform.index'));
     }

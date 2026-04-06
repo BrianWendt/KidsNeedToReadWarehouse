@@ -57,7 +57,7 @@ class ContactCreateScreen extends Screen
     {
         $contact->fill($request->get('contact'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Contact added'));
+        \Orchid\Support\Facades\Alert::success(__('Contact added'));
 
         return redirect()->route('app.contact.view', $contact->id);
     }

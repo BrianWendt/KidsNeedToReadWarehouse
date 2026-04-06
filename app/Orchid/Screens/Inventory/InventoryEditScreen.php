@@ -63,7 +63,7 @@ class InventoryEditScreen extends Screen
 
         $inventory->entity->touch();
 
-        \Orchid\Support\Facades\Toast::success('Inventory Updaed.');
+        \Orchid\Support\Facades\Alert::success('Inventory Updaed.');
 
         return redirect()->route($inventory->entity->viewRoute(), $inventory->entity_id);
     }

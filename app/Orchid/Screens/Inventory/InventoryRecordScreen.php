@@ -109,7 +109,7 @@ class InventoryRecordScreen extends Screen
 
         PurchaseOrder::find($inventory->entity_id)->touch();
 
-        \Orchid\Support\Facades\Toast::success("You have successfully recorded {$inventory->quantity} of `{$inventory->isbn}`.");
+        \Orchid\Support\Facades\Alert::success("You have successfully recorded {$inventory->quantity} of `{$inventory->isbn}`.");
         if ($inventory->book) {
             $inventory->book->touch();
 

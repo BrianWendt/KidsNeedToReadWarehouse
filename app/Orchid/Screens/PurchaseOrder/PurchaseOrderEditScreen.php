@@ -74,7 +74,7 @@ class PurchaseOrderEditScreen extends Screen
     {
         $purchase_order->fill($request->get('purchase_order'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Purchase Order updated'));
+        \Orchid\Support\Facades\Alert::success(__('Purchase Order updated'));
 
         return redirect()->route('app.purchase_order.view', $purchase_order);
     }
@@ -88,7 +88,7 @@ class PurchaseOrderEditScreen extends Screen
             $purchase_order->telephone_id = null;
             $purchase_order->email_id = null;
             $purchase_order->save();
-            \Orchid\Support\Facades\Toast::success(__('Organization updated'));
+            \Orchid\Support\Facades\Alert::success(__('Organization updated'));
         }
 
         return redirect()->route('app.purchase_order.edit', $purchase_order);
@@ -99,7 +99,7 @@ class PurchaseOrderEditScreen extends Screen
         $purchase_order->archived_at = now();
         $purchase_order->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Purchase Order archived'));
+        \Orchid\Support\Facades\Alert::success(__('Purchase Order archived'));
 
         return redirect()->route('app.purchase_order.list');
     }

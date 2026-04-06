@@ -53,7 +53,7 @@ class PurchaseOrderCreateScreen extends Screen
     {
         $purchase_order->fill($request->get('purchase_order'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Purchase Order created'));
+        \Orchid\Support\Facades\Alert::success(__('Purchase Order created'));
 
         return redirect()->route('app.purchase_order.view', $purchase_order);
     }

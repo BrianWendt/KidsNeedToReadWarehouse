@@ -110,7 +110,7 @@ class ContactViewScreen extends Screen
     public function makePrimary(Contact $contact, Request $request)
     {
         $contact->fill($request->all())->save();
-        \Orchid\Support\Facades\Toast::success(__('Primary updated'));
+        \Orchid\Support\Facades\Alert::success(__('Primary updated'));
 
         return back();
     }

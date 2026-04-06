@@ -53,7 +53,7 @@ class FulfillmentInventoryEditScreen extends Screen
     {
         $fulfillment_inventory->fill($request->get('fulfillment_inventory'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Fulfillment updated'));
+        \Orchid\Support\Facades\Alert::success(__('Fulfillment updated'));
 
         return redirect()->route('app.fulfillment.view', $fulfillment_inventory->fulfillment);
     }
@@ -62,7 +62,7 @@ class FulfillmentInventoryEditScreen extends Screen
     {
         $fulfillment_inventory->delete();
 
-        \Orchid\Support\Facades\Toast::success(__('Fulfillment updated'));
+        \Orchid\Support\Facades\Alert::success(__('Fulfillment updated'));
 
         return redirect()->route('app.fulfillment.view', $fulfillment_inventory->fulfillment);
     }

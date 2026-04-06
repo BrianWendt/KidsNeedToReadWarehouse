@@ -57,7 +57,7 @@ class AddressCreateScreen extends Screen
     {
         $address->fill($request->get('address'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Address added'));
+        \Orchid\Support\Facades\Alert::success(__('Address added'));
 
         return redirect()->route('app.contact.view', $address->contact_id);
     }

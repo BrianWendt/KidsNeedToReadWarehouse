@@ -12,8 +12,8 @@ use Illuminate\Validation\Rule;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
-use Orchid\Support\Facades\Toast;
 
 class UserListScreen extends Screen
 {
@@ -106,13 +106,13 @@ class UserListScreen extends Screen
 
         $user->fill($request->input('user'))->save();
 
-        Toast::info(__('User was saved.'));
+        Alert::info(__('User was saved.'));
     }
 
     public function remove(Request $request): void
     {
         User::findOrFail($request->get('id'))->delete();
 
-        Toast::info(__('User was removed'));
+        Alert::info(__('User was removed'));
     }
 }

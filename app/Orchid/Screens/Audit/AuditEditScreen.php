@@ -56,7 +56,7 @@ class AuditEditScreen extends Screen
     {
         $audit->fill($request->get('audit'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Audit updated'));
+        \Orchid\Support\Facades\Alert::success(__('Audit updated'));
 
         return redirect()->route('app.audit.list', $audit);
     }
@@ -66,7 +66,7 @@ class AuditEditScreen extends Screen
         $audit->closed_at = now();
         $audit->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Audit closed'));
+        \Orchid\Support\Facades\Alert::success(__('Audit closed'));
 
         return redirect()->route('app.audit.list');
     }

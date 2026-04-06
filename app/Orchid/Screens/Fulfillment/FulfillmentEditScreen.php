@@ -62,7 +62,7 @@ class FulfillmentEditScreen extends Screen
     {
         $fulfillment->fill($request->get('fulfillment'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Fulfillment updated'));
+        \Orchid\Support\Facades\Alert::success(__('Fulfillment updated'));
 
         return redirect()->route('app.fulfillment.view', $fulfillment);
     }
@@ -72,7 +72,7 @@ class FulfillmentEditScreen extends Screen
         $fulfillment->status = 'cancelled';
         $fulfillment->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Fulfillment cancelled'));
+        \Orchid\Support\Facades\Alert::success(__('Fulfillment cancelled'));
 
         return redirect()->route('app.fulfillment.list');
     }

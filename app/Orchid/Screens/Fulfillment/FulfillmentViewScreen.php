@@ -171,7 +171,7 @@ class FulfillmentViewScreen extends Screen
 
         $inventory->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Inventory added'));
+        \Orchid\Support\Facades\Alert::success(__('Inventory added'));
 
         return redirect()->route('app.fulfillment.view', $fulfillment);
     }
@@ -191,7 +191,7 @@ class FulfillmentViewScreen extends Screen
         }
 
         $this->fulfillment->update(['status' => 'pending_shipment']);
-        \Orchid\Support\Facades\Toast::success(__('Status updated'));
+        \Orchid\Support\Facades\Alert::success(__('Status updated'));
 
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
@@ -200,7 +200,7 @@ class FulfillmentViewScreen extends Screen
     {
         $this->fulfillment->update(['status' => 'preparing']);
         \App\Models\Inventory::where(['entity_id' => $this->fulfillment->id, 'entity_type' => 'fulfillment'])->delete();
-        \Orchid\Support\Facades\Toast::success(__('Status updated'));
+        \Orchid\Support\Facades\Alert::success(__('Status updated'));
 
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
@@ -208,7 +208,7 @@ class FulfillmentViewScreen extends Screen
     public function setTracking(\App\Http\Requests\SetTrackingRequest $request)
     {
         $this->fulfillment->update(['tracking' => $request->input('tracking'), 'status' => 'shipped']);
-        \Orchid\Support\Facades\Toast::success(__('Tracking updated'));
+        \Orchid\Support\Facades\Alert::success(__('Tracking updated'));
 
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
@@ -216,7 +216,7 @@ class FulfillmentViewScreen extends Screen
     public function markAsShipped()
     {
         $this->fulfillment->update(['status' => 'shipped']);
-        \Orchid\Support\Facades\Toast::success(__('Status updated'));
+        \Orchid\Support\Facades\Alert::success(__('Status updated'));
 
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }
@@ -224,7 +224,7 @@ class FulfillmentViewScreen extends Screen
     public function deleteInventory($id, Request $request)
     {
 
-        \Orchid\Support\Facades\Toast::success(__('Inventory deleted'));
+        \Orchid\Support\Facades\Alert::success(__('Inventory deleted'));
 
         return redirect()->route('app.fulfillment.view', $this->fulfillment);
     }

@@ -62,7 +62,7 @@ class TelephoneCreateScreen extends Screen
     {
         $telephone->fill($request->get('telephone'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Phone Number added'));
+        \Orchid\Support\Facades\Alert::success(__('Phone Number added'));
 
         return redirect()->route('app.contact.view', $telephone->contact_id);
     }

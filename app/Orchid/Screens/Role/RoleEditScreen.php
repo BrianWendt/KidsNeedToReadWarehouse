@@ -12,8 +12,8 @@ use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
-use Orchid\Support\Facades\Toast;
 
 class RoleEditScreen extends Screen
 {
@@ -121,7 +121,7 @@ class RoleEditScreen extends Screen
 
         $role->save();
 
-        Toast::info(__('Role was saved'));
+        Alert::info(__('Role was saved'));
 
         return redirect()->route('platform.systems.roles');
     }
@@ -135,7 +135,7 @@ class RoleEditScreen extends Screen
     {
         $role->delete();
 
-        Toast::info(__('Role was removed'));
+        Alert::info(__('Role was removed'));
 
         return redirect()->route('platform.systems.roles');
     }

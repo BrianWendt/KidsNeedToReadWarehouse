@@ -49,7 +49,7 @@ class AddressEditScreen extends Screen
     {
         $address->fill($request->get('address'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Address updated'));
+        \Orchid\Support\Facades\Alert::success(__('Address updated'));
 
         return redirect()->route('app.contact.view', $address->contact_id);
     }

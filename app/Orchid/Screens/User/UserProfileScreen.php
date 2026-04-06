@@ -15,8 +15,8 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
 use Orchid\Support\Color;
+use Orchid\Support\Facades\Alert;
 use Orchid\Support\Facades\Layout;
-use Orchid\Support\Facades\Toast;
 
 class UserProfileScreen extends Screen
 {
@@ -110,7 +110,7 @@ class UserProfileScreen extends Screen
             ->fill($request->get('user'))
             ->save();
 
-        Toast::info(__('Profile updated.'));
+        Alert::info(__('Profile updated.'));
     }
 
     public function changePassword(Request $request): void
@@ -125,6 +125,6 @@ class UserProfileScreen extends Screen
             $user->password = Hash::make($request->get('password'));
         })->save();
 
-        Toast::info(__('Password changed.'));
+        Alert::info(__('Password changed.'));
     }
 }

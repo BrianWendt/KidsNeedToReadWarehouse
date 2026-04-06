@@ -53,7 +53,7 @@ class ContactEditScreen extends Screen
     {
         $contact->fill($request->get('contact'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Contact updated'));
+        \Orchid\Support\Facades\Alert::success(__('Contact updated'));
 
         return redirect()->route('app.contact.view', $contact->id);
     }

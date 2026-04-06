@@ -59,7 +59,7 @@ class BookEditScreen extends Screen
     {
         $book->fill($request->input('book'));
         $book->save();
-        \Orchid\Support\Facades\Toast::success(__('Updated Book.'));
+        \Orchid\Support\Facades\Alert::success(__('Updated Book.'));
 
         return redirect()->route('app.inventory.record', $book->isbn);
     }

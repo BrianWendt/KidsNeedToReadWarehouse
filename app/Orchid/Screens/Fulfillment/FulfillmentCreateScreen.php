@@ -53,7 +53,7 @@ class FulfillmentCreateScreen extends Screen
     {
         $fulfillment->fill($request->get('fulfillment'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Fulfillment created'));
+        \Orchid\Support\Facades\Alert::success(__('Fulfillment created'));
 
         return redirect()->route('app.fulfillment.edit', $fulfillment);
     }

@@ -54,7 +54,7 @@ class TelephoneEditScreen extends Screen
     {
         $telephone->fill($request->get('telephone'))->save();
 
-        \Orchid\Support\Facades\Toast::success(__('Phone Number updated'));
+        \Orchid\Support\Facades\Alert::success(__('Phone Number updated'));
 
         return redirect()->route('app.contact.view', $telephone->contact_id);
     }
