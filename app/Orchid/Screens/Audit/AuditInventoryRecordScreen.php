@@ -80,30 +80,44 @@ class AuditInventoryRecordScreen extends Screen
 
     public function bulkSave(Request $request)
     {
+        $errors = $this->inserts($request);
+
+        if (! empty($errors)) {
+            Alert::warning('Some lines were not processed due to errors: ' . implode('; ', $errors))->withoutEscaping();
+        } else {
+            Alert::success('You have successfully recorded the inventory.');
+        }
+
+        return redirect()->route('app.audit.record', $this->audit);
+    }
+
+    protected function inserts(Request $request)
+    {
         $string = $request->input('bulk');
         $lines = explode("\n", $string);
 
         $now = now();
 
         $inserts = [];
+        $errors = [];
         foreach ($lines as $line) {
             if (trim($line) == '') {
                 continue;
             }
             $parts = explode("\t", $line);
             if (count($parts) != 2) {
-                Alert::error("Invalid line: $line");
+                $errors[] = "Invalid line: $line";
 
                 continue;
             }
             if (! is_numeric($parts[1])) {
-                Alert::error("Invalid quantity: $parts[1]");
+                $errors[] = "Invalid quantity: $parts[1]";
 
                 continue;
             }
 
             if (strlen($parts[0]) > 20) {
-                Alert::error("ISBN too long: $parts[0]");
+                $errors[] = "ISBN too long: $parts[0]";
 
                 continue;
             }
@@ -120,8 +134,6 @@ class AuditInventoryRecordScreen extends Screen
 
         AuditInventory::insert($inserts);
 
-        Alert::success('You have successfully recorded the inventory.');
-
-        return redirect()->route('app.audit.record', $this->audit);
+        return $errors;
     }
 }
