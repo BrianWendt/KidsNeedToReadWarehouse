@@ -8,6 +8,7 @@ use App\Models\AuditInventory;
 use App\Orchid\Layouts\Audit as AuditLayouts;
 use Illuminate\Http\Request;
 use Orchid\Screen\Screen;
+use Orchid\Support\Facades\Alert;
 
 class AuditInventoryRecordScreen extends Screen
 {
@@ -72,7 +73,7 @@ class AuditInventoryRecordScreen extends Screen
         $audit_inventory->fill($request->get('audit_inventory'));
         $audit_inventory->audit_id = $this->audit->id;
         $audit_inventory->save();
-        \Orchid\Support\Facades\Toast::success("You have successfully recorded {$audit_inventory->quantity} of `{$audit_inventory->isbn}`.");
+        Alert::success("You have successfully recorded {$audit_inventory->quantity} of `{$audit_inventory->isbn}`.");
 
         return redirect()->route('app.audit.record', $this->audit);
     }
@@ -91,12 +92,18 @@ class AuditInventoryRecordScreen extends Screen
             }
             $parts = explode("\t", $line);
             if (count($parts) != 2) {
-                \Orchid\Support\Facades\Toast::error("Invalid line: $line");
+                Alert::error("Invalid line: $line");
 
                 continue;
             }
             if (! is_numeric($parts[1])) {
-                \Orchid\Support\Facades\Toast::error("Invalid quantity: $parts[1]");
+                Alert::error("Invalid quantity: $parts[1]");
+
+                continue;
+            }
+
+            if (strlen($parts[0]) > 20) {
+                Alert::error("ISBN too long: $parts[0]");
 
                 continue;
             }
@@ -113,7 +120,7 @@ class AuditInventoryRecordScreen extends Screen
 
         AuditInventory::insert($inserts);
 
-        \Orchid\Support\Facades\Toast::success('You have successfully recorded the inventory.');
+        Alert::success('You have successfully recorded the inventory.');
 
         return redirect()->route('app.audit.record', $this->audit);
     }
