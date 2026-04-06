@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Audit;
 
 use App\Models\Audit;
+use App\Models\AuditInventory;
 use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
@@ -96,12 +97,38 @@ class AuditViewScreen extends Screen
 
     protected function export()
     {
+        $inventory = AuditInventory::where('audit_id', $this->audit->id)
+            ->selectRaw('isbn, book_condition, SUM(quantity) as quantity')
+            ->groupBy('isbn', 'book_condition')
+            ->get();
+        $data = [];
+        foreach ($inventory as $item) {
+            $price = $item->book ? conditionPrice($item->book, $item->book_condition) : 0;
+            $data[] = [
+                'isbn' => $item->isbn,
+                'title' => $item->book ? $item->book->title : 'Unknown',
+                'book_condition' => $item->book_condition,
+                'quantity' => $item->quantity,
+                'unit_price' => $price,
+                'total_price' => $price * $item->quantity,
+            ];
+        }
+
+        $csv = "ISBN\tTitle\tBook Condition\tQuantity\tUnit Price\tTotal Price\n";
+        $csv .= str_putcsv($data, "\t");
+
+        return Layout::view('export.csv', [
+            'csv' => $csv,
+        ]);
+    }
+
+    protected function exportDiff()
+    {
         $diff = $this->getDiff();
         $csv = "ISBN\tTitle\tInventory Quantity\tAudit Quantity\tDiff\n";
         $csv .= str_putcsv($diff, "\t");
 
-        return Layout::view('export.audit-inventory', [
-            'diff' => $diff,
+        return Layout::view('export.csv', [
             'csv' => $csv,
         ]);
     }
