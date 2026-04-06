@@ -94,6 +94,7 @@ class AuditViewScreen extends Screen
     public $export_columns = [
         'isbn' => 'ISBN',
         'book.title' => 'Title',
+        'book_condition' => 'Condition',
         'quantity' => 'Quantity',
         'created_at_display' => 'Recorded Date',
     ];

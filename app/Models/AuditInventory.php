@@ -5,6 +5,9 @@ namespace App\Models;
 /**
  * @property string $audit_id
  * @property string $quantity
+ * @property string $book_condition
+ * @property \App\Models\Audit $audit
+ * @property \App\Models\Book $book
  */
 class AuditInventory extends AppModel
 {
@@ -15,6 +18,7 @@ class AuditInventory extends AppModel
     public $fillable = [
         'isbn',
         'quantity',
+        'book_condition',
         'audit_id',
     ];
 
@@ -26,5 +30,10 @@ class AuditInventory extends AppModel
     public function book()
     {
         return $this->belongsTo(Book::class, 'isbn', 'isbn');
+    }
+
+    public function audit()
+    {
+        return $this->belongsTo(Audit::class, 'audit_id');
     }
 }

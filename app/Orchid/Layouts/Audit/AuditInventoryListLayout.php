@@ -49,6 +49,13 @@ class AuditInventoryListLayout extends Table
                 })
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px'),
+
+            TD::make('book_condition', __('Condition'))
+                ->render(function (AuditInventory $inventory) {
+                    return $inventory->book_condition ? config('options.book_conditions')[$inventory->book_condition] : '-';
+                })
+                ->align(TD::ALIGN_CENTER)
+                ->width('120px'),
         ];
     }
 

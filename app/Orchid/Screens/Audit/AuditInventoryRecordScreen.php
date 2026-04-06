@@ -82,7 +82,13 @@ class AuditInventoryRecordScreen extends Screen
         $string = $request->input('bulk');
         $lines = explode("\n", $string);
 
+        $now = now();
+
+        $inserts = [];
         foreach ($lines as $line) {
+            if (trim($line) == '') {
+                continue;
+            }
             $parts = explode("\t", $line);
             if (count($parts) != 2) {
                 \Orchid\Support\Facades\Toast::error("Invalid line: $line");
@@ -94,12 +100,18 @@ class AuditInventoryRecordScreen extends Screen
 
                 continue;
             }
-            $audit_inventory = new AuditInventory;
-            $audit_inventory->isbn = trim($parts[0]);
-            $audit_inventory->quantity = trim($parts[1]);
-            $audit_inventory->audit_id = $this->audit->id;
-            $audit_inventory->save();
+
+            $inserts[] = [
+                'audit_id' => $this->audit->id,
+                'isbn' => trim($parts[0]),
+                'quantity' => trim($parts[1]),
+                'book_condition' => $request->input('book_condition'),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
         }
+
+        AuditInventory::insert($inserts);
 
         \Orchid\Support\Facades\Toast::success('You have successfully recorded the inventory.');
 
