@@ -1,1 +1,0 @@
-These are scripts for importing data from the Lead Commerce
