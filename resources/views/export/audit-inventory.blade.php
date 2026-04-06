@@ -1,0 +1,1 @@
+<textarea style="width: 100%; height: 200px;" readonly onclick="this.select()">{{ $csv }}</textarea>

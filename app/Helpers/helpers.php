@@ -121,3 +121,22 @@ function renderMoney(): Closure
         }
     };
 }
+
+function str_putcsv(array $rows, string $delimiter = ',', string $enclosure = '"'): string
+{
+    // Open a memory "file" for read/write...
+    $fp = fopen('php://temp', 'r+');
+    // ... write the $rows array to the "file" using fputcsv()...
+    foreach ($rows as $row) {
+        fputcsv($fp, $row, $delimiter, $enclosure);
+    }
+    // ... rewind the "file" so we can read what we just wrote...
+    rewind($fp);
+    // ... read the entire line into a variable...
+    $data = fread($fp, 1048576);
+    // ... close the "file"...
+    fclose($fp);
+
+    // ... and return the $data to the caller, with the trailing newline from fgets() removed.
+    return rtrim($data, "\n");
+}

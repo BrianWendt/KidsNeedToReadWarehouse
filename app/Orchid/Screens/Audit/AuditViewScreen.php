@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Audit;
 
 use App\Models\Audit;
+use Illuminate\Support\Facades\DB;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Screen;
@@ -11,8 +12,6 @@ use Orchid\Support\Facades\Layout;
 
 class AuditViewScreen extends Screen
 {
-    use \App\Orchid\Screens\Traits\Exports;
-
     public $audit;
 
     /**
@@ -59,6 +58,10 @@ class AuditViewScreen extends Screen
      */
     public function layout(): iterable
     {
+        if (request()->get('export') == 'xlsx') {
+            return [$this->export()];
+        }
+
         return [
             Layout::legend('audit', [
                 Sight::make('label', __('Label')),
@@ -80,7 +83,9 @@ class AuditViewScreen extends Screen
                         ->route('app.audit.record', $this->audit)
                         ->type(\Orchid\Support\Color::SUCCESS()),
 
-                    self::exportAction('xlsx', __('Export XLSX'))
+                    Link::make(__('Export XLSX'))
+                        ->route('app.audit.view', [$this->audit, 'export' => 'xlsx'])
+                        ->type(\Orchid\Support\Color::PRIMARY())
                         ->icon('bs.filetype-xlsx'),
                 ]),
             ]),
@@ -89,15 +94,67 @@ class AuditViewScreen extends Screen
         ];
     }
 
-    public $export_target = 'audit.audit_inventory';
+    protected function export()
+    {
+        $diff = $this->getDiff();
+        $csv = "ISBN\tTitle\tBook Condition\tAudit Quantity\tInventory Quantity\tDiff\n";
+        $csv .= str_putcsv($diff, "\t");
 
-    public $export_columns = [
-        'isbn' => 'ISBN',
-        'book.title' => 'Title',
-        'book_condition' => 'Condition',
-        'quantity' => 'Quantity',
-        'created_at_display' => 'Recorded Date',
-    ];
+        return Layout::view('export.audit-inventory', [
+            'diff' => $diff,
+            'csv' => $csv,
+        ]);
+    }
+
+    protected function getDiff()
+    {
+        $books = DB::table('books')->pluck('title', 'isbn');
+        $audit_inventory = DB::table('audit_inventory')
+            ->selectRaw('isbn, book_condition, SUM(quantity) as quantity')
+            ->where('audit_id', $this->audit->id)
+            ->groupBy('isbn', 'book_condition')
+            ->get();
+        $inventory = DB::table('inventory')
+            ->selectRaw('isbn, book_condition, SUM(quantity) as quantity')
+            ->groupBy('isbn', 'book_condition')
+            ->get();
+
+        // combine $audit_inventory and $inventory by isbn
+        $combined = [];
+        foreach ($audit_inventory as $item) {
+            $combined[$item->isbn . '-' . $item->book_condition] = [
+                'isbn' => $item->isbn,
+                'title' => '',
+                'book_condition' => $item->book_condition,
+                'inventory_quantity' => 0,
+                'audit_quantity' => $item->quantity,
+
+            ];
+        }
+
+        foreach ($inventory as $item) {
+            $key = $item->isbn . '-' . $item->book_condition;
+            if (isset($combined[$key])) {
+                $combined[$key]['inventory_quantity'] = $item->quantity;
+            } else {
+                $combined[$key] = [
+                    'isbn' => $item->isbn,
+                    'title' => '',
+                    'book_condition' => $item->book_condition,
+                    'inventory_quantity' => $item->quantity,
+                    'audit_quantity' => 0,
+                ];
+            }
+        }
+
+        // iterate and create a diff field and add book title
+        foreach ($combined as $key => $item) {
+            $combined[$key]['diff'] = $item['audit_quantity'] - $item['inventory_quantity'];
+            $combined[$key]['title'] = $books[$item['isbn']] ?? 'Unknown';
+        }
+
+        return $combined;
+    }
 
     public function exportFilename()
     {
